@@ -13,13 +13,19 @@ class ServerResponse {
   String? verifyCode;
 
   ServerResponse(
-      {this.message, this.errors, this.data, this.total, this.token, this.invoicePdf, this.verifyCode});
+      {this.message,
+      this.errors,
+      this.data,
+      this.total,
+      this.token,
+      this.invoicePdf,
+      this.verifyCode});
 
   ServerResponse.fromJson(Map<String, dynamic> json) {
     message = json['message'];
     errors = json['errors'] ?? json['error'];
     total = json['total'];
-    data = json['data'] ?? json['order'];
+    data = json['data'] ?? json;
     token = json['token'];
     invoicePdf = json['invoice_pdf'];
     verifyCode = json['verify_code'];
@@ -86,7 +92,14 @@ class Meta {
   int? total;
 
   Meta(
-      {this.currentPage, this.from, this.lastPage, this.links, this.path, this.perPage, this.to, this.total});
+      {this.currentPage,
+      this.from,
+      this.lastPage,
+      this.links,
+      this.path,
+      this.perPage,
+      this.to,
+      this.total});
 
   Meta.fromJson(Map<String, dynamic> json) {
     currentPage = json['current_page'];

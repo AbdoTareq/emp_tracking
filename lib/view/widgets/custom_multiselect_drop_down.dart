@@ -25,7 +25,7 @@ class _CustomMultiselectDropDownState extends State<CustomMultiselectDropDown> {
       child: ExpansionTile(
         iconColor: Colors.grey,
         title: (listOFSelectedItem.isEmpty ? "Select" : listOFSelectedItem[0])
-            .tr
+            // .tr
             .text
             .bold
             .xl
@@ -73,7 +73,7 @@ class _ViewItem extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return CheckboxListTile(
-      title: item.tr.text.bold.xl.make().p8(),
+      title: item.text.bold.xl.make().p8(),
       value: itemSelected,
       dense: true,
       controlAffinity: ListTileControlAffinity.leading,

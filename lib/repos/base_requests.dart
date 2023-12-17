@@ -1,3 +1,5 @@
+import 'package:dio/dio.dart';
+
 import '../export.dart';
 
 class BaseRequests {
@@ -74,7 +76,7 @@ class BaseRequests {
               box.write(cashName, res.data);
           }
         }
-        return Right(ServerResponse.fromJson(res.data));
+        return Right(ServerResponse(data: res.data));
       }
     } catch (e) {
       return Left(Failure(message: e.toString()).handleNetworkError(e));

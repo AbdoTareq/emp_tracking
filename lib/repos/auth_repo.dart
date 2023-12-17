@@ -1,3 +1,5 @@
+import 'package:dio/dio.dart';
+
 import '../export.dart' hide ar;
 
 abstract class AuthRepository {
@@ -9,7 +11,6 @@ abstract class AuthRepository {
       Map<String, dynamic> data);
   Future<Either<Failure, ServerResponse>> setEmailPass(
       Map<String, dynamic> data);
-  Future<Either<Failure, ServerResponse>> verify(String email, String code);
   Future<Either<Failure, ServerResponse>> forgetPass(String email);
   Future<Either<Failure, ServerResponse>> resendEmail(String email);
   Future<Either<Failure, ServerResponse>> resetPassword(
@@ -59,14 +60,6 @@ class AuthRepositoryImp with BaseRequests implements AuthRepository {
 
   Future<Either<Failure, ServerResponse>> resendEmail(String email) async =>
       basePost('/re-request-verification', {"email": email});
-
-  Future<Either<Failure, ServerResponse>> verify(
-          String email, String code) async =>
-      basePost(
-          Get.previousRoute == Routes.SIGNUP
-              ? '/verify'
-              : '/forgot-password-verify',
-          {"email": email, "token": code});
 
   Future<Either<Failure, ServerResponse>> resetPassword(
           String email, String password, String code) async =>

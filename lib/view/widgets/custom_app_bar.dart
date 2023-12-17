@@ -16,7 +16,7 @@ class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
 
   @override
   Widget build(BuildContext context) {
-    return AppBar(title: title.tr.text.xl.bold.make(), actions: [
+    return AppBar(title: title.text.xl.bold.make(), actions: [
       searchList == null
           ? Container()
           : SearchAnchor(

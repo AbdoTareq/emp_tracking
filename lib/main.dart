@@ -1,15 +1,14 @@
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_new_template/app/post/post_cubit.dart';
+import 'package:flutter_new_template/app/routes/routes.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'app/routes/app_pages.dart';
-import 'package:get/get.dart';
 import 'package:get_storage/get_storage.dart';
-
-import 'app_bindings.dart';
-import 'constants.dart';
-import 'utils/langs/my_translation.dart';
 import 'package:requests_inspector/requests_inspector.dart';
+
+import 'constants.dart';
 
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -19,14 +18,14 @@ Future<void> main() async {
           ));
   SystemChrome.setPreferredOrientations([DeviceOrientation.portraitUp])
       .then((_) {
-    runApp(RequestsInspector(child: MyApp(), enabled: kDebugMode));
+    runApp(RequestsInspector(child: Root(), enabled: kDebugMode));
   });
 }
 
-class MyApp extends StatelessWidget {
-  final bool language = GetStorage().read('language') ?? true;
-  final bool isDark = GetStorage().read('dark') ?? false;
-  static BuildContext? appContext;
+class Root extends StatelessWidget {
+  static bool isEn = GetStorage().read('language') ?? true;
+  static bool isDark = GetStorage().read('dark') ?? false;
+  static late BuildContext appContext;
 
   @override
   Widget build(BuildContext context) {
@@ -36,16 +35,19 @@ class MyApp extends StatelessWidget {
         rebuildFactor: RebuildFactors.all,
         builder: (BuildContext context, Widget? child) {
           appContext = context;
-          return GetMaterialApp(
-            debugShowCheckedModeBanner: false,
-            title: 'Flutter Demo',
-            translations: MyTranslation(),
-            theme: isDark ? darkTheme : lightTheme,
-            enableLog: false,
-            locale: language ? Locale('en', 'US') : Locale('ar', 'EG'),
-            initialBinding: AppBinding(),
-            initialRoute: AppPages.INITIAL,
-            getPages: AppPages.routes,
+          return MultiBlocProvider(
+            providers: [
+              BlocProvider<PostCubit>(
+                create: (BuildContext context) => PostCubit(),
+              ),
+            ],
+            child: MaterialApp.router(
+              debugShowCheckedModeBanner: false,
+              title: 'Flutter Demo',
+              theme: isDark ? darkTheme : lightTheme,
+              locale: isEn ? Locale('en', 'US') : Locale('ar', 'EG'),
+              routerConfig: routes,
+            ),
           );
         });
   }

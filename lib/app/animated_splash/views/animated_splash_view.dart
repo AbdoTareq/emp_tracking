@@ -72,7 +72,7 @@ class _AnimatedSplashState extends State<AnimatedSplash>
             });
           })
         : Future.delayed(Duration(milliseconds: _duration)).then((value) {
-            Get.offNamed(_homePath);
+            // context.g;
           });
 
     return Scaffold(

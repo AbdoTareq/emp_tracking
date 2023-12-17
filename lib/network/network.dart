@@ -1,6 +1,6 @@
-import 'package:dio/dio.dart';
 import 'package:dio/dio.dart' as http;
-import 'package:flutter/foundation.dart';
+import 'package:dio/dio.dart';
+import 'package:flutter_new_template/main.dart';
 import 'package:requests_inspector/requests_inspector.dart';
 
 import '../export.dart' hide MultipartFile, FormData;
@@ -22,7 +22,7 @@ class Network {
 
   Map<String, String?> headers = {
     'Accept': 'application/json',
-    'locale': Get.locale?.languageCode ?? 'en',
+    'locale': Root.isEn ? 'en' : 'ar',
     "Keep-Alive": "timeout=12",
     'Authorization': GetStorage().hasData("token")
         ? 'Bearer ${GetStorage().read("token")}'

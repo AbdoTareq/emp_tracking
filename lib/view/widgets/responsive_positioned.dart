@@ -1,7 +1,14 @@
+import 'package:flutter_new_template/main.dart';
+
 import '../../export.dart';
 
 class ResponsivePositioned extends StatelessWidget {
-  const ResponsivePositioned({Key? key, required this.child, this.sidePadding = 8, this.top, this.bottom})
+  const ResponsivePositioned(
+      {Key? key,
+      required this.child,
+      this.sidePadding = 8,
+      this.top,
+      this.bottom})
       : super(key: key);
 
   final Widget child;
@@ -11,14 +18,12 @@ class ResponsivePositioned extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Get.locale != null
-        ? Positioned(
-            right: Get.locale!.languageCode.contains('en') ? sidePadding : null,
-            left: Get.locale!.languageCode.contains('en') ? null : sidePadding,
-            top: top,
-            bottom: bottom,
-            child: child,
-          )
-        : Container();
+    return Positioned(
+      right: Root.isEn ? sidePadding : null,
+      left: Root.isEn ? null : sidePadding,
+      top: top,
+      bottom: bottom,
+      child: child,
+    );
   }
 }

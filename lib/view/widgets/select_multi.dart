@@ -1,5 +1,7 @@
 import 'package:flutter_new_template/export.dart';
 
+import '../../main.dart';
+
 // select all or multi or non & all is auto selected when selecting the rest
 class SelectMulti<T> extends StatefulWidget {
   const SelectMulti(
@@ -56,8 +58,7 @@ class _SelectMultiState<T> extends State<SelectMulti<T>> {
   @override
   Widget build(BuildContext context) {
     return Align(
-      alignment:
-          isArabicLocale() ? Alignment.centerRight : Alignment.centerLeft,
+      alignment: Root.isEn ? Alignment.centerRight : Alignment.centerLeft,
       child: Wrap(
         children: [
           for (var index = 0; index < widget.choices.length; index++)
