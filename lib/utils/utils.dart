@@ -132,6 +132,16 @@ Future<dynamic> handleError(Future<dynamic> Function() asyncFunction,
   }
 }
 
+Widget? errorLoading(dynamic state) {
+  if (state.error != null) {
+    return state.error.toString().text.bold.xl.makeCentered().p8();
+  }
+  if (state.isLoading) {
+    return ShimmerList();
+  }
+  return null;
+}
+
 getColorFromHex(String color) =>
     Color(int.parse(color.toString().replaceAll('#', '0xff')));
 

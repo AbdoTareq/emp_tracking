@@ -36,24 +36,22 @@ class _PostScreenState extends State<PostScreen> {
       body: BlocBuilder<PostCubit, PostState>(
         bloc: screenCubit,
         builder: (BuildContext context, PostState state) {
-          if (state.error != null) {
-            return state.error.toString().text.bold.xl.makeCentered().p8();
-          }
-          if (state.isLoading) {
-            return Center(child: CircularProgressIndicator());
-          }
-          return ListView.builder(
-            controller: screenCubit.scrollController,
-            itemCount: state.data!.length,
-            itemBuilder: (BuildContext context, int index) {
-              final post = state.data![index];
-              return ListTile(
-                title: post.title.text.bold.xl.make(),
-                subtitle:
-                    '${post.body.substring(0, 100)} ...'.text.bold.xl.make(),
-              ).p4();
-            },
-          ).hFull(context);
+          return errorLoading(state) ??
+              ListView.builder(
+                controller: screenCubit.scrollController,
+                itemCount: state.data!.length,
+                itemBuilder: (BuildContext context, int index) {
+                  final post = state.data![index];
+                  return ListTile(
+                    title: post.title.text.bold.xl.make(),
+                    subtitle: '${post.body.substring(0, 100)} ...'
+                        .text
+                        .bold
+                        .xl
+                        .make(),
+                  ).p4();
+                },
+              ).hFull(context);
         },
       ),
     );
