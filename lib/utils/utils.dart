@@ -5,7 +5,7 @@ import '../export.dart';
 // methods
 showWarningDialog({String title = '', String text = ''}) async {
   await showDialog(
-      context: Root.appContext,
+      context: navKey.currentContext!,
       builder: (context) {
         return AlertDialog(
           shape: RoundedRectangleBorder(
@@ -35,7 +35,7 @@ showWarningDialog({String title = '', String text = ''}) async {
 
 showSimpleDialog({String title = '', String text = ''}) async {
   await showDialog(
-      context: Root.appContext,
+      context: navKey.currentContext!,
       builder: (context) {
         Future.delayed(Duration(seconds: 1), () {
           Navigator.of(context).pop(true);
@@ -94,26 +94,29 @@ showFailSnack({String title = '', String text = '', Function()? yesFunction}) {
 Future<Null> handleRequest(Future<Null> Function() asyncFunction,
     {bool showMessage = false, String? message}) async {
   showDialog(
-      context: Root.appContext,
-      builder: (context) {
-        return AlertDialog(
-          shape: RoundedRectangleBorder(
-            borderRadius: BorderRadius.circular(10),
-          ),
-          content: Center(child: CircularProgressIndicator()),
-        );
-      });
-  await handleRequestWithoutLoading(asyncFunction);
+    barrierDismissible: false,
+    context: navKey.currentContext!,
+    builder: (BuildContext context) {
+      return AlertDialog(
+        content: Row(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [CircularProgressIndicator()],
+        ),
+      );
+    },
+  );
+  await handleError(asyncFunction).then((value) {});
 }
 
-Future<dynamic> handleRequestWithoutLoading(
-    Future<dynamic> Function() asyncFunction,
+Future<dynamic> handleError(Future<dynamic> Function() asyncFunction,
     {bool showMessage = false,
     String? message,
     Function(dynamic e)? onError}) async {
   try {
     await asyncFunction();
+    Navigator.pop(navKey.currentContext!);
   } catch (e) {
+    Navigator.pop(navKey.currentContext!);
     logger.e(e);
     logger.e(StackTrace.current);
     if (onError != null) onError(e);
@@ -126,8 +129,6 @@ Future<dynamic> handleRequestWithoutLoading(
           title: message ?? 'error',
           text: messages.length > 1 ? messages[1] : messages[0]);
     }
-  } finally {
-    Navigator.pop(Root.appContext);
   }
 }
 

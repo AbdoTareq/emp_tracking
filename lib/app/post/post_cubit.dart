@@ -13,7 +13,6 @@ class PostCubit extends Cubit<PostState> {
   int _pageNum = 0;
 
   Future<void> loadInitialData() async {
-    final stableState = state;
     try {
       emit(state.copyWith(isLoading: true));
       await _getPosts();
@@ -26,10 +25,8 @@ class PostCubit extends Cubit<PostState> {
   _getPosts() async {
     final res = await repo.getAll(pageNum: _pageNum);
     res.fold((_) {}, (r) {
-      logger.i(r.data);
       emit(state.copyWith(
           isLoading: false, data: [...state.data!, ...postsFromJson(r.data)]));
-      logger.i(state.data?.first.toJson());
     });
   }
 

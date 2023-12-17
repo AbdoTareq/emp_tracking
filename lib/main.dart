@@ -22,10 +22,11 @@ Future<void> main() async {
   });
 }
 
+GlobalKey<NavigatorState> navKey = GlobalKey<NavigatorState>();
+
 class Root extends StatelessWidget {
   static bool isEn = GetStorage().read('language') ?? true;
   static bool isDark = GetStorage().read('dark') ?? false;
-  static late BuildContext appContext;
 
   @override
   Widget build(BuildContext context) {
@@ -34,7 +35,6 @@ class Root extends StatelessWidget {
         minTextAdapt: true,
         rebuildFactor: RebuildFactors.all,
         builder: (BuildContext context, Widget? child) {
-          appContext = context;
           return MultiBlocProvider(
             providers: [
               BlocProvider<PostCubit>(

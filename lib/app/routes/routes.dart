@@ -1,7 +1,9 @@
 import 'package:flutter_new_template/app/post/post_screen.dart';
+import 'package:flutter_new_template/main.dart';
 import 'package:go_router/go_router.dart';
 
 final routes = GoRouter(
+  navigatorKey: navKey,
   routes: [
     GoRoute(
       path: '/',
