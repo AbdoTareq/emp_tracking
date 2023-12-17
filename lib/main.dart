@@ -1,3 +1,4 @@
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
@@ -12,6 +13,7 @@ import 'constants.dart';
 
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
+  await EasyLocalization.ensureInitialized();
   await Future.wait([GetStorage.init()]);
   SystemChrome.setSystemUIOverlayStyle(
       SystemUiOverlayStyle(statusBarColor: kPrimaryColor // status bar color
@@ -41,12 +43,17 @@ class Root extends StatelessWidget {
                 create: (BuildContext context) => PostCubit(),
               ),
             ],
-            child: MaterialApp.router(
-              debugShowCheckedModeBanner: false,
-              title: 'Flutter Demo',
-              theme: isDark ? darkTheme : lightTheme,
-              locale: isEn ? Locale('en', 'US') : Locale('ar', 'EG'),
-              routerConfig: routes,
+            child: EasyLocalization(
+              supportedLocales: [Locale('en', 'US'), Locale('ar', 'EG')],
+              path: 'assets/langs/ar.json',
+              fallbackLocale: Locale('en', 'US'),
+              child: MaterialApp.router(
+                debugShowCheckedModeBanner: false,
+                title: 'Flutter Demo',
+                theme: isDark ? darkTheme : lightTheme,
+                // locale: isEn ? Locale('en', 'US') : Locale('ar', 'EG'),
+                routerConfig: routes,
+              ),
             ),
           );
         });
