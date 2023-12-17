@@ -1,0 +1,22 @@
+import '../export.dart' hide ar;
+
+abstract class PostsRepository {
+  Future<Either<Failure, ServerResponse>> getAll(
+      {int? pageNum, int? timeout, bool? refreshFromServer});
+}
+
+class PostsRepositoryImp with BaseRequests implements PostsRepository {
+  PostsRepositoryImp._privateConstructor();
+
+  static final PostsRepositoryImp _instance =
+      PostsRepositoryImp._privateConstructor();
+
+  factory PostsRepositoryImp() {
+    return _instance;
+  }
+
+  Future<Either<Failure, ServerResponse>> getAll(
+          {int? pageNum, int? timeout, bool? refreshFromServer}) async =>
+      baseGet('posts/?_start=${pageNum ?? 0}&_limit=10',
+          refreshFromServer: refreshFromServer ?? false);
+}
