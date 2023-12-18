@@ -1,5 +1,3 @@
-import 'package:flutter_new_template/main.dart';
-
 import '../export.dart';
 
 // methods
@@ -171,4 +169,4 @@ getJson(item) {
   }
 }
 
-bool isEn() => navKey.currentContext!.deviceLocale.toString().contains('en');
+bool isEn() => navKey.currentContext!.locale.toString().contains('en');

@@ -52,6 +52,7 @@ dependencies:
   flutter_hooks: ^0.20.3
   internet_connection_checker: ^1.0.0+1
   easy_localization: ^3.0.3
+  get_it: ^7.6.4
 
 dev_dependencies:
   flutter_test:
@@ -78,6 +79,7 @@ flutter:
   assets:
     - assets/images/
     - assets/json/
+    - assets/anim/
     - assets/langs/
 
 flutter_assets:
