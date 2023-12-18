@@ -4,7 +4,9 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_new_template/app/post/post_cubit.dart';
+import 'package:flutter_new_template/app/post/post_screen.dart';
 import 'package:flutter_new_template/app/routes/routes.dart';
+import 'package:flutter_new_template/generated/codegen_loader.g.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get_storage/get_storage.dart';
 import 'package:requests_inspector/requests_inspector.dart';
@@ -20,18 +22,22 @@ Future<void> main() async {
           ));
   SystemChrome.setPreferredOrientations([DeviceOrientation.portraitUp])
       .then((_) {
-    runApp(RequestsInspector(child: Root(), enabled: kDebugMode));
+    runApp(EasyLocalization(
+        assetLoader: CodegenLoader(),
+        supportedLocales: [Locale('ar'), Locale('en')],
+        path: 'assets/langs',
+        fallbackLocale: Locale('en'),
+        saveLocale: true,
+        child: RequestsInspector(child: Root(), enabled: kDebugMode)));
   });
 }
 
-GlobalKey<NavigatorState> navKey = GlobalKey<NavigatorState>();
-
 class Root extends StatelessWidget {
-  static bool isEn = GetStorage().read('language') ?? true;
   static bool isDark = GetStorage().read('dark') ?? false;
 
   @override
   Widget build(BuildContext context) {
+    logger.i(context.locale);
     return ScreenUtilInit(
         designSize: Size(baseWidth, baseHeight),
         minTextAdapt: true,
@@ -43,17 +49,13 @@ class Root extends StatelessWidget {
                 create: (BuildContext context) => PostCubit(),
               ),
             ],
-            child: EasyLocalization(
-              supportedLocales: [Locale('en', 'US'), Locale('ar', 'EG')],
-              path: 'assets/langs/ar.json',
-              fallbackLocale: Locale('en', 'US'),
-              child: MaterialApp.router(
-                debugShowCheckedModeBanner: false,
-                title: 'Flutter Demo',
-                theme: isDark ? darkTheme : lightTheme,
-                // locale: isEn ? Locale('en', 'US') : Locale('ar', 'EG'),
-                routerConfig: routes,
-              ),
+            child: MaterialApp.router(
+              localizationsDelegates: context.localizationDelegates,
+              supportedLocales: context.supportedLocales,
+              locale: context.locale,
+              theme: isDark ? darkTheme : lightTheme,
+              debugShowCheckedModeBanner: false,
+              routerConfig: routes,
             ),
           );
         });

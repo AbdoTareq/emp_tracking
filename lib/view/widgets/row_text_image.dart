@@ -19,7 +19,7 @@ class RowTextImage extends StatelessWidget {
           height: 20,
         ),
         6.widthBox,
-        text.text.make()
+        text.tr().text.make()
       ],
     );
   }

@@ -16,7 +16,7 @@ class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
 
   @override
   Widget build(BuildContext context) {
-    return AppBar(title: title.text.xl.bold.make(), actions: [
+    return AppBar(title: title.tr().text.xl.bold.make(), actions: [
       searchList == null
           ? Container()
           : SearchAnchor(
@@ -33,7 +33,7 @@ class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
                       .where((element) =>
                           element.title.contains(searchController.text))
                       .map((e) => ListTile(
-                          title: e.title.text.bold.xl.make(),
+                          title: e.title.tr().text.bold.xl.make(),
                           onTap: () {
                             searchController.closeView('');
                             // pushNewScreen(context, screen: PostDetailsView(e));

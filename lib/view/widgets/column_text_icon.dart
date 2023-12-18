@@ -17,7 +17,7 @@ class ColumnTextIcon extends StatelessWidget {
     return Column(
       children: [
         Image.asset('$baseImagePath/$imageName.png').p4(),
-        text.text.color(textColor ?? kPrimaryColor).bold.xs.make()
+        text.tr().text.color(textColor ?? kPrimaryColor).bold.xs.make()
       ],
     );
   }

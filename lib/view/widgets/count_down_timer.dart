@@ -20,7 +20,8 @@ class CountDownTimer extends StatefulWidget {
   State createState() => _CountDownTimerState();
 }
 
-class _CountDownTimerState extends State<CountDownTimer> with TickerProviderStateMixin {
+class _CountDownTimerState extends State<CountDownTimer>
+    with TickerProviderStateMixin {
   late AnimationController _controller;
   late Duration duration;
 
@@ -63,7 +64,8 @@ class _CountDownTimerState extends State<CountDownTimer> with TickerProviderStat
     );
     _controller.reverse(from: widget.secondsRemaining.toDouble());
     _controller.addStatusListener((status) {
-      if (status == AnimationStatus.completed || status == AnimationStatus.dismissed) {
+      if (status == AnimationStatus.completed ||
+          status == AnimationStatus.dismissed) {
         widget.whenTimeExpires();
       }
     });
@@ -109,7 +111,10 @@ class _CountDownTimerState extends State<CountDownTimer> with TickerProviderStat
               return Text(
                 timerDisplayString,
                 style: TextStyle(
-                    color: widget.textColor, fontSize: 25, fontWeight: FontWeight.bold, height: 1.2),
+                    color: widget.textColor,
+                    fontSize: 25,
+                    fontWeight: FontWeight.bold,
+                    height: 1.2),
               );
             }));
   }

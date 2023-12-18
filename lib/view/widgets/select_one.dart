@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:velocity_x/velocity_x.dart';
+import 'package:flutter_new_template/export.dart';
 
 //has 3 states buy & rent & not selected('')
 class SelectOne extends StatefulWidget {
@@ -47,7 +47,14 @@ class _SelectOneState extends State<SelectOne> {
                   widget.onChange(widget.selected);
                 },
                 selected: widget.selected == widget.choices[index],
-                label: widget.titles[index].toString().text.bold.xl.make().p8(),
+                label: widget.titles[index]
+                    .toString()
+                    .tr()
+                    .text
+                    .bold
+                    .xl
+                    .make()
+                    .p8(),
               ),
             ),
           ),

@@ -13,7 +13,15 @@ class RoundedButton extends StatelessWidget {
     return Column(
       mainAxisSize: MainAxisSize.min,
       children: [
-        text.text.bold.white.xl3.makeCentered().capsule(backgroundColor: kPrimaryColor).h8(context),
+        text
+            .tr()
+            .text
+            .bold
+            .white
+            .xl3
+            .makeCentered()
+            .capsule(backgroundColor: kPrimaryColor)
+            .h8(context),
       ],
     );
   }

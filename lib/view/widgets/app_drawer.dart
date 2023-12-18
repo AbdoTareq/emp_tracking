@@ -1,36 +1,41 @@
 import 'package:flutter_hooks/flutter_hooks.dart';
+
 import '../../export.dart';
 
 class AppDrawer extends HookWidget {
   @override
   Widget build(BuildContext context) {
+    final isEN = useState(context.locale.toString().contains('en'));
     return Drawer(
       child: Column(
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
           // SwitchListTile(
-          //     title: darkMode.text.bold.make(),
+          //     title: darkMode.tr().text.bold.make(),
           //     value: controller.darkMode.value,
           //     secondary: Icon(Icons.sunny, color: kPrimaryColor),
           //     onChanged: (_) {
           //       controller.darkMode.toggle();
           //       controller.box.write('dark', controller.darkMode.value);
           //     }),
-          // SwitchListTile(
-          //     title: language.text.bold.make(),
-          //     value: controller.lang.value,
-          //     secondary: Icon(Icons.language, color: kPrimaryColor),
-          //     onChanged: (_) {
-          //       controller.lang.toggle();
-          //       controller.box.write('language', controller.lang.value);
-          //     }),
+          SwitchListTile(
+              title: language.tr().text.bold.make(),
+              value: isEN.value,
+              secondary: Icon(Icons.language, color: kPrimaryColor),
+              onChanged: (_) async {
+                isEN.value = !isEN.value;
+                await context.setLocale(Locale(
+                    context.locale.toString().contains('en') ? 'ar' : 'en'));
+              }),
           GetStorage().hasData('token')
               ? CustomListTile(
                   onTap: () {
                     GetStorage().remove('token');
                     // Get.find<AppSettingsController>().user.value.data = null;
                   },
-                  title: logout.text
+                  title: logout
+                      .tr()
+                      .text
                       .color(Theme.of(context).primaryColor)
                       .bold
                       .xl
@@ -42,7 +47,9 @@ class AppDrawer extends HookWidget {
                   onTap: () {
                     Navigator.pop(context);
                   },
-                  title: login.text
+                  title: login
+                      .tr()
+                      .text
                       .color(Theme.of(context).primaryColor)
                       .bold
                       .xl

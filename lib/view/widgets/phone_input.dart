@@ -148,7 +148,8 @@ class PhoneInput extends StatelessWidget {
       enabled: !disableInput,
       obscureText: isPass,
       inputFormatters: [
-        if (inputType == TextInputType.number) FilteringTextInputFormatter.allow(RegExp("[-0-9,.]")),
+        if (inputType == TextInputType.number)
+          FilteringTextInputFormatter.allow(RegExp("[-0-9,.]")),
       ],
       readOnly: disableInput,
       validator: validate,

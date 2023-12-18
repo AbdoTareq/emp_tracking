@@ -58,7 +58,7 @@ class _SelectMultiState<T> extends State<SelectMulti<T>> {
   @override
   Widget build(BuildContext context) {
     return Align(
-      alignment: Root.isEn ? Alignment.centerRight : Alignment.centerLeft,
+      alignment: isEn() ? Alignment.centerRight : Alignment.centerLeft,
       child: Wrap(
         children: [
           for (var index = 0; index < widget.choices.length; index++)
@@ -75,7 +75,7 @@ class _SelectMultiState<T> extends State<SelectMulti<T>> {
                   widget.onChange(selectedList.toList());
                 },
                 selected: selectedList.contains(widget.choices[index]),
-                label: getName(widget.choices[index]).text.make(),
+                label: getName(widget.choices[index]).tr().text.make(),
               ),
             ),
         ],

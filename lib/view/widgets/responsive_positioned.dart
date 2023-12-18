@@ -19,8 +19,8 @@ class ResponsivePositioned extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Positioned(
-      right: Root.isEn ? sidePadding : null,
-      left: Root.isEn ? null : sidePadding,
+      right: isEn() ? sidePadding : null,
+      left: isEn() ? null : sidePadding,
       top: top,
       bottom: bottom,
       child: child,

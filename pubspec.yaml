@@ -78,6 +78,7 @@ flutter:
   assets:
     - assets/images/
     - assets/json/
+    - assets/langs/
 
 flutter_assets:
   assets_path: assets/images/

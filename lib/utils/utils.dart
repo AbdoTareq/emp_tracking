@@ -11,8 +11,8 @@ showWarningDialog({String? title = '', String? text = ''}) async {
           shape: RoundedRectangleBorder(
             borderRadius: BorderRadius.circular(10),
           ),
-          title: (title ?? '👍').text.isIntrinsic.bold.xl2.makeCentered(),
-          content: (text ?? 'under_dev').text.isIntrinsic.bold.xl.make(),
+          title: (title ?? '👍').tr().text.isIntrinsic.bold.xl2.makeCentered(),
+          content: (text ?? 'under_dev').tr().text.isIntrinsic.bold.xl.make(),
           actions: [
             TextButton(
               onPressed: () => Navigator.of(context).pop(),
@@ -35,12 +35,14 @@ showSimpleDialog({String title = '', String text = ''}) async {
             borderRadius: BorderRadius.circular(10),
           ),
           title: (title.isNotEmpty ? title : '👍')
+              .tr()
               .text
               .isIntrinsic
               .bold
               .xl2
               .makeCentered(),
           content: (text.isNotEmpty ? text : 'Success')
+              .tr()
               .text
               .isIntrinsic
               .bold
@@ -75,7 +77,7 @@ showFailSnack({String title = '', String text = '', Function()? yesFunction}) {
   //     barBlur: 10,
   //     mainButton: TextButton(
   //       onPressed: yesFunction,
-  //       child: yes.text.isIntrinsic.color(kPrimaryColor).bold.xl.make().p8(),
+  //       child: yes.tr().text.isIntrinsic.color(kPrimaryColor).bold.xl.make().p8(),
   //     ),
   //     margin: EdgeInsets.all(10),
   //     padding: EdgeInsets.all(8));
@@ -124,7 +126,7 @@ Future<dynamic> handleError(Future<dynamic> Function() asyncFunction,
 
 Widget? errorLoading(dynamic state) {
   if (state.error != null) {
-    return state.error.toString().text.bold.xl.makeCentered().p8();
+    return state.error.toString().tr().text.bold.xl.makeCentered().p8();
   }
   if (state.isLoading) {
     return ShimmerList();
@@ -168,3 +170,5 @@ getJson(item) {
     return temp.toJson();
   }
 }
+
+bool isEn() => navKey.currentContext!.deviceLocale.toString().contains('en');

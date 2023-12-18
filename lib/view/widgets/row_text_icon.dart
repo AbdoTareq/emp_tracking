@@ -23,7 +23,7 @@ class RowTextIcon extends StatelessWidget {
           color: iconColor ?? kPrimaryColor,
         ),
         6.widthBox,
-        text.text.color(textColor ?? kPrimaryColor).make()
+        text.tr().text.color(textColor ?? kPrimaryColor).make()
       ],
     );
   }

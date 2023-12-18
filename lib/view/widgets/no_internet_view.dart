@@ -22,7 +22,7 @@ class NoInternetView extends StatelessWidget {
               repeat: false,
               onLoaded: (composition) {},
             ),
-            no_internet_connection.text.bold.xl.make().p8(),
+            'no_internet_connection'.tr().text.bold.xl.make().p8(),
           ],
         ),
       ),

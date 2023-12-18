@@ -1,12 +1,9 @@
-import 'package:flutter/material.dart';
-
-import '../../main.dart';
-import '../constants.dart';
+import '../export.dart';
 
 extension NumExtension on num {
   ///same as screenAwareHeight(4, context)
   ///EXAMPLE: 4.rh
-  double rh() {
+  double get rh {
     double drawingHeight = MediaQuery.of(
           navKey.currentContext!,
         ).size.height -
@@ -16,7 +13,7 @@ extension NumExtension on num {
     return this * drawingHeight / baseHeight;
   }
 
-  double rw() {
+  double get rw {
     double drawingWidth = MediaQuery.of(
           navKey.currentContext!,
         ).size.width -

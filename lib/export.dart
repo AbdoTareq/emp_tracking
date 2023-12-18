@@ -16,7 +16,6 @@ export 'view/widgets/custom_app_bar.dart';
 // constants
 export 'constants.dart';
 // utils
-export 'utils/langs/ar.dart';
 export 'utils/utils.dart';
 // most used packages
 export 'package:velocity_x/velocity_x.dart'
@@ -24,7 +23,7 @@ export 'package:velocity_x/velocity_x.dart'
 export 'package:animated_custom_dropdown/custom_dropdown.dart';
 export 'package:flutter_screenutil/flutter_screenutil.dart';
 export 'package:get_storage/get_storage.dart';
-export 'package:flutter/material.dart';
+export 'package:flutter/material.dart' hide TextDirection;
 export 'package:dartz/dartz.dart' hide State, Order;
 // models
 export 'models/failure.dart';
@@ -32,5 +31,8 @@ export 'models/server_response.dart';
 // network
 export 'network/network.dart';
 export 'repos/base_requests.dart';
-// dependency injection
-export 'package:flutter_new_template/app/routes/routes.dart';
+// translations
+export 'gen/translations.g.dart';
+export 'package:easy_localization/easy_localization.dart';
+// routes
+export 'app/routes/routes.dart';

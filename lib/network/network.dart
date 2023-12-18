@@ -22,7 +22,7 @@ class Network {
 
   Map<String, String?> headers = {
     'Accept': 'application/json',
-    'locale': Root.isEn ? 'en' : 'ar',
+    'locale': isEn() ? 'en' : 'ar',
     "Keep-Alive": "timeout=12",
     'Authorization': GetStorage().hasData("token")
         ? 'Bearer ${GetStorage().read("token")}'
