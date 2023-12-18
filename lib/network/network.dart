@@ -15,8 +15,8 @@ class Network {
 
   Network({required this.endPoint, this.body});
   final dio = Dio(BaseOptions(
-      connectTimeout: 100 * 1000,
-      receiveTimeout: 100 * 1000,
+      connectTimeout: Duration(seconds: 1000),
+      receiveTimeout: Duration(seconds: 1000),
       validateStatus: (_) => true))
     ..interceptors.add(RequestsInspectorInterceptor());
 
