@@ -3,7 +3,7 @@ import 'package:flutter_new_template/main.dart';
 import '../export.dart';
 
 // methods
-showWarningDialog({String title = '', String text = ''}) async {
+showWarningDialog({String? title = '', String? text = ''}) async {
   await showDialog(
       context: navKey.currentContext!,
       builder: (context) {
@@ -11,18 +11,8 @@ showWarningDialog({String title = '', String text = ''}) async {
           shape: RoundedRectangleBorder(
             borderRadius: BorderRadius.circular(10),
           ),
-          title: (title.isNotEmpty ? title : '👍')
-              .text
-              .isIntrinsic
-              .bold
-              .xl2
-              .makeCentered(),
-          content: (text.isNotEmpty ? text : 'under_dev')
-              .text
-              .isIntrinsic
-              .bold
-              .xl
-              .make(),
+          title: (title ?? '👍').text.isIntrinsic.bold.xl2.makeCentered(),
+          content: (text ?? 'under_dev').text.isIntrinsic.bold.xl.make(),
           actions: [
             TextButton(
               onPressed: () => Navigator.of(context).pop(),
