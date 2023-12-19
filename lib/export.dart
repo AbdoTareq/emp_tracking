@@ -14,9 +14,9 @@ export 'view/widgets/responsive_positioned.dart';
 export 'view/widgets/shimmer_list.dart';
 export 'view/widgets/custom_app_bar.dart';
 // constants
-export 'constants.dart';
+export 'core/constants.dart';
 // utils
-export 'utils/utils.dart';
+export 'core/utils/utils.dart';
 // most used packages
 export 'package:velocity_x/velocity_x.dart'
     hide IntExtension, BoolExtension, ThemeExtension;
@@ -35,4 +35,4 @@ export 'repos/base_requests.dart';
 export 'gen/translations.g.dart';
 export 'package:easy_localization/easy_localization.dart';
 // routes
-export 'app/routes/routes.dart';
+export 'core/routes/routes.dart';

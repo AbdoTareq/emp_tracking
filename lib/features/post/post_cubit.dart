@@ -1,5 +1,5 @@
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:flutter_new_template/app/post/post_state.dart';
+import 'package:flutter_new_template/features/post/post_state.dart';
 
 import '../../export.dart';
 import '../../models/post.dart';

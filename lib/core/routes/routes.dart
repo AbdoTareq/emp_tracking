@@ -1,4 +1,4 @@
-import 'package:flutter_new_template/app/post/post_screen.dart';
+import 'package:flutter_new_template/features/post/post_screen.dart';
 import 'package:go_router/go_router.dart';
 
 import '../../export.dart';

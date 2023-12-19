@@ -1,10 +1,8 @@
 import 'dart:developer';
 
-import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:get_storage/get_storage.dart';
 
-import '../constants.dart';
+import '../export.dart';
 
 // Control global app settings language & darkmode
 class AppSettingsController extends GetxController {
@@ -32,7 +30,8 @@ class AppSettingsController extends GetxController {
 
   void addLanguageListener() {
     box.listenKey('language', (value) {
-      Get.updateLocale(value ? const Locale('en', 'US') : const Locale('ar', 'EG'));
+      Get.updateLocale(
+          value ? const Locale('en', 'US') : const Locale('ar', 'EG'));
     });
   }
 }

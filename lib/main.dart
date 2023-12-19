@@ -3,14 +3,14 @@ import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:flutter_new_template/app/post/post_cubit.dart';
-import 'package:flutter_new_template/app/routes/routes.dart';
+import 'package:flutter_new_template/features/post/post_cubit.dart';
+import 'package:flutter_new_template/core/routes/routes.dart';
 import 'package:flutter_new_template/gen/codegen_loader.g.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get_storage/get_storage.dart';
 import 'package:requests_inspector/requests_inspector.dart';
 
-import 'constants.dart';
+import 'export.dart';
 
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
