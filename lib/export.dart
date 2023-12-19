@@ -26,8 +26,8 @@ export 'package:get_storage/get_storage.dart';
 export 'package:flutter/material.dart' hide TextDirection;
 export 'package:dartz/dartz.dart' hide State, Order;
 // models
-export 'models/failure.dart';
-export 'models/server_response.dart';
+export 'core/failure.dart';
+export 'core/server_response.dart';
 // network
 export 'network/network.dart';
 export 'repos/base_requests.dart';
