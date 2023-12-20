@@ -1,6 +1,6 @@
 import 'package:dio/dio.dart' as http;
 import 'package:dio/dio.dart';
-import 'package:flutter_new_template/main.dart';
+import 'package:flutter_new_template/core/error/exceptions.dart';
 import 'package:requests_inspector/requests_inspector.dart';
 
 import '../export.dart' hide MultipartFile, FormData;
@@ -31,27 +31,13 @@ class Network {
 
   Future<http.Response> req(
       Future<http.Response> Function() requestType) async {
-    try {
-      final response = await requestType();
-
-      if (response.statusCode! > 210 || response.statusCode! < 200) {
-        throw Failure(message: response.data.toString());
-      }
-      // success
-      return response;
-    } on DioError catch (e) {
-      if (e.response != null) {
-        // logger.i(e.response!.data);
-        throw Failure(message: e.response!.data.toString());
-      } else {
-        logger.i(e.message);
-        throw Failure(message: e.message.toString());
-      }
-    } on Exception catch (e) {
-      throw Failure(message: '').handleNetworkError(e);
-    } catch (e) {
-      throw Failure(message: '').handleNetworkError(e);
+    final response = await requestType();
+    if (response.statusCode! > 210 || response.statusCode! < 200) {
+      logger.i(response.data);
+      throw ServerException(message: response.data);
     }
+    // success
+    return response;
   }
 
   String _getParamsFromBody() {
@@ -99,12 +85,7 @@ class Network {
   }
 
   downloadFileFromUrl(String url, String savePath) async {
-    try {
-      await dio.download(url, savePath,
-          onReceiveProgress: (received, total) {});
-      print("File is saved to download folder.");
-    } on DioError catch (e) {
-      showWarningDialog(text: e.message);
-    }
+    await dio.download(url, savePath, onReceiveProgress: (received, total) {});
+    print("File is saved to download folder.");
   }
 }
