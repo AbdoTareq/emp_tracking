@@ -3,7 +3,7 @@ import 'package:dio/dio.dart';
 import 'package:flutter_new_template/core/error/exceptions.dart';
 import 'package:requests_inspector/requests_inspector.dart';
 
-import '../export.dart' hide MultipartFile, FormData;
+import '../../export.dart';
 
 final _baseUrl = 'https://jsonplaceholder.typicode.com/';
 
