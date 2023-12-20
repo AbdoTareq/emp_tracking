@@ -79,7 +79,7 @@ class BaseRequests {
         return Right(ServerResponse(data: res.data));
       }
     } catch (e) {
-      return Left(Failure(message: e.toString()).handleNetworkError(e));
+      throw e;
     }
   }
 }

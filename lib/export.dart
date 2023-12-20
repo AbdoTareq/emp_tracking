@@ -30,9 +30,9 @@ export 'core/failure.dart';
 export 'core/server_response.dart';
 // network
 export 'network/network.dart';
-export 'repos/base_requests.dart';
+export 'network/base_requests.dart';
 // translations
-export 'gen/translations.g.dart';
+export 'generated/translations.g.dart';
 export 'package:easy_localization/easy_localization.dart';
 // routes
 export 'core/routes/routes.dart';
