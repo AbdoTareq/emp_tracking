@@ -1,6 +1,6 @@
 import 'package:cached_network_image/cached_network_image.dart';
 
-import '../../export.dart';
+import '../../../export.dart';
 
 class FadeImage extends StatelessWidget {
   const FadeImage({

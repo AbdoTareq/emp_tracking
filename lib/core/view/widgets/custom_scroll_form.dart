@@ -1,4 +1,4 @@
-import '../../export.dart';
+import '../../../export.dart';
 
 //لما اكون عايز اخلي widget موجوده ف اخر الشاشه من تحت
 // مع العلم ان انها بداخل SingleChildScrollView

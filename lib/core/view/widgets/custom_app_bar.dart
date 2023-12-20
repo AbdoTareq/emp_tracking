@@ -1,6 +1,6 @@
 import 'package:flutter_new_template/models/post.dart';
 
-import '../../export.dart';
+import '../../../export.dart';
 
 class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
   CustomAppBar({

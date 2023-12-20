@@ -1,4 +1,4 @@
-import '../../export.dart';
+import '../../../export.dart';
 
 class FadeImage extends StatelessWidget {
   const FadeImage({

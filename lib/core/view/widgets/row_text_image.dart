@@ -1,4 +1,4 @@
-import '../../../export.dart';
+import '../../../../export.dart';
 
 class RowTextImage extends StatelessWidget {
   const RowTextImage({

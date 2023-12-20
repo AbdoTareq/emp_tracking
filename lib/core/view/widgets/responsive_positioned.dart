@@ -1,6 +1,6 @@
 import 'package:flutter_new_template/main.dart';
 
-import '../../export.dart';
+import '../../../export.dart';
 
 class ResponsivePositioned extends StatelessWidget {
   const ResponsivePositioned(
