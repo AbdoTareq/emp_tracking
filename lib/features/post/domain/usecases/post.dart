@@ -9,7 +9,7 @@ class PostUsecases {
 
   PostUsecases(this.repository);
 
-  Future<Either<Failure, List<Post>>> getAll(Post post) async {
+  Future<Either<Failure, List<Post>>> getAll() async {
     return await repository.getAllPosts();
   }
 
