@@ -1,6 +1,6 @@
-import 'package:flutter_new_template/models/post.dart';
 
 import '../../../export.dart';
+import '../../../features/post/data/models/post_model.dart';
 
 class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
   CustomAppBar({
@@ -12,7 +12,7 @@ class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
 
   final SearchController searchController;
   final String title;
-  final List<Post>? searchList;
+  final List<PostModel>? searchList;
 
   @override
   Widget build(BuildContext context) {

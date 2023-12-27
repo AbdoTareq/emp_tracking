@@ -28,8 +28,9 @@ export 'package:dartz/dartz.dart' hide State, Order;
 // models
 export 'core/server_response.dart';
 // network
-export 'network/network.dart';
-export 'network/base_requests.dart';
+export 'core/network/network.dart';
+export 'core/network/base_requests.dart';
+export 'core/error/failures.dart';
 // translations
 export 'generated/translations.g.dart';
 export 'package:easy_localization/easy_localization.dart';

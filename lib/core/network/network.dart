@@ -8,12 +8,6 @@ import '../../export.dart';
 final _baseUrl = 'https://jsonplaceholder.typicode.com/';
 
 class Network {
-  final String endPoint;
-  final dynamic body;
-
-  // good practice to make one connection to server available to the app as we don't want to create a new connection every time we make server call
-
-  Network({required this.endPoint, this.body});
   final dio = Dio(BaseOptions(
       connectTimeout: Duration(seconds: 1000),
       receiveTimeout: Duration(seconds: 1000),
@@ -40,7 +34,7 @@ class Network {
     return response;
   }
 
-  String _getParamsFromBody() {
+  String _getParamsFromBody(dynamic body) {
     String params = '';
     for (var i = 0; i < body?.keys.length; i++) {
       params += '${List.from(body?.keys)[i]}=${List.from(body?.values)[i]}';
@@ -51,33 +45,39 @@ class Network {
     return params;
   }
 
-  Future<http.Response> post(
+  Future<http.Response> post(String endPoint, dynamic body,
       {bool isParamData = false, String? baseUrl}) async {
     return req(() {
       return dio.post(
           (baseUrl ?? _baseUrl) +
               endPoint +
-              (isParamData ? _getParamsFromBody() : ''),
+              (isParamData ? _getParamsFromBody(body) : ''),
           data: isParamData ? {} : body,
           options: Options(headers: headers));
     });
   }
 
-  Future<http.Response> put() {
+  Future<http.Response> put(
+    String endPoint,
+    dynamic body,
+  ) {
     return req(() {
       return dio.put(_baseUrl + endPoint,
           data: body, options: Options(headers: headers));
     });
   }
 
-  Future<http.Response> delete() {
+  Future<http.Response> delete(
+    String endPoint,
+    dynamic body,
+  ) {
     return req(() {
       return dio.delete(_baseUrl + endPoint,
           data: body, options: Options(headers: headers));
     });
   }
 
-  Future<http.Response> get({String? baseUrl}) {
+  Future<http.Response> get(String endPoint, dynamic body, {String? baseUrl}) {
     return req(() {
       return dio.get((baseUrl ?? _baseUrl) + endPoint,
           options: Options(headers: headers));

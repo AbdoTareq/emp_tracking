@@ -1,20 +1,19 @@
-import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/foundation.dart';
-import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:flutter_new_template/features/post/post_cubit.dart';
-import 'package:flutter_new_template/core/routes/routes.dart';
+import 'package:flutter_new_template/features/post/presentation/bloc/add_delete_update_post/add_delete_update_post_bloc.dart';
 import 'package:flutter_new_template/generated/codegen_loader.g.dart';
-import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:get_storage/get_storage.dart';
 import 'package:requests_inspector/requests_inspector.dart';
 
 import 'export.dart';
+import 'features/post/presentation/bloc/posts/posts_bloc.dart';
+import 'injection_container.dart' as di;
 
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await EasyLocalization.ensureInitialized();
+  await di.init();
+
   EasyLocalization.logger.enableBuildModes = [];
   await Future.wait([GetStorage.init()]);
   SystemChrome.setSystemUIOverlayStyle(
@@ -44,9 +43,9 @@ class Root extends StatelessWidget {
         builder: (BuildContext context, Widget? child) {
           return MultiBlocProvider(
             providers: [
-              BlocProvider<PostCubit>(
-                create: (BuildContext context) => PostCubit(),
-              ),
+              BlocProvider(
+                  create: (_) => di.sl<PostsBloc>()..add(GetAllPostsEvent())),
+              BlocProvider(create: (_) => di.sl<AddDeleteUpdatePostBloc>()),
             ],
             child: MaterialApp.router(
               localizationsDelegates: context.localizationDelegates,

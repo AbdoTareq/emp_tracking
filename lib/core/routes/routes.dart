@@ -1,4 +1,4 @@
-import 'package:flutter_new_template/features/post/post_screen.dart';
+import 'package:flutter_new_template/features/post/presentation/pages/posts_page.dart';
 import 'package:go_router/go_router.dart';
 
 import '../../export.dart';
@@ -10,7 +10,7 @@ final routes = GoRouter(
   routes: [
     GoRoute(
       path: '/',
-      builder: (context, state) => PostScreen(),
+      builder: (context, state) => PostsPage(),
     ),
   ],
 );
