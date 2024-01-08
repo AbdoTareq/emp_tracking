@@ -27,11 +27,14 @@ Future<void> main() async {
         path: 'assets/langs',
         fallbackLocale: Locale('en'),
         saveLocale: true,
-        child: RequestsInspector(child: Root(), enabled: kDebugMode)));
+        child: RequestsInspector(
+            child: MyApp(),
+            enabled: kDebugMode,
+            showInspectorOn: ShowInspectorOn.Both)));
   });
 }
 
-class Root extends StatelessWidget {
+class MyApp extends StatelessWidget {
   static bool isDark = GetStorage().read('dark') ?? false;
 
   @override

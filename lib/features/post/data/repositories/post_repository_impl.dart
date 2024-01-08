@@ -19,8 +19,9 @@ class PostsRepositoryImpl implements PostsRepository {
     return res.fold(
       (failure) => left(failure),
       (serverResponse) {
-        localDataSource.cachePosts(serverResponse.data);
-        return right(postsFromJson(serverResponse.data));
+        final posts = postsFromJson(serverResponse.data);
+        localDataSource.cachePosts(posts);
+        return right(posts);
       },
     );
   }

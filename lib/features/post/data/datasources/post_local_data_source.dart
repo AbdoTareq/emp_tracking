@@ -1,7 +1,4 @@
-import 'dart:convert';
-
-import 'package:dartz/dartz.dart';
-import 'package:shared_preferences/shared_preferences.dart';
+import 'package:flutter_new_template/export.dart';
 
 import '../../../../core/error/exceptions.dart';
 import '../models/post_model.dart';
@@ -14,27 +11,19 @@ abstract class PostLocalDataSource {
 const CACHED_POSTS = "CACHED_POSTS";
 
 class PostLocalDataSourceImpl implements PostLocalDataSource {
-  final SharedPreferences sharedPreferences;
-
+  final GetStorage sharedPreferences;
   PostLocalDataSourceImpl({required this.sharedPreferences});
   @override
   Future<Unit> cachePosts(List<PostModel> postModels) {
-    List postModelsToJson = postModels
-        .map<Map<String, dynamic>>((postModel) => postModel.toJson())
-        .toList();
-    sharedPreferences.setString(CACHED_POSTS, json.encode(postModelsToJson));
+    sharedPreferences.write(CACHED_POSTS, postModels);
     return Future.value(unit);
   }
 
   @override
   Future<List<PostModel>> getCachedPosts() {
-    final jsonString = sharedPreferences.getString(CACHED_POSTS);
+    final jsonString = sharedPreferences.read(CACHED_POSTS);
     if (jsonString != null) {
-      List decodeJsonData = json.decode(jsonString);
-      List<PostModel> jsonToPostModels = decodeJsonData
-          .map<PostModel>((jsonPostModel) => PostModel.fromJson(jsonPostModel))
-          .toList();
-      return Future.value(jsonToPostModels);
+      return postsToJson(jsonString);
     } else {
       throw EmptyCacheException();
     }
