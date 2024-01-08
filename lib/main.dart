@@ -39,7 +39,6 @@ class Root extends StatelessWidget {
     return ScreenUtilInit(
         designSize: Size(baseWidth, baseHeight),
         minTextAdapt: true,
-        rebuildFactor: RebuildFactors.all,
         builder: (BuildContext context, Widget? child) {
           return MultiBlocProvider(
             providers: [
