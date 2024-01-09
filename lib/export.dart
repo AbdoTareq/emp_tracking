@@ -35,4 +35,5 @@ export 'core/error/failures.dart';
 export 'generated/translations.g.dart';
 export 'package:easy_localization/easy_localization.dart';
 // routes
-export 'core/routes/routes.dart';
+export 'package:auto_route/annotations.dart';
+export 'package:flutter_bloc/flutter_bloc.dart';

@@ -1,11 +1,11 @@
+import '../../../../export.dart';
 import 'post_add_update_page.dart';
-import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
 
 import '../bloc/posts/posts_bloc.dart';
 import '../widgets/posts_page/message_display_widget.dart';
 import '../widgets/posts_page/post_list_widget.dart';
 
+@RoutePage()
 class PostsPage extends StatelessWidget {
   const PostsPage({Key? key}) : super(key: key);
 

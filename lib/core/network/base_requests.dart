@@ -2,8 +2,6 @@ import 'package:dio/dio.dart';
 
 import '../../export.dart';
 import '../error/exceptions.dart';
-import '../error/failures.dart';
-import 'network.dart';
 import 'network_info.dart';
 
 class BaseRequests {

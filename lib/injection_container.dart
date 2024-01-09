@@ -1,3 +1,4 @@
+import 'package:flutter_new_template/core/app_router.dart';
 import 'package:flutter_new_template/export.dart';
 import 'package:flutter_new_template/features/post/domain/usecases/post.dart';
 
@@ -38,5 +39,6 @@ Future<void> init() async {
 
   //! External
   sl.registerLazySingleton(() => GetStorage());
+  sl.registerLazySingleton(() => AppRouter());
   sl.registerLazySingleton(() => InternetConnectionChecker());
 }

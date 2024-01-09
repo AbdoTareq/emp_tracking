@@ -1,4 +1,9 @@
+import 'package:flutter_new_template/core/app_router.dart';
+import 'package:flutter_new_template/injection_container.dart';
+
 import '../../export.dart';
+
+GlobalKey<NavigatorState> navKey = sl<AppRouter>().navigatorKey;
 
 // methods
 showWarningDialog({String? title = '', String? text = ''}) async {
