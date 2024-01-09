@@ -1,4 +1,5 @@
 import 'package:bloc/bloc.dart';
+import 'package:flutter_new_template/core/utils/utils.dart';
 import 'package:flutter_new_template/features/post/domain/usecases/post.dart';
 import '../../../../../core/error/failures.dart';
 import '../../../../../core/strings/failures.dart';
@@ -22,10 +23,11 @@ class PostsBloc extends Bloc<PostsEvent, PostsState> {
         final failureOrPosts = await postUseCases.getAll();
         emit(_mapFailureOrPostsToState(failureOrPosts));
       } else if (event is RefreshPostsEvent) {
-        emit(LoadingPostsState());
-
-        final failureOrPosts = await postUseCases.getAll();
-        emit(_mapFailureOrPostsToState(failureOrPosts));
+        await handleRequest(() async {
+          emit(LoadingPostsState());
+          final failureOrPosts = await postUseCases.getAll();
+          emit(_mapFailureOrPostsToState(failureOrPosts));
+        });
       }
     });
   }
