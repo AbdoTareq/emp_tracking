@@ -1,5 +1,6 @@
 import 'package:auto_route/auto_route.dart';
 
+import '../export.dart';
 import '../features/auth/presentation/pages/auth_page.dart';
 import '../features/post/presentation/pages/posts_page.dart';
 

@@ -1,15 +1,18 @@
+import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:flutter_new_template/features/auth/presentation/cubit/auth_cubit.dart';
 
 import '../../../../core/view/widgets/rounded_corner_loading_button.dart';
 import '../../../../export.dart';
 
 @RoutePage()
-class AuthPage extends StatelessWidget {
+class AuthPage extends HookWidget {
   AuthPage({Key? key}) : super(key: key);
   final controller = sl<AuthCubit>();
 
   @override
   Widget build(BuildContext context) {
+    final mailTextController = useTextEditingController();
+    final passTextController = useTextEditingController();
     return Scaffold(
         body: Form(
       key: controller.formKey,
@@ -18,7 +21,7 @@ class AuthPage extends StatelessWidget {
         children: [
           TextInput(
             autofillHints: [AutofillHints.email],
-            controller: controller.mailTextController,
+            controller: mailTextController,
             borderColor: Colors.white,
             inputType: TextInputType.emailAddress,
             hint: mail,
@@ -27,7 +30,7 @@ class AuthPage extends StatelessWidget {
           ),
           20.heightBox,
           PasswordInput(
-            controller: controller.passTextController,
+            controller: passTextController,
             hint: pass,
           ),
           forgetPass
@@ -45,7 +48,10 @@ class AuthPage extends StatelessWidget {
           20.heightBox,
           RoundedCornerLoadingButton(
             color: kSecondaryColor,
-            onPressed: () async => await controller.login(),
+            onPressed: () async => await controller.login({
+              "email": mailTextController.text,
+              "password": passTextController.text,
+            }),
             child: login.tr().text.white.bold.xl.make().p8(),
           ).wFull(context),
           20.heightBox,

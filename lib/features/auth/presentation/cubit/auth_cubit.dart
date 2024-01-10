@@ -1,4 +1,3 @@
-import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:flutter_new_template/core/base_state.dart';
 import 'package:flutter_new_template/features/auth/domain/usecases/usecases.dart';
@@ -9,19 +8,12 @@ part 'auth_state.dart';
 
 class AuthCubit extends Cubit<AuthState> {
   AuthCubit({required this.authUseCase}) : super(AuthState());
-  final GetAuthUseCase authUseCase;
+  final AuthUseCase authUseCase;
   final storage = GetStorage();
   final GlobalKey<FormState> formKey = GlobalKey();
 
-  final mailTextController = useTextEditingController();
-  final passTextController = useTextEditingController();
-
-  Future<void> login() async {
+  Future<void> login(Map<String, String> user) async {
     if (formKey.currentState!.validate()) {
-      var user = {
-        "email": mailTextController.text,
-        "password": passTextController.text,
-      };
       await handleError(() async {
         final response = await authUseCase.login(user);
         // response.fold((_) {}, (r) {

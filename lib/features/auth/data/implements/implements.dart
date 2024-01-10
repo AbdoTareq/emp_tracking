@@ -1,21 +1,21 @@
 import 'package:flutter_new_template/features/auth/data/models/user.dart';
 
-import '../sources/sources.dart';
+import '../../../../export.dart';
 import '../../domain/repositories/repositories.dart';
 
 class AuthRepositoryImp implements AuthRepository {
-  final AuthRemoteDataSource remoteDataSource;
+  final BaseRequests remoteDataSource;
   AuthRepositoryImp({required this.remoteDataSource});
 
   @override
-  Future<User> login(Map user) {
-    throw UnimplementedError();
+  Future<Either<Failure, User>> login(Map mailPass) async {
+    final res = await remoteDataSource.post('login', mailPass);
+    return res.fold(
+      (failure) => left(failure),
+      (serverResponse) {
+        final user = User.fromMap(serverResponse.data);
+        return right(user);
+      },
+    );
   }
-
-  // ... example ...
-  //
-  // Future<User> getUser(String userId) async {
-  //     return remoteDataSource.getUser(userId);
-  //   }
-  // ...
 }

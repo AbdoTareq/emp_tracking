@@ -37,9 +37,11 @@ Future<void> main() async {
 
 class MyApp extends StatelessWidget {
   static bool isDark = GetStorage().read('dark') ?? false;
+  static BuildContext? appContext;
 
   @override
   Widget build(BuildContext context) {
+    appContext = context;
     return ScreenUtilInit(
         designSize: Size(baseWidth, baseHeight),
         minTextAdapt: true,

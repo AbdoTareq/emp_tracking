@@ -1,5 +1,7 @@
+import '../../../../core/error/failures.dart';
+import '../../../../export.dart';
 import '../../data/models/user.dart';
 
 abstract class AuthRepository {
-  Future<User> login(Map user);
+  Future<Either<Failure, User>> login(Map user);
 }

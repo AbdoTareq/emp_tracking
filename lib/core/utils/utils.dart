@@ -1,5 +1,6 @@
 import 'package:flutter_new_template/core/app_router.dart';
 import 'package:flutter_new_template/core/injection_container.dart';
+import 'package:flutter_new_template/main.dart';
 
 import '../../export.dart';
 
@@ -174,4 +175,5 @@ getJson(item) {
   }
 }
 
-bool isEn() => navKey.currentContext!.locale.toString().contains('en');
+// navKey won't work
+bool isEn() => MyApp.appContext!.locale.toString().contains('en');
