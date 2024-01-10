@@ -2,15 +2,15 @@ import 'package:flutter_new_template/core/app_router.dart';
 import 'package:flutter_new_template/export.dart';
 import 'package:flutter_new_template/features/post/domain/usecases/post.dart';
 
-import 'core/network/network_info.dart';
+import 'network/network_info.dart';
 import 'package:get_it/get_it.dart';
 import 'package:internet_connection_checker/internet_connection_checker.dart';
 
-import 'features/post/data/datasources/post_local_data_source.dart';
-import 'features/post/data/repositories/post_repository_impl.dart';
-import 'features/post/domain/repositories/posts_repository.dart';
-import 'features/post/presentation/bloc/add_delete_update_post/add_delete_update_post_bloc.dart';
-import 'features/post/presentation/bloc/posts/posts_bloc.dart';
+import '../features/post/data/datasources/post_local_data_source.dart';
+import '../features/post/data/repositories/post_repository_impl.dart';
+import '../features/post/domain/repositories/posts_repository.dart';
+import '../features/post/presentation/bloc/add_delete_update_post/add_delete_update_post_bloc.dart';
+import '../features/post/presentation/bloc/posts/posts_bloc.dart';
 
 final sl = GetIt.instance;
 

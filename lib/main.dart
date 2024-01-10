@@ -8,7 +8,7 @@ import 'package:requests_inspector/requests_inspector.dart';
 
 import 'export.dart';
 import 'features/post/presentation/bloc/posts/posts_bloc.dart';
-import 'injection_container.dart' as di;
+import 'core/injection_container.dart' as di;
 
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();

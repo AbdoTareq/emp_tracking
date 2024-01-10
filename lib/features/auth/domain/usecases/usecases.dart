@@ -1,13 +1,12 @@
- 
-    import '../repositories/repositories.dart';
+import '../../data/models/user.dart';
+import '../repositories/repositories.dart';
 
-    class GetAuthUseCase {
-        final AuthRepository repository;
-      
-        GetAuthUseCase({required this.repository});
-      
-        // Future<User> execute(String userId) async {
-        //   return userRepository.getUser(userId);
-        // }
-      }
-      
+class GetAuthUseCase {
+  final AuthRepository repository;
+
+  GetAuthUseCase({required this.repository});
+
+  Future<User> login(Map user) async {
+    return repository.login(user);
+  }
+}

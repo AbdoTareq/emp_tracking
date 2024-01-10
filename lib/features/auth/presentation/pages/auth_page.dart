@@ -1,15 +1,60 @@
+import 'package:flutter_new_template/features/auth/presentation/cubit/auth_cubit.dart';
 
-    import 'package:flutter/material.dart';
-    class AuthPage extends StatelessWidget {
-        const AuthPage({Key? key}) : super(key: key);
-      
-        @override
-        Widget build(BuildContext context) {
-          return Scaffold(
-            appBar: AppBar(
-              title: Text('Auth Page'),
-            ),
-            );
-            }
-        }
-    
+import '../../../../core/view/widgets/rounded_corner_loading_button.dart';
+import '../../../../export.dart';
+
+@RoutePage()
+class AuthPage extends StatelessWidget {
+  AuthPage({Key? key}) : super(key: key);
+  final controller = sl<AuthCubit>();
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+        body: Form(
+      key: controller.formKey,
+      child: Column(
+        mainAxisAlignment: MainAxisAlignment.center,
+        children: [
+          TextInput(
+            autofillHints: [AutofillHints.email],
+            controller: controller.mailTextController,
+            borderColor: Colors.white,
+            inputType: TextInputType.emailAddress,
+            hint: mail,
+            prefixIcon: Icon(Icons.email, color: Colors.white),
+            validate: (value) => value!.isNotEmpty ? null : mail.tr(),
+          ),
+          20.heightBox,
+          PasswordInput(
+            controller: controller.passTextController,
+            hint: pass,
+          ),
+          forgetPass
+              .tr()
+              .text
+              .end
+              .white
+              .bold
+              .make()
+              .p2()
+              .wFull(context)
+              .onTap(() {
+            // Get.toNamed(Routes.RESET_PASS);
+          }),
+          20.heightBox,
+          RoundedCornerLoadingButton(
+            color: kSecondaryColor,
+            onPressed: () async => await controller.login(),
+            child: login.tr().text.white.bold.xl.make().p8(),
+          ).wFull(context),
+          20.heightBox,
+          // ? make it Get.off instead of to solve GlobalKey duplicate  problem
+          dontHaveAccount.tr().text.white.bold.makeCentered().p2().onTap(() {
+            // Get.toNamed(Routes.SIGNUP);
+          }),
+        ],
+      ).pSymmetric(h: 16),
+    ));
+  }
+}

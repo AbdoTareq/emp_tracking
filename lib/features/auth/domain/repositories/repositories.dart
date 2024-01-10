@@ -1,5 +1,5 @@
- 
-    abstract class AuthRepository {
-        // Future<User> getUser(String userId);
-      }
-    
+import '../../data/models/user.dart';
+
+abstract class AuthRepository {
+  Future<User> login(Map user);
+}

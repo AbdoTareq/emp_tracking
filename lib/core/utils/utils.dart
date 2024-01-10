@@ -1,5 +1,5 @@
 import 'package:flutter_new_template/core/app_router.dart';
-import 'package:flutter_new_template/injection_container.dart';
+import 'package:flutter_new_template/core/injection_container.dart';
 
 import '../../export.dart';
 
