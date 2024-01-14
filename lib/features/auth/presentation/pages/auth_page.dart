@@ -22,10 +22,9 @@ class AuthPage extends HookWidget {
           TextInput(
             autofillHints: [AutofillHints.email],
             controller: mailTextController,
-            borderColor: Colors.white,
             inputType: TextInputType.emailAddress,
             hint: mail,
-            prefixIcon: Icon(Icons.email, color: Colors.white),
+            prefixIcon: Icon(Icons.email),
             validate: (value) => value!.isNotEmpty ? null : mail.tr(),
           ),
           20.heightBox,
@@ -33,30 +32,21 @@ class AuthPage extends HookWidget {
             controller: passTextController,
             hint: pass,
           ),
-          forgetPass
-              .tr()
-              .text
-              .end
-              .white
-              .bold
-              .make()
-              .p2()
-              .wFull(context)
-              .onTap(() {
+          forgetPass.tr().text.end.bold.make().p2().wFull(context).onTap(() {
             // Get.toNamed(Routes.RESET_PASS);
           }),
           20.heightBox,
           RoundedCornerLoadingButton(
-            color: kSecondaryColor,
+            color: kPrimaryColor,
             onPressed: () async => await controller.login({
               "email": mailTextController.text,
               "password": passTextController.text,
             }),
-            child: login.tr().text.white.bold.xl.make().p8(),
+            child: login.tr().text.white.bold.xl.make(),
           ).wFull(context),
           20.heightBox,
           // ? make it Get.off instead of to solve GlobalKey duplicate  problem
-          dontHaveAccount.tr().text.white.bold.makeCentered().p2().onTap(() {
+          dontHaveAccount.tr().text.bold.makeCentered().p2().onTap(() {
             // Get.toNamed(Routes.SIGNUP);
           }),
         ],

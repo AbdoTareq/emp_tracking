@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_new_template/core/extensions/num_extension.dart';
 
 class RoundedCornerLoadingButton extends StatefulWidget {
   const RoundedCornerLoadingButton({
@@ -8,6 +9,8 @@ class RoundedCornerLoadingButton extends StatefulWidget {
     this.color,
     this.isOutlined = false,
     this.borderColor,
+    this.height,
+    this.width,
   }) : super(key: key);
 
   final Function() onPressed;
@@ -15,6 +18,8 @@ class RoundedCornerLoadingButton extends StatefulWidget {
   final Color? borderColor;
   final Widget child;
   final bool isOutlined;
+  final double? height;
+  final double? width;
 
   @override
   State<RoundedCornerLoadingButton> createState() =>
@@ -30,6 +35,8 @@ class _RoundedCornerLoadingButtonState
     return ElevatedButton(
         style: widget.isOutlined
             ? ButtonStyle(
+                minimumSize: MaterialStateProperty.all(
+                    Size(widget.width ?? 0, (widget.height ?? 58).rh)),
                 backgroundColor: MaterialStateProperty.all<Color>(Colors.white),
                 shape: MaterialStateProperty.all<RoundedRectangleBorder>(
                     RoundedRectangleBorder(
@@ -37,6 +44,8 @@ class _RoundedCornerLoadingButtonState
                   side: BorderSide(color: Theme.of(context).primaryColor),
                 )))
             : ButtonStyle(
+                minimumSize: MaterialStateProperty.all(
+                    Size(widget.width ?? 0, (widget.height ?? 58).rh)),
                 backgroundColor: MaterialStateProperty.all<Color>(
                     widget.color ?? Theme.of(context).primaryColor),
                 shape: MaterialStateProperty.all<RoundedRectangleBorder>(

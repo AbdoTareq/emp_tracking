@@ -1,6 +1,5 @@
-import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:get/get.dart';
+import 'package:flutter_new_template/export.dart';
 
 // TextField that takes TextEditingController from the main controller(ex:LoginController) to control text from outside to be independent widget
 class TextInput extends StatelessWidget {
@@ -64,7 +63,7 @@ class TextInput extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return SizedBox(
-      height: 75,
+      height: 90,
       child: TextFormField(
         autofillHints: autofillHints,
         onTapOutside: (event) => FocusManager.instance.primaryFocus!.unfocus(),
@@ -83,7 +82,7 @@ class TextInput extends StatelessWidget {
           hintStyle: borderColor != null
               ? TextStyle(color: borderColor, fontSize: fontSize)
               : TextStyle(fontSize: fontSize),
-          labelText: hint.tr,
+          labelText: hint.tr(),
           suffixIcon: suffixIcon,
           suffixIconConstraints: const BoxConstraints(
             minWidth: 80,
@@ -141,7 +140,7 @@ class TextInput extends StatelessWidget {
           } catch (e) {}
         },
         validator: validate,
-      ).paddingOnly(bottom: spaceAfter ? 16 : 0),
+      ).pOnly(bottom: spaceAfter ? 16 : 0),
     );
   }
 }
