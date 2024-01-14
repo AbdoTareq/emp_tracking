@@ -1,11 +1,11 @@
 import 'package:bloc/bloc.dart';
-import 'package:flutter_new_template/core/utils/utils.dart';
-import 'package:flutter_new_template/features/post/domain/usecases/post.dart';
-import '../../../../../core/error/failures.dart';
-import '../../../../../core/strings/failures.dart';
 import 'package:dartz/dartz.dart';
+import 'package:employee_management/core/utils/utils.dart';
+import 'package:employee_management/features/post/domain/usecases/post.dart';
 import 'package:equatable/equatable.dart';
 
+import '../../../../../core/error/failures.dart';
+import '../../../../../core/strings/failures.dart';
 import '../../../domain/entities/post.dart';
 
 part 'posts_event.dart';

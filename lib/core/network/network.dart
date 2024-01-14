@@ -1,6 +1,6 @@
 import 'package:dio/dio.dart' as http;
 import 'package:dio/dio.dart';
-import 'package:flutter_new_template/core/error/exceptions.dart';
+import 'package:employee_management/core/error/exceptions.dart';
 import 'package:requests_inspector/requests_inspector.dart';
 
 import '../../export.dart';

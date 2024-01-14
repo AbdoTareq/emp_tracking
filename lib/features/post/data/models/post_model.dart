@@ -1,5 +1,5 @@
 // use the methods without encoding & decoding as dio auto decode response
-import 'package:flutter_new_template/features/post/domain/entities/post.dart';
+import 'package:employee_management/features/post/domain/entities/post.dart';
 
 List<PostModel> postsFromJson(List<dynamic> list) =>
     List<PostModel>.from(list.map((x) => PostModel.fromJson(x)));

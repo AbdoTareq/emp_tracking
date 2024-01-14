@@ -1,4 +1,4 @@
-import 'package:flutter_new_template/export.dart';
+import 'package:employee_management/export.dart';
 
 class RoundedCornerButton extends StatelessWidget {
   const RoundedCornerButton({

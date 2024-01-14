@@ -1,5 +1,5 @@
+import 'package:employee_management/features/auth/presentation/cubit/auth_cubit.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
-import 'package:flutter_new_template/features/auth/presentation/cubit/auth_cubit.dart';
 
 import '../../../../core/view/widgets/rounded_corner_loading_button.dart';
 import '../../../../export.dart';

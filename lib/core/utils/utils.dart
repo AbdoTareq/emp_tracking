@@ -1,6 +1,5 @@
-import 'package:flutter_new_template/core/app_router.dart';
-import 'package:flutter_new_template/core/injection_container.dart';
-import 'package:flutter_new_template/main.dart';
+import 'package:employee_management/core/app_router.dart';
+import 'package:employee_management/main.dart';
 
 import '../../export.dart';
 

@@ -1,6 +1,5 @@
-import 'package:flutter_hooks/flutter_hooks.dart';
-import 'package:flutter_new_template/core/base_state.dart';
-import 'package:flutter_new_template/features/auth/domain/usecases/usecases.dart';
+import 'package:employee_management/core/base_state.dart';
+import 'package:employee_management/features/auth/domain/usecases/usecases.dart';
 
 import '../../../../export.dart';
 

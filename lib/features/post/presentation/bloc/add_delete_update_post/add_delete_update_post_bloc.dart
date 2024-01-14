@@ -1,12 +1,12 @@
 import 'package:bloc/bloc.dart';
-import 'package:flutter_new_template/features/post/domain/usecases/post.dart';
-import '../../../../../core/strings/messages.dart';
-import '../../../domain/entities/post.dart';
 import 'package:dartz/dartz.dart';
+import 'package:employee_management/features/post/domain/usecases/post.dart';
 import 'package:equatable/equatable.dart';
 
 import '../../../../../core/error/failures.dart';
 import '../../../../../core/strings/failures.dart';
+import '../../../../../core/strings/messages.dart';
+import '../../../domain/entities/post.dart';
 
 part 'add_delete_update_post_event.dart';
 part 'add_delete_update_post_state.dart';

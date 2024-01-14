@@ -1,5 +1,5 @@
+import 'package:employee_management/core/extensions/num_extension.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_new_template/core/extensions/num_extension.dart';
 
 class RoundedCornerLoadingButton extends StatefulWidget {
   const RoundedCornerLoadingButton({

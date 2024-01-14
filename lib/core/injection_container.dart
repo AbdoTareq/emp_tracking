@@ -1,9 +1,9 @@
-import 'package:flutter_new_template/core/app_router.dart';
-import 'package:flutter_new_template/export.dart';
-import 'package:flutter_new_template/features/auth/domain/repositories/repositories.dart';
-import 'package:flutter_new_template/features/auth/domain/usecases/usecases.dart';
-import 'package:flutter_new_template/features/auth/presentation/cubit/auth_cubit.dart';
-import 'package:flutter_new_template/features/post/domain/usecases/post.dart';
+import 'package:employee_management/core/app_router.dart';
+import 'package:employee_management/export.dart';
+import 'package:employee_management/features/auth/domain/repositories/repositories.dart';
+import 'package:employee_management/features/auth/domain/usecases/usecases.dart';
+import 'package:employee_management/features/auth/presentation/cubit/auth_cubit.dart';
+import 'package:employee_management/features/post/domain/usecases/post.dart';
 import 'package:get_it/get_it.dart';
 import 'package:internet_connection_checker/internet_connection_checker.dart';
 

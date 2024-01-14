@@ -1,4 +1,4 @@
-import 'package:flutter_new_template/features/auth/data/models/user.dart';
+import 'package:employee_management/features/auth/data/models/user.dart';
 
 import '../../../../export.dart';
 import '../../domain/repositories/repositories.dart';

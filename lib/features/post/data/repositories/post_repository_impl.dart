@@ -1,7 +1,7 @@
 import 'package:dartz/dartz.dart';
-import 'package:flutter_new_template/core/network/base_requests.dart';
-import 'package:flutter_new_template/features/post/data/models/post_model.dart';
-import 'package:flutter_new_template/features/post/domain/entities/post.dart';
+import 'package:employee_management/core/network/base_requests.dart';
+import 'package:employee_management/features/post/data/models/post_model.dart';
+import 'package:employee_management/features/post/domain/entities/post.dart';
 
 import '../../../../core/error/failures.dart';
 import '../../domain/repositories/posts_repository.dart';

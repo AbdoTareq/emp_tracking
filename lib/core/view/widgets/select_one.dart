@@ -1,5 +1,4 @@
-import 'package:flutter/material.dart';
-import 'package:flutter_new_template/export.dart';
+import 'package:employee_management/export.dart';
 
 //has 3 states buy & rent & not selected('')
 class SelectOne extends StatefulWidget {

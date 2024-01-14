@@ -1,5 +1,5 @@
+import 'package:employee_management/export.dart';
 import 'package:flutter/services.dart';
-import 'package:flutter_new_template/export.dart';
 
 // TextField that takes TextEditingController from the main controller(ex:LoginController) to control text from outside to be independent widget
 class TextInput extends StatelessWidget {

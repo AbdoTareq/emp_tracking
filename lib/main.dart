@@ -1,13 +1,13 @@
+import 'package:employee_management/core/app_router.dart';
+import 'package:employee_management/features/post/presentation/bloc/add_delete_update_post/add_delete_update_post_bloc.dart';
+import 'package:employee_management/generated/codegen_loader.g.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/services.dart';
-import 'package:flutter_new_template/core/app_router.dart';
-import 'package:flutter_new_template/features/post/presentation/bloc/add_delete_update_post/add_delete_update_post_bloc.dart';
-import 'package:flutter_new_template/generated/codegen_loader.g.dart';
 import 'package:requests_inspector/requests_inspector.dart';
 
+import 'core/injection_container.dart' as di;
 import 'export.dart';
 import 'features/post/presentation/bloc/posts/posts_bloc.dart';
-import 'core/injection_container.dart' as di;
 
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
