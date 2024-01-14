@@ -1,4 +1,4 @@
-package com.simplute.flutter_new_template
+package com.nixese.employee
 
 import io.flutter.embedding.android.FlutterActivity
 
