@@ -44,7 +44,7 @@ class AuthPage extends HookWidget {
               );
               logger.i(res);
               if (res != null) {
-                context.navigateNamedTo(PostsRoute.name);
+                context.replaceRoute(PostsRoute());
               }
             },
             child: login.tr().text.white.bold.xl.make(),

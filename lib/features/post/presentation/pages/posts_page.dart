@@ -18,7 +18,10 @@ class PostsPage extends StatelessWidget {
     );
   }
 
-  AppBar _buildAppbar() => AppBar(title: Text('Posts'));
+  AppBar _buildAppbar() => AppBar(
+        title: Text('Posts'),
+        backgroundColor: kButtonColor,
+      );
 
   Widget _buildBody() {
     return Padding(

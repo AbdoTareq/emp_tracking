@@ -1,6 +1,8 @@
 import 'package:employee_management/core/app_router.dart';
 import 'package:employee_management/features/post/presentation/bloc/add_delete_update_post/add_delete_update_post_bloc.dart';
+import 'package:employee_management/firebase_options.dart';
 import 'package:employee_management/generated/codegen_loader.g.dart';
+import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/services.dart';
 import 'package:requests_inspector/requests_inspector.dart';
@@ -11,6 +13,10 @@ import 'features/post/presentation/bloc/posts/posts_bloc.dart';
 
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
+  WidgetsFlutterBinding.ensureInitialized();
+  await Firebase.initializeApp(
+    options: DefaultFirebaseOptions.currentPlatform,
+  );
   await EasyLocalization.ensureInitialized();
   await di.init();
 

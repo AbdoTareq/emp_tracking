@@ -1,4 +1,5 @@
 import 'package:employee_management/core/extensions/num_extension.dart';
+import 'package:employee_management/export.dart';
 import 'package:flutter/material.dart';
 
 class RoundedCornerLoadingButton extends StatefulWidget {
@@ -68,9 +69,7 @@ class _RoundedCornerLoadingButtonState
                 }
               },
         child: isLoading
-            ? Center(
-                child: CircularProgressIndicator(
-                    color: Theme.of(context).primaryColor))
+            ? Center(child: CircularProgressIndicator(color: kSecondaryColor))
             : widget.child);
   }
 }

@@ -14,10 +14,7 @@ class AuthCubit extends Cubit<AuthState> {
     if (formKey.currentState!.validate()) {
       return await handleError(() async {
         final response = await authUseCase.login(email, password);
-        response.fold((_) {}, (r) {
-          logger.i(r.toString());
-          return r.toString();
-        });
+        return response.fold((_) {}, (r) => r.toString());
       });
     }
   }

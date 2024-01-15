@@ -108,8 +108,9 @@ Future<dynamic> handleError(Future<dynamic> Function() asyncFunction,
     String? message,
     Function(dynamic e)? onError}) async {
   try {
-    await asyncFunction();
+    final res = await asyncFunction();
     Navigator.pop(navKey.currentContext!);
+    return res;
   } catch (e) {
     Navigator.pop(navKey.currentContext!);
     logger.e(e);
