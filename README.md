@@ -61,3 +61,9 @@ flutterfire configure 3. copy pushes.json file to the new project to test ios si
 
 5. execute the file:
    xcrun simctl push booted com.simplute.flutterNewTemplate pushes.json
+
+	1. Multi users & every user is like company who has logo & name
+	2. Employee accounts crud operations
+	3. Clients crud operations
+	4. Clients bills tracking
+Company materials tracking
