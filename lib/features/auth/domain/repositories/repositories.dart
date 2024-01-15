@@ -1,7 +1,7 @@
-import '../../../../core/error/failures.dart';
+import 'package:firebase_auth/firebase_auth.dart';
+
 import '../../../../export.dart';
-import '../../data/models/user.dart';
 
 abstract class AuthRepository {
-  Future<Either<Failure, User>> login(Map user);
+  Future<Either<Failure, User>> login(String email, String password);
 }

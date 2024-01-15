@@ -60,7 +60,7 @@ const Map<int, Color> color = {
 };
 
 // styles
-const MaterialColor kPrimaryColor = Colors.lightGreen;
+const MaterialColor kPrimaryColor = MaterialColor(0xff000000, color);
 const MaterialColor kButtonColor = MaterialColor(0xff1A466D, color);
 const MaterialColor kSecondaryColor = MaterialColor(0xfffacc2f, color);
 

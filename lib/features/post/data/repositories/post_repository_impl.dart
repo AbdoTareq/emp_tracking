@@ -7,11 +7,11 @@ import '../../../../core/error/failures.dart';
 import '../../domain/repositories/posts_repository.dart';
 import '../datasources/post_local_data_source.dart';
 
-class PostsRepositoryImpl implements PostsRepository {
+class PostsRepositoryImp implements PostsRepository {
   final BaseRequests remoteDataSource;
   final PostLocalDataSource localDataSource;
 
-  PostsRepositoryImpl(
+  PostsRepositoryImp(
       {required this.remoteDataSource, required this.localDataSource});
   @override
   Future<Either<Failure, List<PostModel>>> getAllPosts() async {

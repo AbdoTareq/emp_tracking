@@ -1,5 +1,6 @@
+import 'package:firebase_auth/firebase_auth.dart';
+
 import '../../../../export.dart';
-import '../../data/models/user.dart';
 import '../repositories/repositories.dart';
 
 class AuthUseCase {
@@ -7,7 +8,7 @@ class AuthUseCase {
 
   AuthUseCase({required this.repository});
 
-  Future<Either<Failure, User>> login(Map user) async {
-    return repository.login(user);
+  Future<Either<Failure, User>> login(String email, String password) async {
+    return repository.login(email, password);
   }
 }

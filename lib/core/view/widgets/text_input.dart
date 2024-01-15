@@ -1,3 +1,4 @@
+import 'package:employee_management/core/extensions/num_extension.dart';
 import 'package:employee_management/export.dart';
 import 'package:flutter/services.dart';
 
@@ -63,7 +64,7 @@ class TextInput extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return SizedBox(
-      height: 90,
+      height: 95.rh,
       child: TextFormField(
         autofillHints: autofillHints,
         onTapOutside: (event) => FocusManager.instance.primaryFocus!.unfocus(),
@@ -97,24 +98,20 @@ class TextInput extends StatelessWidget {
                   borderRadius: BorderRadius.all(
                   Radius.circular(15),
                 )),
-          enabledBorder: borderColor != null
-              ? OutlineInputBorder(
-                  borderRadius: BorderRadius.circular(10.0),
-                  borderSide: BorderSide(
-                    color: borderColor!,
-                    width: 2.0,
-                  ),
-                )
-              : null,
-          focusedBorder: borderColor != null
-              ? OutlineInputBorder(
-                  borderRadius: BorderRadius.circular(10.0),
-                  borderSide: BorderSide(
-                    color: borderColor!,
-                    width: 2.0,
-                  ),
-                )
-              : null,
+          enabledBorder: OutlineInputBorder(
+            borderRadius: BorderRadius.circular(10.0),
+            borderSide: BorderSide(
+              color: borderColor ?? Colors.grey,
+              width: 2.0,
+            ),
+          ),
+          focusedBorder: OutlineInputBorder(
+            borderRadius: BorderRadius.circular(10.0),
+            borderSide: BorderSide(
+              color: borderColor ?? Colors.grey,
+              width: 2.0,
+            ),
+          ),
         ),
         onTap: onTap,
         cursorColor: cursorColor ?? borderColor,

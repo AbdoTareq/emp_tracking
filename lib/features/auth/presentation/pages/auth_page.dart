@@ -1,3 +1,5 @@
+import 'package:auto_route/auto_route.dart';
+import 'package:employee_management/core/app_router.dart';
 import 'package:employee_management/features/auth/presentation/cubit/auth_cubit.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
 
@@ -24,31 +26,29 @@ class AuthPage extends HookWidget {
             controller: mailTextController,
             inputType: TextInputType.emailAddress,
             hint: mail,
+            spaceAfter: false,
             prefixIcon: Icon(Icons.email),
             validate: (value) => value!.isNotEmpty ? null : mail.tr(),
           ),
-          20.heightBox,
           PasswordInput(
             controller: passTextController,
             hint: pass,
           ),
-          forgetPass.tr().text.end.bold.make().p2().wFull(context).onTap(() {
-            // Get.toNamed(Routes.RESET_PASS);
-          }),
-          20.heightBox,
+          15.rh.heightBox,
           RoundedCornerLoadingButton(
             color: kPrimaryColor,
-            onPressed: () async => await controller.login({
-              "email": mailTextController.text,
-              "password": passTextController.text,
-            }),
+            onPressed: () async {
+              final res = await controller.login(
+                mailTextController.text,
+                passTextController.text,
+              );
+              logger.i(res);
+              if (res != null) {
+                context.navigateNamedTo(PostsRoute.name);
+              }
+            },
             child: login.tr().text.white.bold.xl.make(),
           ).wFull(context),
-          20.heightBox,
-          // ? make it Get.off instead of to solve GlobalKey duplicate  problem
-          dontHaveAccount.tr().text.bold.makeCentered().p2().onTap(() {
-            // Get.toNamed(Routes.SIGNUP);
-          }),
         ],
       ).pSymmetric(h: 16),
     ));

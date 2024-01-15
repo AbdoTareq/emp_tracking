@@ -10,9 +10,9 @@ abstract class PostLocalDataSource {
 
 const CACHED_POSTS = "CACHED_POSTS";
 
-class PostLocalDataSourceImpl implements PostLocalDataSource {
+class PostLocalDataSourceImp implements PostLocalDataSource {
   final GetStorage sharedPreferences;
-  PostLocalDataSourceImpl({required this.sharedPreferences});
+  PostLocalDataSourceImp({required this.sharedPreferences});
   @override
   Future<Unit> cachePosts(List<PostModel> postModels) {
     sharedPreferences.write(CACHED_POSTS, postModels);

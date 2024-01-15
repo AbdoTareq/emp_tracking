@@ -8,18 +8,16 @@ part 'auth_state.dart';
 class AuthCubit extends Cubit<AuthState> {
   AuthCubit({required this.authUseCase}) : super(AuthState());
   final AuthUseCase authUseCase;
-  final storage = GetStorage();
   final GlobalKey<FormState> formKey = GlobalKey();
 
-  Future<void> login(Map<String, String> user) async {
+  Future login(String email, String password) async {
     if (formKey.currentState!.validate()) {
-      await handleError(() async {
-        final response = await authUseCase.login(user);
-        // response.fold((_) {}, (r) {
-        // logger.i(r.data["token"]);
-        // storage.write('token', r.data["token"]);
-        // Get.offAllNamed(Routes.NAV);
-        // });
+      return await handleError(() async {
+        final response = await authUseCase.login(email, password);
+        response.fold((_) {}, (r) {
+          logger.i(r.toString());
+          return r.toString();
+        });
       });
     }
   }

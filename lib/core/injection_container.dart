@@ -1,13 +1,15 @@
 import 'package:employee_management/core/app_router.dart';
 import 'package:employee_management/export.dart';
+import 'package:employee_management/features/auth/data/datasources/auth_data_source.dart';
+import 'package:employee_management/features/auth/data/repositories/auth_repository_impl.dart';
 import 'package:employee_management/features/auth/domain/repositories/repositories.dart';
 import 'package:employee_management/features/auth/domain/usecases/usecases.dart';
 import 'package:employee_management/features/auth/presentation/cubit/auth_cubit.dart';
 import 'package:employee_management/features/post/domain/usecases/post.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:get_it/get_it.dart';
 import 'package:internet_connection_checker/internet_connection_checker.dart';
 
-import '../features/auth/data/implements/implements.dart';
 import '../features/post/data/datasources/post_local_data_source.dart';
 import '../features/post/data/repositories/post_repository_impl.dart';
 import '../features/post/domain/repositories/posts_repository.dart';
@@ -30,22 +32,25 @@ Future<void> init() async {
 
   // Repository
   sl.registerLazySingleton<PostsRepository>(
-      () => PostsRepositoryImpl(remoteDataSource: sl(), localDataSource: sl()));
+      () => PostsRepositoryImp(remoteDataSource: sl(), localDataSource: sl()));
   sl.registerLazySingleton<AuthRepository>(
-      () => AuthRepositoryImp(remoteDataSource: sl()));
+      () => AuthRepoImp(remoteDataSource: sl()));
 
   // Datasources
   sl.registerLazySingleton<BaseRequests>(
       () => BaseRequests(network: sl(), networkInfo: sl()));
   sl.registerLazySingleton<PostLocalDataSource>(
-      () => PostLocalDataSourceImpl(sharedPreferences: sl()));
+      () => PostLocalDataSourceImp(sharedPreferences: sl()));
+  sl.registerLazySingleton<AuthFirebaseDataSource>(
+      () => AuthFirebaseDataSourceImp(auth: sl()));
 
   //! Core
-  sl.registerLazySingleton<NetworkInfo>(() => NetworkInfoImpl(sl()));
+  sl.registerLazySingleton<NetworkInfo>(() => NetworkInfoImp(sl()));
   sl.registerLazySingleton<Network>(() => Network());
 
   //! External
   sl.registerLazySingleton(() => GetStorage());
+  sl.registerLazySingleton(() => FirebaseAuth.instance);
   sl.registerLazySingleton(() => AppRouter());
   sl.registerLazySingleton(() => InternetConnectionChecker());
 }

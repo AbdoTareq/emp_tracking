@@ -27,6 +27,8 @@ export 'package:flutter/material.dart' hide TextDirection;
 export 'package:dartz/dartz.dart' hide State, Order;
 // models
 export 'core/server_response.dart';
+export 'package:employee_management/core/extensions/num_extension.dart';
+
 // network
 export 'core/network/network.dart';
 export 'core/network/base_requests.dart';
