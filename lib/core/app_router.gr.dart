@@ -23,6 +23,18 @@ abstract class _$AppRouter extends RootStackRouter {
         child: AuthPage(key: args.key),
       );
     },
+    EmployeeDetailsRoute.name: (routeData) {
+      return AutoRoutePage<dynamic>(
+        routeData: routeData,
+        child: EmployeeDetailsPage(),
+      );
+    },
+    EmployeeRoute.name: (routeData) {
+      return AutoRoutePage<dynamic>(
+        routeData: routeData,
+        child: EmployeePage(),
+      );
+    },
     PostsRoute.name: (routeData) {
       return AutoRoutePage<dynamic>(
         routeData: routeData,
@@ -58,6 +70,34 @@ class AuthRouteArgs {
   String toString() {
     return 'AuthRouteArgs{key: $key}';
   }
+}
+
+/// generated route for
+/// [EmployeeDetailsPage]
+class EmployeeDetailsRoute extends PageRouteInfo<void> {
+  const EmployeeDetailsRoute({List<PageRouteInfo>? children})
+      : super(
+          EmployeeDetailsRoute.name,
+          initialChildren: children,
+        );
+
+  static const String name = 'EmployeeDetailsRoute';
+
+  static const PageInfo<void> page = PageInfo<void>(name);
+}
+
+/// generated route for
+/// [EmployeePage]
+class EmployeeRoute extends PageRouteInfo<void> {
+  const EmployeeRoute({List<PageRouteInfo>? children})
+      : super(
+          EmployeeRoute.name,
+          initialChildren: children,
+        );
+
+  static const String name = 'EmployeeRoute';
+
+  static const PageInfo<void> page = PageInfo<void>(name);
 }
 
 /// generated route for

@@ -74,4 +74,8 @@ class EmployeeModel {
   String toString() {
     return 'Employee(id: $id, companyId: $companyId, name: $name, email: $email, jobTitle: $jobTitle, isDeleted: $isDeleted, isOnline: $isOnline, lastSeen: $lastSeen)';
   }
+
+  EmployeeModel fromMap(Map<String, dynamic> map) {
+    return EmployeeModel.fromMap(map);
+  }
 }

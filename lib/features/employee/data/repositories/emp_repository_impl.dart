@@ -15,7 +15,7 @@ class EmpRepoImp implements EmpRepository {
   Future<Either<Object, Stream<List<EmployeeModel>>>> getAll() async {
     try {
       final res = await remoteDataSource.getAllByCompanyId();
-      return right(transformStream<EmployeeModel>(res));
+      return right(transformStream<EmployeeModel>(res, EmployeeModel()));
     } on Exception catch (e) {
       return left(ServerFailure(message: e.toString()));
     }
