@@ -7,6 +7,7 @@ final logger = Logger();
 const baseImagePath = 'assets/images/';
 const double baseHeight = 867.0;
 const double baseWidth = 375.0;
+const String employeeCollection = 'employees';
 
 const kBottomRounded = BoxDecoration(
   color: kPrimaryColor,
