@@ -1,3 +1,4 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:employee_management/core/app_router.dart';
 import 'package:employee_management/main.dart';
 
@@ -177,3 +178,18 @@ getJson(item) {
 
 // navKey won't work
 bool isEn() => MyApp.appContext!.locale.toString().contains('en');
+
+/// T must has data model with a factory constructor fromMap
+Stream<List<T>> transformStream<T>(
+    Stream<QuerySnapshot<Map<String, dynamic>>> inputStream) {
+  return inputStream.map((QuerySnapshot<Map<String, dynamic>> querySnapshot) {
+    // Extract the list of documents from the QuerySnapshot
+    List<T> itemList =
+        querySnapshot.docs.map((DocumentSnapshot<Map<String, dynamic>> doc) {
+      return ((T as dynamic).fromMap(doc.data()!) as T);
+    }).toList();
+
+    // Emit the list as a new stream
+    return itemList;
+  });
+}
