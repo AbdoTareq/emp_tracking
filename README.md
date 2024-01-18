@@ -1,6 +1,14 @@
-# hi_lights
 
-A new Flutter template.
+# employee tracking
+
+I use GetIt to replace BlocProvider in managing dependencies.
+
+
+	1. Multi users & every user is like company who has logo & name
+	2. Employee accounts crud operations
+	3. Clients crud operations
+	4. Clients bills tracking
+Company materials tracking
 
 ## Getting Started
 
@@ -14,21 +22,10 @@ flutter pub run rename_app:main all="My App Name"
 
 Change app icon
 
-1. Uncomment in yaml:
-
-# flutter_icons:
-
-# android: "launcher_icon"
-
-# ios: true
-
-# image_path: "assets/images/logo.png
 
 2. flutter pub run flutter_launcher_icons:main
-3. comment them again as they will block images from rendering
 
 # to add firebase notification
-
 1. add:
 
 # firebase notification require 2 lib firebase_core & firebase_messaging
@@ -61,9 +58,3 @@ flutterfire configure 3. copy pushes.json file to the new project to test ios si
 
 5. execute the file:
    xcrun simctl push booted com.simplute.flutterNewTemplate pushes.json
-
-	1. Multi users & every user is like company who has logo & name
-	2. Employee accounts crud operations
-	3. Clients crud operations
-	4. Clients bills tracking
-Company materials tracking

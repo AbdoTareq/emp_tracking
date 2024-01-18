@@ -8,6 +8,7 @@ class EmployeeModel {
   final bool? isDeleted;
   final bool? isOnline;
   DateTime? lastSeen;
+  DateTime? createdAt;
 
   EmployeeModel({
     this.id = '',
@@ -18,6 +19,7 @@ class EmployeeModel {
     this.isDeleted,
     this.isOnline,
     this.lastSeen,
+    this.createdAt,
   });
 
   EmployeeModel copyWith({
@@ -29,6 +31,7 @@ class EmployeeModel {
     bool? isDeleted,
     bool? isOnline,
     DateTime? lastSeen,
+    DateTime? createdAt,
   }) {
     return EmployeeModel(
       id: id ?? this.id,
@@ -39,6 +42,7 @@ class EmployeeModel {
       isDeleted: isDeleted ?? this.isDeleted,
       isOnline: isOnline ?? this.isOnline,
       lastSeen: lastSeen ?? this.lastSeen,
+      createdAt: createdAt ?? this.createdAt,
     );
   }
 
@@ -52,6 +56,7 @@ class EmployeeModel {
       'isDeleted': isDeleted,
       'isOnline': isOnline,
       'lastSeen': lastSeen?.millisecondsSinceEpoch,
+      'createdAt': createdAt?.millisecondsSinceEpoch,
     };
   }
 
@@ -67,12 +72,15 @@ class EmployeeModel {
       lastSeen: map['lastSeen'] != null
           ? DateTime.fromMillisecondsSinceEpoch((map['lastSeen'] ?? 0) as int)
           : null,
+      createdAt: map['createdAt'] != null
+          ? DateTime.fromMillisecondsSinceEpoch((map['createdAt'] ?? 0) as int)
+          : null,
     );
   }
 
   @override
   String toString() {
-    return 'Employee(id: $id, companyId: $companyId, name: $name, email: $email, jobTitle: $jobTitle, isDeleted: $isDeleted, isOnline: $isOnline, lastSeen: $lastSeen)';
+    return 'EmployeeModel(id: $id, companyId: $companyId, name: $name, email: $email, jobTitle: $jobTitle, isDeleted: $isDeleted, isOnline: $isOnline, lastSeen: $lastSeen, createdAt: $createdAt)';
   }
 
   EmployeeModel fromMap(Map<String, dynamic> map) {

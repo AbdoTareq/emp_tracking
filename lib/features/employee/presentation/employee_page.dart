@@ -10,30 +10,27 @@ class EmployeePage extends StatelessWidget {
   final screenCubit = sl<EmployeeCubit>()..getAll();
   @override
   Widget build(BuildContext context) {
-    return BlocProvider(
-      create: (context) => screenCubit,
-      child: Scaffold(
-        appBar: CustomAppBar(
-            title: 'Employees', searchController: searchController),
-        body: BlocConsumer<EmployeeCubit, EmployeeState>(
-          bloc: screenCubit,
-          listener: (BuildContext context, EmployeeState state) {
-            if (state.error != null) {
-              showWarningDialog(text: state.error);
-            }
-          },
-          builder: (BuildContext context, EmployeeState state) {
-            if (state.isLoading) {
-              return Center(child: CircularProgressIndicator());
-            }
+    return Scaffold(
+      appBar:
+          CustomAppBar(title: 'Employees', searchController: searchController),
+      body: BlocConsumer<EmployeeCubit, EmployeeState>(
+        bloc: screenCubit,
+        listener: (BuildContext context, EmployeeState state) {
+          if (state.error != null) {
+            showWarningDialog(text: state.error);
+          }
+        },
+        builder: (BuildContext context, EmployeeState state) {
+          if (state.isLoading) {
+            return Center(child: CircularProgressIndicator());
+          }
 
-            return buildBody(state);
-          },
-        ),
-        floatingActionButton: FloatingActionButton(
-          onPressed: () => context.pushRoute(EmployeeDetailsRoute()),
-          child: Icon(Icons.add),
-        ),
+          return buildBody(state);
+        },
+      ),
+      floatingActionButton: FloatingActionButton(
+        onPressed: () => context.pushRoute(EmployeeDetailsRoute()),
+        child: Icon(Icons.add),
       ),
     );
   }

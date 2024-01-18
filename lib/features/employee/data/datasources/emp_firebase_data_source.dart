@@ -34,7 +34,7 @@ class EmpFirebaseDataSourceImp implements EmpFirebaseDataSource {
   Future<Map<String, dynamic>?> create(EmployeeModel emp) async {
     try {
       final res = await employeesCollection
-          .add({'companyId': auth.currentUser!.uid, ...emp.toMap()});
+          .add({...emp.toMap(), 'companyId': auth.currentUser!.uid});
       return (await res.get()).data();
     } catch (e) {
       throw e;

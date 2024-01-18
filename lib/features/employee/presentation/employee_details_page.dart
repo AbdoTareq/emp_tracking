@@ -14,10 +14,24 @@ class EmployeeDetailsPage extends HookWidget {
   final GlobalKey<FormState> formKey = GlobalKey();
   final EmployeeModel? employee;
   EmployeeDetailsPage({this.employee});
+
+  String? getRightField(int index, EmployeeModel? emp) {
+    switch (index) {
+      case 0:
+        return emp?.name;
+      case 1:
+        return emp?.jobTitle;
+      default:
+        return emp?.email;
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
     List<TextEditingController> textControllers = List.generate(
-        6, (index) => useTextEditingController(text: employee?.name));
+        5,
+        (index) =>
+            useTextEditingController(text: getRightField(index, employee)));
     return Scaffold(
         appBar: CustomAppBar(title: save),
         body: Form(

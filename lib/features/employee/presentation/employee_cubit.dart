@@ -29,8 +29,14 @@ class EmployeeCubit extends Cubit<EmployeeState> {
   }
 
   save(EmployeeModel? employee, List<String> textControllers) async {
+    /// add all item properties as not to reset any property
     final item = EmployeeModel(
       id: employee?.id,
+      companyId: employee?.companyId,
+      isDeleted: employee?.isDeleted,
+      lastSeen: employee?.lastSeen,
+      createdAt: employee?.createdAt,
+      isOnline: employee?.isOnline,
       name: textControllers[0],
       jobTitle: textControllers[1],
       email: textControllers[2],
