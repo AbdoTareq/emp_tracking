@@ -6,12 +6,15 @@ import 'package:employee_management/features/employee/presentation/employee_stat
 
 @RoutePage()
 class EmployeePage extends StatelessWidget {
+  final SearchController searchController = SearchController();
   final screenCubit = sl<EmployeeCubit>()..getAll();
   @override
   Widget build(BuildContext context) {
     return BlocProvider(
       create: (context) => screenCubit,
       child: Scaffold(
+        appBar: CustomAppBar(
+            title: 'Employees', searchController: searchController),
         body: BlocConsumer<EmployeeCubit, EmployeeState>(
           bloc: screenCubit,
           listener: (BuildContext context, EmployeeState state) {
@@ -38,12 +41,18 @@ class EmployeePage extends StatelessWidget {
   Widget buildBody(EmployeeState state) {
     return state.data.isEmpty
         ? no_data.tr().text.bold.xl.makeCentered().p8()
-        : ListView.builder(
+        : ListView.separated(
+            separatorBuilder: (BuildContext context, int index) => 4.heightBox,
             itemCount: state.data.length,
             itemBuilder: (BuildContext context, int index) {
               final item = state.data[index];
-              return item.name?.text.bold.xl.make().p8();
+              return ListTile(
+                title: item.name?.text.bold.xl.make(),
+                subtitle: item.jobTitle?.text.bold.xl.make(),
+                onTap: () =>
+                    context.pushRoute(EmployeeDetailsRoute(employee: item)),
+              ).card.make();
             },
-          );
+          ).px8().py8();
   }
 }

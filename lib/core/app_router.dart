@@ -1,4 +1,5 @@
 import 'package:auto_route/auto_route.dart';
+import 'package:employee_management/features/employee/data/models/employee_model.dart';
 import 'package:employee_management/features/employee/presentation/employee_details_page.dart';
 import 'package:employee_management/features/employee/presentation/employee_page.dart';
 import 'package:firebase_auth/firebase_auth.dart';

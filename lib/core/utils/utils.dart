@@ -27,7 +27,7 @@ showWarningDialog({String? title = '', String? text = ''}) async {
       });
 }
 
-showSimpleDialog({String title = '', String text = ''}) async {
+showSimpleDialog({dynamic title = '', dynamic text = ''}) async {
   await showDialog(
       context: navKey.currentContext!,
       builder: (context) {
@@ -38,14 +38,14 @@ showSimpleDialog({String title = '', String text = ''}) async {
           shape: RoundedRectangleBorder(
             borderRadius: BorderRadius.circular(10),
           ),
-          title: (title.isNotEmpty ? title : '👍')
+          title: (title.toString().isNotEmpty ? title.toString() : '👍')
               .tr()
               .text
               .isIntrinsic
               .bold
               .xl2
               .makeCentered(),
-          content: (text.isNotEmpty ? text : 'Success')
+          content: (text.toString().isNotEmpty ? text.toString() : 'Success')
               .tr()
               .text
               .isIntrinsic

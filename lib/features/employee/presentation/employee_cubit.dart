@@ -1,10 +1,9 @@
 import 'dart:developer';
 
-import 'package:employee_management/core/constants.dart';
+import 'package:employee_management/export.dart';
 import 'package:employee_management/features/employee/data/models/employee_model.dart';
 import 'package:employee_management/features/employee/domain/usecases/usecases.dart';
 import 'package:employee_management/features/employee/presentation/employee_state.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
 
 class EmployeeCubit extends Cubit<EmployeeState> {
   final EmployeeUseCase employeeUseCase;
@@ -30,12 +29,19 @@ class EmployeeCubit extends Cubit<EmployeeState> {
     }
   }
 
-  create(List<String> textControllers) async {
-    final res = await employeeUseCase.create(EmployeeModel(
+  save(EmployeeModel? employee, List<String> textControllers) async {
+    final item = EmployeeModel(
+      id: employee?.id,
       name: textControllers[0],
       jobTitle: textControllers[1],
       email: textControllers[2],
-    ));
-    return res.fold((l) => logger.i(l), (r) => r);
+    );
+    final res = await (item.id == null ? _create(item) : _update(item));
+    return res.fold((l) => showSimpleDialog(text: l),
+        (r) => r is EmployeeModel ? r : 'Success');
   }
+
+  _create(EmployeeModel item) async => employeeUseCase.create(item);
+
+  _update(EmployeeModel item) async => employeeUseCase.update(item);
 }
