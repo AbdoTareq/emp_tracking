@@ -20,7 +20,6 @@ class EmployeeCubit extends Cubit<EmployeeState> {
       res.fold(
           (l) => logger.i(l),
           (r) => r.listen((event) {
-                log('message');
                 emit(state.copyWith(isLoading: false, data: event));
               }));
     } catch (error) {
@@ -44,4 +43,7 @@ class EmployeeCubit extends Cubit<EmployeeState> {
   _create(EmployeeModel item) async => employeeUseCase.create(item);
 
   _update(EmployeeModel item) async => employeeUseCase.update(item);
+
+  delete(String? id) async =>
+      handleRequest(() async => await employeeUseCase.delete(id ?? ''));
 }

@@ -48,7 +48,16 @@ class EmployeePage extends StatelessWidget {
               final item = state.data[index];
               return ListTile(
                 title: item.name?.text.bold.xl.make(),
-                subtitle: item.jobTitle?.text.bold.xl.make(),
+                subtitle: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    item.jobTitle.toString().text.make(),
+                    item.email.toString().text.make(),
+                  ],
+                ),
+                trailing: IconButton(
+                    onPressed: () async => await screenCubit.delete(item.id),
+                    icon: Icon(Icons.delete)),
                 onTap: () =>
                     context.pushRoute(EmployeeDetailsRoute(employee: item)),
               ).card.make();

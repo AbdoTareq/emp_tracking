@@ -87,7 +87,7 @@ showFailSnack({String title = '', String text = '', Function()? yesFunction}) {
   //     padding: EdgeInsets.all(8));
 }
 
-Future<Null> handleRequest(Future<Null> Function() asyncFunction,
+Future<Null> handleRequest(Future Function() asyncFunction,
     {bool showMessage = false, String? message}) async {
   showDialog(
     barrierDismissible: false,
@@ -195,7 +195,7 @@ Stream<List<T>> transformStream<T>(
     // Extract the list of documents from the QuerySnapshot
     List<T> itemList =
         querySnapshot.docs.map((DocumentSnapshot<Map<String, dynamic>> doc) {
-      return (getModel(item, doc.data()) as T);
+      return (getModel(item, {...doc.data()!, 'id': doc.id}) as T);
     }).toList();
 
     // Emit the list as a new stream
