@@ -29,6 +29,7 @@
   "passWar": "يجب ألا يقل طول كلمة السر عن 6 حروفٍ/حرفًا",
   "enter_fields": "ادخل المعلومات المطلوبة",
   "success": "تم بنجاح",
+  "copiedSuccessfully": "نسخ بنجاح",
   "merchant": "مقدم خدمة",
   "user": "مستخدم",
   "enterValidPin": "أدخل كود صالح",

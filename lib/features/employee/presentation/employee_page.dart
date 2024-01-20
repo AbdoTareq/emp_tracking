@@ -52,9 +52,19 @@ class EmployeePage extends StatelessWidget {
                     item.email.toString().text.make(),
                   ],
                 ),
-                trailing: IconButton(
-                    onPressed: () async => await screenCubit.delete(item.id),
-                    icon: Icon(Icons.delete)),
+                trailing: Row(
+                  mainAxisSize: MainAxisSize.min,
+                  children: [
+                    Icon(Icons.copy).onTap(() async {
+                      await Clipboard.setData(
+                          ClipboardData(text: item.id ?? ''));
+                      await showSuccessSnack(text: 'Copied Successfully');
+                    }).px8(),
+                    Icon(Icons.delete).onTap(() async {
+                      await screenCubit.delete(item.id);
+                    }),
+                  ],
+                ),
                 onTap: () =>
                     context.pushRoute(EmployeeDetailsRoute(employee: item)),
               ).card.make();

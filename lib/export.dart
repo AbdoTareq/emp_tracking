@@ -25,6 +25,7 @@ export 'package:flutter_screenutil/flutter_screenutil.dart';
 export 'package:get_storage/get_storage.dart';
 export 'package:flutter/material.dart' hide TextDirection;
 export 'package:dartz/dartz.dart' hide State, Order;
+export 'package:flutter/services.dart' hide TextInput, TextDirection;
 // models
 export 'core/server_response.dart';
 export 'package:employee_management/core/extensions/num_extension.dart';

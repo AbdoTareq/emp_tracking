@@ -63,28 +63,21 @@ showSimpleDialog({dynamic title = '', dynamic text = ''}) async {
 }
 
 showSuccessSnack({String title = '', String text = ''}) {
-  // Get.snackbar(
-  //     title.isNotEmpty ? title : '👍', text.isNotEmpty ? text : 'under_dev',
-  //     snackPosition: SnackPosition.BOTTOM,
-  //     duration: Duration(seconds: 6),
-  //     backgroundColor: Colors.green,
-  //     barBlur: 10,
-  //     margin: EdgeInsets.all(10),
-  //     padding: EdgeInsets.all(8));
+  ScaffoldMessenger.of(navKey.currentContext!).showSnackBar(
+    SnackBar(
+      content: Text(text, style: TextStyle(color: Colors.white)),
+      backgroundColor: Colors.green,
+    ),
+  );
 }
 
 showFailSnack({String title = '', String text = '', Function()? yesFunction}) {
-  // Get.snackbar(
-  //     title.isNotEmpty ? title : watch, text.isNotEmpty ? text : 'under_dev',
-  //     snackPosition: SnackPosition.BOTTOM,
-  //     duration: Duration(seconds: 15),
-  //     barBlur: 10,
-  //     mainButton: TextButton(
-  //       onPressed: yesFunction,
-  //       child: yes.tr().text.isIntrinsic.color(kPrimaryColor).bold.xl.make().p8(),
-  //     ),
-  //     margin: EdgeInsets.all(10),
-  //     padding: EdgeInsets.all(8));
+  ScaffoldMessenger.of(navKey.currentContext!).showSnackBar(
+    SnackBar(
+      content: Text(text, style: TextStyle(color: Colors.white)),
+      backgroundColor: Colors.redAccent,
+    ),
+  );
 }
 
 Future<Null> handleRequest(Future Function() asyncFunction,
@@ -181,7 +174,7 @@ getModel(item, map) {
   try {
     return temp.fromMap(map);
   } catch (e) {
-    return temp.fromJson();
+    return temp.fromJson(map);
   }
 }
 
@@ -195,6 +188,7 @@ Stream<List<T>> transformStream<T>(
     // Extract the list of documents from the QuerySnapshot
     List<T> itemList =
         querySnapshot.docs.map((DocumentSnapshot<Map<String, dynamic>> doc) {
+      logger.i(doc.id);
       return (getModel(item, {...doc.data()!, 'id': doc.id}) as T);
     }).toList();
 
