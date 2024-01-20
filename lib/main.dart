@@ -1,18 +1,13 @@
 import 'package:employee_management/core/app_router.dart';
-import 'package:employee_management/features/post/presentation/bloc/add_delete_update_post/add_delete_update_post_bloc.dart';
 import 'package:employee_management/firebase_options.dart';
 import 'package:employee_management/generated/codegen_loader.g.dart';
 import 'package:firebase_core/firebase_core.dart';
-import 'package:flutter/foundation.dart';
 import 'package:flutter/services.dart';
-import 'package:requests_inspector/requests_inspector.dart';
 
 import 'core/injection_container.dart' as di;
 import 'export.dart';
-import 'features/post/presentation/bloc/posts/posts_bloc.dart';
 
 Future<void> main() async {
-  WidgetsFlutterBinding.ensureInitialized();
   WidgetsFlutterBinding.ensureInitialized();
   await Firebase.initializeApp(
     options: DefaultFirebaseOptions.currentPlatform,
@@ -27,16 +22,15 @@ Future<void> main() async {
           ));
   SystemChrome.setPreferredOrientations([DeviceOrientation.portraitUp])
       .then((_) {
-    runApp(EasyLocalization(
-        assetLoader: CodegenLoader(),
-        supportedLocales: [Locale('ar'), Locale('en')],
-        path: 'assets/langs',
-        fallbackLocale: Locale('en'),
-        saveLocale: true,
-        child: RequestsInspector(
-            child: MyApp(),
-            enabled: kDebugMode,
-            showInspectorOn: ShowInspectorOn.Both)));
+    runApp(
+      EasyLocalization(
+          assetLoader: CodegenLoader(),
+          supportedLocales: [Locale('ar'), Locale('en')],
+          path: 'assets/langs',
+          fallbackLocale: Locale('en'),
+          saveLocale: true,
+          child: MyApp()),
+    );
   });
 }
 
@@ -51,20 +45,13 @@ class MyApp extends StatelessWidget {
         designSize: Size(baseWidth, baseHeight),
         minTextAdapt: true,
         builder: (BuildContext context, Widget? child) {
-          return MultiBlocProvider(
-            providers: [
-              BlocProvider(
-                  create: (_) => di.sl<PostsBloc>()..add(GetAllPostsEvent())),
-              BlocProvider(create: (_) => di.sl<AddDeleteUpdatePostBloc>()),
-            ],
-            child: MaterialApp.router(
-              localizationsDelegates: context.localizationDelegates,
-              supportedLocales: context.supportedLocales,
-              locale: context.locale,
-              theme: isDark ? darkTheme : lightTheme,
-              debugShowCheckedModeBanner: false,
-              routerConfig: di.sl<AppRouter>().config(),
-            ),
+          return MaterialApp.router(
+            localizationsDelegates: context.localizationDelegates,
+            supportedLocales: context.supportedLocales,
+            locale: context.locale,
+            theme: isDark ? darkTheme : lightTheme,
+            debugShowCheckedModeBanner: false,
+            routerConfig: di.sl<AppRouter>().config(),
           );
         });
   }

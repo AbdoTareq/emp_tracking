@@ -6,7 +6,6 @@ import 'package:firebase_auth/firebase_auth.dart';
 
 import '../export.dart';
 import '../features/auth/presentation/pages/auth_page.dart';
-import '../features/post/presentation/pages/posts_page.dart';
 
 part 'app_router.gr.dart';
 
@@ -18,6 +17,5 @@ class AppRouter extends _$AppRouter {
         AutoRoute(page: AuthRoute.page, initial: user == null),
         AutoRoute(page: EmployeeRoute.page, initial: user != null),
         AutoRoute(page: EmployeeDetailsRoute.page),
-        AutoRoute(page: PostsRoute.page),
       ];
 }

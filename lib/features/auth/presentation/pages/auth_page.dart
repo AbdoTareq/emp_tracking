@@ -44,7 +44,7 @@ class AuthPage extends HookWidget {
               );
               logger.i(res);
               if (res != null) {
-                context.replaceRoute(PostsRoute());
+                context.replaceRoute(EmployeeRoute());
               }
             },
             child: login.tr().text.white.bold.xl.make(),

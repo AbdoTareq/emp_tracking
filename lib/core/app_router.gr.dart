@@ -37,12 +37,6 @@ abstract class _$AppRouter extends RootStackRouter {
         child: EmployeePage(),
       );
     },
-    PostsRoute.name: (routeData) {
-      return AutoRoutePage<dynamic>(
-        routeData: routeData,
-        child: const PostsPage(),
-      );
-    },
   };
 }
 
@@ -113,20 +107,6 @@ class EmployeeRoute extends PageRouteInfo<void> {
         );
 
   static const String name = 'EmployeeRoute';
-
-  static const PageInfo<void> page = PageInfo<void>(name);
-}
-
-/// generated route for
-/// [PostsPage]
-class PostsRoute extends PageRouteInfo<void> {
-  const PostsRoute({List<PageRouteInfo>? children})
-      : super(
-          PostsRoute.name,
-          initialChildren: children,
-        );
-
-  static const String name = 'PostsRoute';
 
   static const PageInfo<void> page = PageInfo<void>(name);
 }
