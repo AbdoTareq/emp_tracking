@@ -1,4 +1,6 @@
 // ignore_for_file: public_member_api_docs, sort_constructors_first
+import 'package:employee_management/features/employee/data/models/day_location.dart';
+
 class EmployeeModel {
   final String? id;
   final String? companyId;
@@ -7,8 +9,9 @@ class EmployeeModel {
   final String? jobTitle;
   final bool? isDeleted;
   final bool? isOnline;
-  DateTime? lastSeen;
-  DateTime? createdAt;
+  final DateTime? lastSeen;
+  final DateTime? createdAt;
+  final List<DayLocation>? trackingLocations;
 
   EmployeeModel({
     this.id = '',
@@ -20,6 +23,7 @@ class EmployeeModel {
     this.isOnline,
     this.lastSeen,
     this.createdAt,
+    this.trackingLocations = const [],
   });
 
   EmployeeModel copyWith({
@@ -32,6 +36,7 @@ class EmployeeModel {
     bool? isOnline,
     DateTime? lastSeen,
     DateTime? createdAt,
+    List<DayLocation>? trackingLocations,
   }) {
     return EmployeeModel(
       id: id ?? this.id,
@@ -43,6 +48,7 @@ class EmployeeModel {
       isOnline: isOnline ?? this.isOnline,
       lastSeen: lastSeen ?? this.lastSeen,
       createdAt: createdAt ?? this.createdAt,
+      trackingLocations: trackingLocations ?? this.trackingLocations,
     );
   }
 
@@ -57,6 +63,7 @@ class EmployeeModel {
       'isOnline': isOnline,
       'lastSeen': lastSeen?.millisecondsSinceEpoch,
       'createdAt': createdAt?.millisecondsSinceEpoch,
+      'trackingLocations': trackingLocations?.map((x) => x.toMap()).toList(),
     };
   }
 
@@ -75,12 +82,19 @@ class EmployeeModel {
       createdAt: map['createdAt'] != null
           ? DateTime.fromMillisecondsSinceEpoch((map['createdAt'] ?? 0) as int)
           : null,
+      trackingLocations: map['trackingLocations'] != null
+          ? List<DayLocation>.from(
+              (map['trackingLocations'] as List<int>).map<DayLocation?>(
+                (x) => DayLocation.fromMap(x as Map<String, dynamic>),
+              ),
+            )
+          : null,
     );
   }
 
   @override
   String toString() {
-    return 'EmployeeModel(id: $id, companyId: $companyId, name: $name, email: $email, jobTitle: $jobTitle, isDeleted: $isDeleted, isOnline: $isOnline, lastSeen: $lastSeen, createdAt: $createdAt)';
+    return 'EmployeeModel(id: $id, companyId: $companyId, name: $name, email: $email, jobTitle: $jobTitle, isDeleted: $isDeleted, isOnline: $isOnline, lastSeen: $lastSeen, createdAt: $createdAt, trackingLocations: $trackingLocations)';
   }
 
   EmployeeModel fromMap(Map<String, dynamic> map) {

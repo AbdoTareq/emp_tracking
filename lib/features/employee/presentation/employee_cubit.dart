@@ -12,7 +12,6 @@ class EmployeeCubit extends Cubit<EmployeeState> {
       : super(EmployeeState(isLoading: true));
 
   Future<void> getAll() async {
-    logger.i('error');
     final stableState = state;
     try {
       emit(state.copyWith(isLoading: true));

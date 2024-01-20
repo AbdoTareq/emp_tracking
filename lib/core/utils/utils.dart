@@ -188,7 +188,6 @@ Stream<List<T>> transformStream<T>(
     // Extract the list of documents from the QuerySnapshot
     List<T> itemList =
         querySnapshot.docs.map((DocumentSnapshot<Map<String, dynamic>> doc) {
-      logger.i(doc.id);
       return (getModel(item, {...doc.data()!, 'id': doc.id}) as T);
     }).toList();
 
