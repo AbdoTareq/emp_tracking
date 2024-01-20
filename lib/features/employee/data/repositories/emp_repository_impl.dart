@@ -22,6 +22,16 @@ class EmpRepoImp implements EmpRepository {
   }
 
   @override
+  Future<Either<Object, EmployeeModel?>> getById(String id) async {
+    try {
+      final res = await remoteDataSource.getById(id);
+      return right(EmployeeModel.fromMap(res!));
+    } on Exception catch (e) {
+      return left(ServerFailure(message: e.toString()));
+    }
+  }
+
+  @override
   Future<Either<Object, EmployeeModel?>> create(EmployeeModel item) async {
     try {
       final res = await remoteDataSource.create(item);

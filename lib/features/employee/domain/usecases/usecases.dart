@@ -12,6 +12,10 @@ class EmployeeUseCase {
     return repository.getAll();
   }
 
+  Future<Either<Object, EmployeeModel?>> getById(String id) async {
+    return repository.getById(id);
+  }
+
   Future<Either<Object, EmployeeModel?>> create(EmployeeModel item) async {
     return repository.create(item);
   }

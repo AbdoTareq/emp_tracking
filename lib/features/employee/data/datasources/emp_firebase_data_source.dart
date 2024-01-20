@@ -5,6 +5,7 @@ import 'package:firebase_auth/firebase_auth.dart';
 // company id is the adminId which is the logged in user
 abstract class EmpFirebaseDataSource {
   Future<Stream<QuerySnapshot<Map<String, dynamic>>>> getAllByCompanyId();
+  Future<Map<String, dynamic>?> getById(String id);
   Future<Map<String, dynamic>?> create(EmployeeModel emp);
   Future<void> update(EmployeeModel emp, String? empId);
   Future<void> delete(String empId);
@@ -25,6 +26,16 @@ class EmpFirebaseDataSourceImp implements EmpFirebaseDataSource {
           .where("companyId", isEqualTo: auth.currentUser!.uid)
           .snapshots();
       return snapshots;
+    } catch (e) {
+      throw e;
+    }
+  }
+
+  @override
+  Future<Map<String, dynamic>?> getById(String? empId) async {
+    try {
+      final res = await employeesCollection.doc(empId).get();
+      return res.data();
     } catch (e) {
       throw e;
     }
