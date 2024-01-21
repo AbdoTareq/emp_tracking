@@ -1,7 +1,7 @@
 import 'package:dartz/dartz.dart';
 import 'package:employee_management/core/utils/utils.dart';
-import 'package:employee_management/features/employee/domain/repositories/repositories.dart';
 import 'package:employee_management/features/materials/data/models/material_model.dart';
+import 'package:employee_management/features/materials/domain/repositories/repositories.dart';
 
 import '../../../../core/error/failures.dart';
 import '../datasources/material_firebase_data_source.dart';
