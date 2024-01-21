@@ -1,6 +1,7 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 
+import '../../../../core/constants.dart';
 import '../models/material_model.dart';
 
 // company id is the adminId which is the logged in user
@@ -13,17 +14,17 @@ abstract class MaterialFirebaseDataSource {
 }
 
 class MaterialFirebaseDataSourceImp implements MaterialFirebaseDataSource {
-  final CollectionReference<Map<String, dynamic>> itemsCollection;
+  final FirebaseFirestore firestore;
   final FirebaseAuth auth;
 
-  MaterialFirebaseDataSourceImp(
-      {required this.auth, required this.itemsCollection});
+  MaterialFirebaseDataSourceImp({required this.auth, required this.firestore});
 
   @override
   Future<Stream<QuerySnapshot<Map<String, dynamic>>>>
       getAllByCompanyId() async {
     try {
-      final snapshots = await itemsCollection
+      final snapshots = await firestore
+          .collection(materialCollection)
           .where("companyId", isEqualTo: auth.currentUser!.uid)
           .snapshots();
       return snapshots;
@@ -35,7 +36,8 @@ class MaterialFirebaseDataSourceImp implements MaterialFirebaseDataSource {
   @override
   Future<Map<String, dynamic>?> getById(String? itemId) async {
     try {
-      final res = await itemsCollection.doc(itemId).get();
+      final res =
+          await firestore.collection(materialCollection).doc(itemId).get();
       return res.data();
     } catch (e) {
       throw e;
@@ -45,7 +47,8 @@ class MaterialFirebaseDataSourceImp implements MaterialFirebaseDataSource {
   @override
   Future<Map<String, dynamic>?> create(MaterialModel item) async {
     try {
-      final res = await itemsCollection
+      final res = await firestore
+          .collection(materialCollection)
           .add({...item.toMap(), 'companyId': auth.currentUser!.uid});
       return (await res.get()).data();
     } catch (e) {
@@ -56,7 +59,8 @@ class MaterialFirebaseDataSourceImp implements MaterialFirebaseDataSource {
   @override
   Future<void> delete(String itemId) async {
     try {
-      final res = await itemsCollection.doc(itemId).delete();
+      final res =
+          await firestore.collection(materialCollection).doc(itemId).delete();
       return res;
     } catch (e) {
       throw e;
@@ -66,7 +70,10 @@ class MaterialFirebaseDataSourceImp implements MaterialFirebaseDataSource {
   @override
   Future<void> update(MaterialModel item, String? itemId) async {
     try {
-      final res = await itemsCollection.doc(itemId).update(item.toMap());
+      final res = await firestore
+          .collection(materialCollection)
+          .doc(itemId)
+          .update(item.toMap());
       return res;
     } catch (e) {
       throw e;

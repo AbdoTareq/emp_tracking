@@ -47,9 +47,9 @@ Future<void> init() async {
   sl.registerLazySingleton<AuthFirebaseDataSource>(
       () => AuthFirebaseDataSourceImp(auth: sl()));
   sl.registerLazySingleton<EmpFirebaseDataSource>(
-      () => EmpFirebaseDataSourceImp(auth: sl(), employeesCollection: sl()));
+      () => EmpFirebaseDataSourceImp(auth: sl(), firebase: sl()));
   sl.registerLazySingleton<MaterialFirebaseDataSource>(
-      () => MaterialFirebaseDataSourceImp(auth: sl(), itemsCollection: sl()));
+      () => MaterialFirebaseDataSourceImp(auth: sl(), firestore: sl()));
 
   //! Core
   sl.registerLazySingleton<NetworkInfo>(() => NetworkInfoImp(sl()));
@@ -57,14 +57,7 @@ Future<void> init() async {
   //! External
   sl.registerLazySingleton(() => GetStorage());
   sl.registerLazySingleton(() => FirebaseAuth.instance);
-  sl.registerLazySingleton(
-      () => FirebaseFirestore.instance.collection(employeeCollection));
-  sl.registerLazySingleton(
-      () => FirebaseFirestore.instance.collection(clientCollection));
-  sl.registerLazySingleton(
-      () => FirebaseFirestore.instance.collection(materialCollection));
-  sl.registerLazySingleton(
-      () => FirebaseFirestore.instance.collection(attendanceCollection));
+  sl.registerLazySingleton(() => FirebaseFirestore.instance);
   sl.registerLazySingleton(() => AppRouter());
   sl.registerLazySingleton(() => InternetConnectionChecker());
 }

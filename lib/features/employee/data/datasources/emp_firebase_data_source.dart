@@ -1,4 +1,5 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:employee_management/core/constants.dart';
 import 'package:employee_management/features/employee/data/models/employee_model.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 
@@ -12,17 +13,17 @@ abstract class EmpFirebaseDataSource {
 }
 
 class EmpFirebaseDataSourceImp implements EmpFirebaseDataSource {
-  final CollectionReference<Map<String, dynamic>> employeesCollection;
+  final FirebaseFirestore firebase;
   final FirebaseAuth auth;
 
-  EmpFirebaseDataSourceImp(
-      {required this.auth, required this.employeesCollection});
+  EmpFirebaseDataSourceImp({required this.auth, required this.firebase});
 
   @override
   Future<Stream<QuerySnapshot<Map<String, dynamic>>>>
       getAllByCompanyId() async {
     try {
-      final snapshots = await employeesCollection
+      final snapshots = await firebase
+          .collection(employeeCollection)
           .where("companyId", isEqualTo: auth.currentUser!.uid)
           .snapshots();
       return snapshots;
@@ -34,7 +35,8 @@ class EmpFirebaseDataSourceImp implements EmpFirebaseDataSource {
   @override
   Future<Map<String, dynamic>?> getById(String? empId) async {
     try {
-      final res = await employeesCollection.doc(empId).get();
+      final res =
+          await firebase.collection(employeeCollection).doc(empId).get();
       return res.data();
     } catch (e) {
       throw e;
@@ -44,7 +46,8 @@ class EmpFirebaseDataSourceImp implements EmpFirebaseDataSource {
   @override
   Future<Map<String, dynamic>?> create(EmployeeModel emp) async {
     try {
-      final res = await employeesCollection
+      final res = await firebase
+          .collection(employeeCollection)
           .add({...emp.toMap(), 'companyId': auth.currentUser!.uid});
       return (await res.get()).data();
     } catch (e) {
@@ -55,7 +58,8 @@ class EmpFirebaseDataSourceImp implements EmpFirebaseDataSource {
   @override
   Future<void> delete(String empId) async {
     try {
-      final res = await employeesCollection.doc(empId).delete();
+      final res =
+          await firebase.collection(employeeCollection).doc(empId).delete();
       return res;
     } catch (e) {
       throw e;
@@ -65,7 +69,10 @@ class EmpFirebaseDataSourceImp implements EmpFirebaseDataSource {
   @override
   Future<void> update(EmployeeModel emp, String? empId) async {
     try {
-      final res = await employeesCollection.doc(empId).update(emp.toMap());
+      final res = await firebase
+          .collection(employeeCollection)
+          .doc(empId)
+          .update(emp.toMap());
       return res;
     } catch (e) {
       throw e;
