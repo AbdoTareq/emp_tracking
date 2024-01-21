@@ -21,8 +21,7 @@ class AppRouter extends _$AppRouter {
         // AutoRoute(page: EmployeeRoute.page, initial: user != null, children: [
         //   AutoRoute(page: EmployeeDetailsRoute.page),
         // ]),
-        AutoRoute(page: MaterialsRoute.page, initial: user != null, children: [
-          AutoRoute(page: MaterialDetailsRoute.page),
-        ]),
+        AutoRoute(page: MaterialsRoute.page, initial: user != null),
+        AutoRoute(page: MaterialDetailsRoute.page),
       ];
 }

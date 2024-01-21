@@ -14,7 +14,7 @@ class MaterialsPage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar:
-          CustomAppBar(title: 'Employees', searchController: searchController),
+          CustomAppBar(title: 'Materials', searchController: searchController),
       body: BlocBuilder<MaterialCubit, BaseState<List<MaterialModel>>>(
         bloc: screenCubit,
         builder: (BuildContext context, BaseState<List<MaterialModel>> state) {
@@ -24,14 +24,14 @@ class MaterialsPage extends StatelessWidget {
             case RxStatus.Error:
               return state.errorMessage!.text.bold.red500.makeCentered();
             case RxStatus.Empty:
-              return LocaleKeys.no_data.text.bold.makeCentered();
+              return LocaleKeys.no_data.tr().text.bold.makeCentered();
             default:
               return buildBody(state.data!);
           }
         },
       ),
       floatingActionButton: FloatingActionButton(
-        onPressed: () => context.pushRoute(EmployeeDetailsRoute()),
+        onPressed: () => context.pushRoute(MaterialDetailsRoute()),
         child: Icon(Icons.add),
       ),
     );
@@ -55,9 +55,8 @@ class MaterialsPage extends StatelessWidget {
           trailing: Row(
             mainAxisSize: MainAxisSize.min,
             children: [
-              Icon(Icons.copy).onTap(() async {
-                await Clipboard.setData(ClipboardData(text: item.id ?? ''));
-                await showSuccessSnack(text: 'Copied Successfully');
+              Icon(Icons.edit).onTap(() async {
+                context.pushRoute(MaterialDetailsRoute(item: item));
               }).px8(),
               Icon(Icons.delete).onTap(() async {
                 await screenCubit.delete(item.id);

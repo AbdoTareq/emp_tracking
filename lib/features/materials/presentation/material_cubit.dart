@@ -40,10 +40,8 @@ class MaterialCubit extends Cubit<BaseState<List<MaterialModel>>> {
       id: item?.id,
       companyId: item?.companyId ?? FirebaseAuth.instance.currentUser?.uid,
       employeeId: item?.employeeId ?? box.read(employeeId),
-      createdAt: isCreate
-          ? (FieldValue.serverTimestamp() as DateTime)
-          : item?.createdAt,
-      updatedAt: isCreate ? null : FieldValue.serverTimestamp() as DateTime,
+      createdAt: isCreate ? DateTime.now() : item?.createdAt,
+      updatedAt: isCreate ? null : DateTime.now(),
       name: textControllers[0],
       description: textControllers[1],
       stock: int.parse(textControllers[2]),
