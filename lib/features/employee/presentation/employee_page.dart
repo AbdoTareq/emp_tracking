@@ -1,5 +1,6 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:employee_management/core/app_router.dart';
+import 'package:employee_management/core/view/widgets/custom_list_view_builder.dart';
 import 'package:employee_management/export.dart';
 import 'package:employee_management/features/employee/presentation/employee_cubit.dart';
 import 'package:employee_management/features/employee/presentation/employee_state.dart';
@@ -38,8 +39,8 @@ class EmployeePage extends StatelessWidget {
   Widget buildBody(EmployeeState state) {
     return state.data.isEmpty
         ? LocaleKeys.no_data.tr().text.bold.xl.makeCentered().p8()
-        : ListView.separated(
-            separatorBuilder: (BuildContext context, int index) => 4.heightBox,
+        : CustomListViewBuilder(
+            footer: 40.heightBox,
             itemCount: state.data.length,
             itemBuilder: (BuildContext context, int index) {
               final item = state.data[index];
