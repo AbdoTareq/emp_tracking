@@ -13,12 +13,12 @@ class BaseState<T> extends Equatable {
     this.errorMessage,
   });
 
-  BaseState copyWith({
+  BaseState<T> copyWith({
     RxStatus? status,
     T? data,
     String? errorMessage,
   }) {
-    return new BaseState(
+    return BaseState<T>(
       status: status ?? this.status,
       data: data ?? this.data,
       errorMessage: errorMessage ?? this.errorMessage,

@@ -37,6 +37,20 @@ abstract class _$AppRouter extends RootStackRouter {
         child: EmployeePage(),
       );
     },
+    MaterialDetailsRoute.name: (routeData) {
+      final args = routeData.argsAs<MaterialDetailsRouteArgs>(
+          orElse: () => const MaterialDetailsRouteArgs());
+      return AutoRoutePage<dynamic>(
+        routeData: routeData,
+        child: MaterialDetailsPage(item: args.item),
+      );
+    },
+    MaterialsRoute.name: (routeData) {
+      return AutoRoutePage<dynamic>(
+        routeData: routeData,
+        child: MaterialsPage(),
+      );
+    },
   };
 }
 
@@ -107,6 +121,49 @@ class EmployeeRoute extends PageRouteInfo<void> {
         );
 
   static const String name = 'EmployeeRoute';
+
+  static const PageInfo<void> page = PageInfo<void>(name);
+}
+
+/// generated route for
+/// [MaterialDetailsPage]
+class MaterialDetailsRoute extends PageRouteInfo<MaterialDetailsRouteArgs> {
+  MaterialDetailsRoute({
+    MaterialModel? item,
+    List<PageRouteInfo>? children,
+  }) : super(
+          MaterialDetailsRoute.name,
+          args: MaterialDetailsRouteArgs(item: item),
+          initialChildren: children,
+        );
+
+  static const String name = 'MaterialDetailsRoute';
+
+  static const PageInfo<MaterialDetailsRouteArgs> page =
+      PageInfo<MaterialDetailsRouteArgs>(name);
+}
+
+class MaterialDetailsRouteArgs {
+  const MaterialDetailsRouteArgs({this.item});
+
+  final MaterialModel? item;
+
+  @override
+  String toString() {
+    return 'MaterialDetailsRouteArgs{item: $item}';
+  }
+}
+
+/// generated route for
+/// [MaterialsPage]
+class MaterialsRoute extends PageRouteInfo<void> {
+  const MaterialsRoute({List<PageRouteInfo>? children})
+      : super(
+          MaterialsRoute.name,
+          initialChildren: children,
+        );
+
+  static const String name = 'MaterialsRoute';
 
   static const PageInfo<void> page = PageInfo<void>(name);
 }

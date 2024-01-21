@@ -58,6 +58,8 @@
   "select_job": "Select Job",
   "job": "Job",
   "name": "name",
+  "stock": "stock",
+  "used": "used",
   "selectCity": "Select City",
   "selectArea": "Select Area",
   "personal_info": "personal_info",
