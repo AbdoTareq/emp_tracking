@@ -11,6 +11,11 @@ import 'package:employee_management/features/employee/data/repositories/emp_repo
 import 'package:employee_management/features/employee/domain/repositories/repositories.dart';
 import 'package:employee_management/features/employee/domain/usecases/usecases.dart';
 import 'package:employee_management/features/employee/presentation/employee_cubit.dart';
+import 'package:employee_management/features/materials/data/datasources/material_firebase_data_source.dart';
+import 'package:employee_management/features/materials/data/repositories/material_repository_impl.dart';
+import 'package:employee_management/features/materials/domain/repositories/repositories.dart';
+import 'package:employee_management/features/materials/domain/usecases/usecases.dart';
+import 'package:employee_management/features/materials/presentation/material_cubit.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:get_it/get_it.dart';
 import 'package:internet_connection_checker/internet_connection_checker.dart';
@@ -20,26 +25,31 @@ import 'network/network_info.dart';
 final sl = GetIt.instance;
 
 Future<void> init() async {
-  //! Features - posts
   // Bloc
   sl.registerFactory(() => AuthCubit(authUseCase: sl()));
   sl.registerFactory(() => EmployeeCubit(employeeUseCase: sl()));
+  sl.registerFactory(() => MaterialCubit(usecase: sl()));
 
   // Usecases
   sl.registerLazySingleton(() => AuthUseCase(repository: sl()));
   sl.registerLazySingleton(() => EmployeeUseCase(repository: sl()));
+  sl.registerLazySingleton(() => MaterialUseCase(repository: sl()));
 
   // Repository
   sl.registerLazySingleton<AuthRepository>(
       () => AuthRepoImp(remoteDataSource: sl()));
   sl.registerLazySingleton<EmpRepository>(
       () => EmpRepoImp(remoteDataSource: sl()));
+  sl.registerLazySingleton<MaterialRepository>(
+      () => MaterialRepoImp(remoteDataSource: sl()));
 
   // Datasources
   sl.registerLazySingleton<AuthFirebaseDataSource>(
       () => AuthFirebaseDataSourceImp(auth: sl()));
   sl.registerLazySingleton<EmpFirebaseDataSource>(
       () => EmpFirebaseDataSourceImp(auth: sl(), employeesCollection: sl()));
+  sl.registerLazySingleton<MaterialFirebaseDataSource>(
+      () => MaterialFirebaseDataSourceImp(auth: sl(), itemsCollection: sl()));
 
   //! Core
   sl.registerLazySingleton<NetworkInfo>(() => NetworkInfoImp(sl()));
@@ -49,6 +59,12 @@ Future<void> init() async {
   sl.registerLazySingleton(() => FirebaseAuth.instance);
   sl.registerLazySingleton(
       () => FirebaseFirestore.instance.collection(employeeCollection));
+  sl.registerLazySingleton(
+      () => FirebaseFirestore.instance.collection(clientCollection));
+  sl.registerLazySingleton(
+      () => FirebaseFirestore.instance.collection(materialCollection));
+  sl.registerLazySingleton(
+      () => FirebaseFirestore.instance.collection(attendanceCollection));
   sl.registerLazySingleton(() => AppRouter());
   sl.registerLazySingleton(() => InternetConnectionChecker());
 }

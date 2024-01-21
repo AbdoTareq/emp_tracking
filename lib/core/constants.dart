@@ -8,6 +8,9 @@ const baseImagePath = 'assets/images/';
 const double baseHeight = 867.0;
 const double baseWidth = 375.0;
 const String employeeCollection = 'employees';
+const String materialCollection = 'materials';
+const String clientCollection = 'clients';
+const String attendanceCollection = 'attendance';
 const String employeeId = 'employeeId';
 
 const kBottomRounded = BoxDecoration(
