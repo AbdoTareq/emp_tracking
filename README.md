@@ -8,7 +8,8 @@ I use GetIt to replace BlocProvider in managing dependencies.
 	2. Employee accounts crud operations
 	3. Clients crud operations
 	4. Clients bills tracking
-Company materials tracking
+  5. Company materials tracking with quantity
+  6. attendance tracking
 
 ## Getting Started
 

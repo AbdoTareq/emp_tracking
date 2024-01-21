@@ -25,14 +25,15 @@ class AuthPage extends HookWidget {
             autofillHints: [AutofillHints.email],
             controller: mailTextController,
             inputType: TextInputType.emailAddress,
-            hint: mail,
+            hint: LocaleKeys.mail,
             spaceAfter: false,
             prefixIcon: Icon(Icons.email),
-            validate: (value) => value!.isNotEmpty ? null : mail.tr(),
+            validate: (value) =>
+                value!.isNotEmpty ? null : LocaleKeys.mail.tr(),
           ),
           PasswordInput(
             controller: passTextController,
-            hint: pass,
+            hint: LocaleKeys.pass,
           ),
           15.rh.heightBox,
           RoundedCornerLoadingButton(
@@ -47,7 +48,7 @@ class AuthPage extends HookWidget {
                 context.replaceRoute(EmployeeRoute());
               }
             },
-            child: login.tr().text.white.bold.xl.make(),
+            child: LocaleKeys.login.tr().text.white.bold.xl.make(),
           ).wFull(context),
         ],
       ).pSymmetric(h: 16),

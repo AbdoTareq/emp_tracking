@@ -31,7 +31,7 @@ class EmployeeDetailsPage extends HookWidget {
         (index) =>
             useTextEditingController(text: getRightField(index, employee)));
     return Scaffold(
-        appBar: CustomAppBar(title: save),
+        appBar: CustomAppBar(title: LocaleKeys.save),
         body: Form(
           key: formKey,
           child: Column(
@@ -47,28 +47,31 @@ class EmployeeDetailsPage extends HookWidget {
                 autofillHints: [AutofillHints.username],
                 controller: textControllers[0],
                 inputType: TextInputType.name,
-                hint: name,
+                hint: LocaleKeys.name,
                 spaceAfter: false,
                 prefixIcon: Icon(Icons.person),
-                validate: (value) => value!.isNotEmpty ? null : name.tr(),
+                validate: (value) =>
+                    value!.isNotEmpty ? null : LocaleKeys.name.tr(),
               ),
               TextInput(
                 autofillHints: [AutofillHints.username],
                 controller: textControllers[1],
                 inputType: TextInputType.name,
-                hint: job,
+                hint: LocaleKeys.job,
                 spaceAfter: false,
                 prefixIcon: Icon(Icons.work),
-                validate: (value) => value!.isNotEmpty ? null : job.tr(),
+                validate: (value) =>
+                    value!.isNotEmpty ? null : LocaleKeys.job.tr(),
               ),
               TextInput(
                 autofillHints: [AutofillHints.email],
                 controller: textControllers[2],
                 inputType: TextInputType.emailAddress,
-                hint: mail,
+                hint: LocaleKeys.mail,
                 spaceAfter: false,
                 prefixIcon: Icon(Icons.email),
-                validate: (value) => value!.isNotEmpty ? null : mail.tr(),
+                validate: (value) =>
+                    value!.isNotEmpty ? null : LocaleKeys.mail.tr(),
               ),
               15.rh.heightBox,
               RoundedCornerLoadingButton(
@@ -83,7 +86,7 @@ class EmployeeDetailsPage extends HookWidget {
                     }
                   }
                 },
-                child: save.tr().text.white.bold.xl.make(),
+                child: LocaleKeys.save.tr().text.white.bold.xl.make(),
               ).wFull(context),
             ],
           ).pSymmetric(h: 16),

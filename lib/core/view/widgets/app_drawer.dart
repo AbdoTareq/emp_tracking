@@ -19,7 +19,7 @@ class AppDrawer extends HookWidget {
           //       controller.box.write('dark', controller.darkMode.value);
           //     }),
           SwitchListTile(
-              title: language.tr().text.bold.make(),
+              title: LocaleKeys.language.tr().text.bold.make(),
               value: isEN.value,
               secondary: Icon(Icons.language, color: kPrimaryColor),
               onChanged: (_) async {
@@ -33,7 +33,7 @@ class AppDrawer extends HookWidget {
                     GetStorage().remove('token');
                     // Get.find<AppSettingsController>().user.value.data = null;
                   },
-                  title: logout
+                  title: LocaleKeys.logout
                       .tr()
                       .text
                       .color(Theme.of(context).primaryColor)
@@ -47,7 +47,7 @@ class AppDrawer extends HookWidget {
                   onTap: () {
                     Navigator.pop(context);
                   },
-                  title: login
+                  title: LocaleKeys.login
                       .tr()
                       .text
                       .color(Theme.of(context).primaryColor)

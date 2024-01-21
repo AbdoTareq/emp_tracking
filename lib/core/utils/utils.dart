@@ -20,7 +20,7 @@ showWarningDialog({String? title = '', String? text = ''}) async {
           actions: [
             TextButton(
               onPressed: () => Navigator.of(context).pop(),
-              child: Text(yes),
+              child: Text(LocaleKeys.yes),
             ),
           ],
         );
@@ -55,7 +55,7 @@ showSimpleDialog({dynamic title = '', dynamic text = ''}) async {
           actions: [
             TextButton(
               onPressed: () => Navigator.of(context).pop(),
-              child: Text(yes),
+              child: Text(LocaleKeys.yes),
             ),
           ],
         );
@@ -111,7 +111,7 @@ Future<dynamic> handleError(Future<dynamic> Function() asyncFunction,
     logger.e(StackTrace.current);
     if (onError != null) onError(e);
     if (e.toString().contains('Unauthenticated')) {
-      showFailSnack(text: login_to_continue, yesFunction: () {});
+      showFailSnack(text: LocaleKeys.login_to_continue, yesFunction: () {});
     } else {
       List<String> messages =
           e.toString().replaceAll('}', '').split('message:');

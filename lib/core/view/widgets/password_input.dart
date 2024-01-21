@@ -28,7 +28,8 @@ class PasswordInput extends StatelessWidget {
       prefixIcon: Icon(Icons.lock, color: borderColor),
       isPass: true,
       maxLines: 1,
-      validate: validate ?? (value) => value!.length > 5 ? null : passWar,
+      validate:
+          validate ?? (value) => value!.length > 5 ? null : LocaleKeys.passWar,
     );
   }
 }

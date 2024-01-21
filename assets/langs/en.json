@@ -56,6 +56,8 @@
   "my_orders": "my_orders",
   "cart_order": "cart_order",
   "select_job": "Select Job",
+  "job": "Job",
+  "name": "name",
   "selectCity": "Select City",
   "selectArea": "Select Area",
   "personal_info": "personal_info",

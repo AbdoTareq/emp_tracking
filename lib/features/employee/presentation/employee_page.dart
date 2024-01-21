@@ -37,7 +37,7 @@ class EmployeePage extends StatelessWidget {
 
   Widget buildBody(EmployeeState state) {
     return state.data.isEmpty
-        ? no_data.tr().text.bold.xl.makeCentered().p8()
+        ? LocaleKeys.no_data.tr().text.bold.xl.makeCentered().p8()
         : ListView.separated(
             separatorBuilder: (BuildContext context, int index) => 4.heightBox,
             itemCount: state.data.length,
