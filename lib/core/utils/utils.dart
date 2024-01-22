@@ -171,6 +171,9 @@ getJson(item) {
 
 getModel(item, map) {
   dynamic temp = item as dynamic;
+  if (map is Map) {
+    return map;
+  }
   try {
     return temp.fromMap(map);
   } catch (e) {
@@ -181,7 +184,7 @@ getModel(item, map) {
 // navKey won't work
 bool isEn() => MyApp.appContext!.locale.toString().contains('en');
 
-/// T must has data model with a factory constructor fromMap
+/// T must has data model with a factory constructor fromMap or fromJson
 Stream<List<T>> transformStream<T>(
     Stream<QuerySnapshot<Map<String, dynamic>>> inputStream, dynamic item) {
   return inputStream.map((QuerySnapshot<Map<String, dynamic>> querySnapshot) {

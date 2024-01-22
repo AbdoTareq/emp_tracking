@@ -61,7 +61,7 @@ class MaterialModel {
     };
   }
 
-  factory MaterialModel.fromMap(Map<String, dynamic> map) {
+  factory MaterialModel.fromMap(Map<dynamic, dynamic> map) {
     return MaterialModel(
       id: map['id'] != null ? map['id'] as String : null,
       companyId: map['companyId'] != null ? map['companyId'] as String : null,
