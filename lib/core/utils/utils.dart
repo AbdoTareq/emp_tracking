@@ -169,15 +169,16 @@ getJson(item) {
   }
 }
 
-getModel(item, map) {
-  dynamic temp = item as dynamic;
-  if (map is Map) {
-    return map;
+/// item is modelInstance that has .fromMap & doesn't has data, map is the data
+getModel(modelInstance, data) {
+  dynamic temp = modelInstance as dynamic;
+  if (modelInstance is Map) {
+    return data;
   }
   try {
-    return temp.fromMap(map);
+    return temp.fromMap(data);
   } catch (e) {
-    return temp.fromJson(map);
+    return temp.fromJson(data);
   }
 }
 

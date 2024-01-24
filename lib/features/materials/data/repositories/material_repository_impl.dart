@@ -14,7 +14,7 @@ class MaterialRepoImp implements MaterialRepository {
   @override
   Future<Either<Object, Stream<List<MaterialModel>>>> getAll() async {
     try {
-      final res = await remoteDataSource.getAllByCompanyId();
+      final res = await remoteDataSource.getAll();
       return right(transformStream<MaterialModel>(res, MaterialModel()));
     } on Exception catch (e) {
       return left(ServerFailure(message: e.toString()));

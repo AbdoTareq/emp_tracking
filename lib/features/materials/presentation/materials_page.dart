@@ -49,7 +49,7 @@ class MaterialsPage extends StatelessWidget {
           subtitle: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              item.name.toString().text.make(),
+              item.stock.toString().text.make(),
               item.description.toString().text.make(),
             ],
           ),

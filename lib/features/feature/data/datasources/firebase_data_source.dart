@@ -1,13 +1,12 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:employee_management/core/utils/utils.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 
 // company id is the adminId which is the logged in user
 abstract class FirebaseDataSource<DataModel> {
-  Future<Stream<QuerySnapshot<Map<String, dynamic>>>> getAll();
+  Future<Stream<List<Map<String, dynamic>>>> getAll();
   Future<Map<String, dynamic>?> getById(String id);
-  Future<Map<String, dynamic>?> create(DataModel item);
-  Future<void> update(DataModel item, String? itemId);
+  Future<Map<String, dynamic>?> create(Map item);
+  Future<void> update(Map item, String? itemId);
   Future<void> delete(String itemId);
 }
 
@@ -24,12 +23,11 @@ class FirebaseDataSourceImp<DataModel>
   });
 
   @override
-  Future<Stream<QuerySnapshot<Map<String, dynamic>>>> getAll() async {
+  Future<Stream<List<Map<String, dynamic>>>> getAll() async {
     try {
-      final snapshots = await firestore
-          .collection(collectionName)
-          .where("companyId", isEqualTo: auth.currentUser!.uid)
-          .snapshots();
+      final snapshots = (await firestore.collection(collectionName).snapshots())
+          .map((event) =>
+              event.docs.map((e) => {...e.data(), 'id': e.id}).toList());
       return snapshots;
     } catch (e) {
       throw e;
@@ -47,11 +45,11 @@ class FirebaseDataSourceImp<DataModel>
   }
 
   @override
-  Future<Map<String, dynamic>?> create(DataModel item) async {
+  Future<Map<String, dynamic>?> create(Map item) async {
     try {
       final res = await firestore
           .collection(collectionName)
-          .add({...getJson(item), 'companyId': auth.currentUser!.uid});
+          .add({...item, 'companyId': auth.currentUser!.uid});
       return (await res.get()).data();
     } catch (e) {
       throw e;
@@ -70,12 +68,12 @@ class FirebaseDataSourceImp<DataModel>
   }
 
   @override
-  Future<void> update(DataModel item, String? itemId) async {
+  Future<void> update(Map item, String? itemId) async {
     try {
       final res = await firestore
           .collection(collectionName)
           .doc(itemId)
-          .update(getJson(item));
+          .update({...item});
       return res;
     } catch (e) {
       throw e;

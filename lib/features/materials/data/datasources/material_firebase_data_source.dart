@@ -6,7 +6,7 @@ import '../models/material_model.dart';
 
 // company id is the adminId which is the logged in user
 abstract class MaterialFirebaseDataSource {
-  Future<Stream<QuerySnapshot<Map<String, dynamic>>>> getAllByCompanyId();
+  Future<Stream<QuerySnapshot<Map<String, dynamic>>>> getAll();
   Future<Map<String, dynamic>?> getById(String id);
   Future<Map<String, dynamic>?> create(MaterialModel item);
   Future<void> update(MaterialModel item, String? itemId);
@@ -20,8 +20,7 @@ class MaterialFirebaseDataSourceImp implements MaterialFirebaseDataSource {
   MaterialFirebaseDataSourceImp({required this.auth, required this.firestore});
 
   @override
-  Future<Stream<QuerySnapshot<Map<String, dynamic>>>>
-      getAllByCompanyId() async {
+  Future<Stream<QuerySnapshot<Map<String, dynamic>>>> getAll() async {
     try {
       final snapshots = await firestore
           .collection(materialCollection)

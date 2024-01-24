@@ -1,5 +1,4 @@
 import 'package:dartz/dartz.dart';
-import 'package:employee_management/core/utils/utils.dart';
 import 'package:employee_management/features/feature/domain/repositories/repositories.dart';
 
 import '../../../../core/error/failures.dart';
@@ -14,7 +13,7 @@ class RepoImp implements Repository {
   Future<Either<Object, Stream<List<Map>>>> getAll() async {
     try {
       final res = await remoteDataSource.getAll();
-      return right(transformStream<Map>(res, Map()));
+      return right(res);
     } on Exception catch (e) {
       return left(ServerFailure(message: e.toString()));
     }
