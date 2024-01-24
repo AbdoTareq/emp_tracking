@@ -198,3 +198,16 @@ Stream<List<T>> transformStream<T>(
     return itemList;
   });
 }
+
+/// T must has data model with a factory constructor fromMap or fromJson
+Stream<List<T>> transformStreamFromMapToModel<T>(
+    Stream<List<Map<String, dynamic>>> inputStream, dynamic item) {
+  return inputStream.map((List<Map<String, dynamic>> querySnapshot) {
+    // Extract the list of documents from the QuerySnapshot
+    List<T> itemList = querySnapshot.map((Map<String, dynamic> doc) {
+      return (getModel(item, doc) as T);
+    }).toList();
+    // Emit the list as a new stream
+    return itemList;
+  });
+}
