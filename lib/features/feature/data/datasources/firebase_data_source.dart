@@ -1,7 +1,6 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 
-// company id is the adminId which is the logged in user
 abstract class FirebaseDataSource<DataModel> {
   Future<Stream<List<Map<String, dynamic>>>> getAll();
   Future<Map<String, dynamic>?> getById(String id);

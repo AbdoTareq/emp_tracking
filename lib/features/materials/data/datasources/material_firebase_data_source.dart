@@ -1,7 +1,7 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:employee_management/core/constants.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 
-import '../../../../core/constants.dart';
 import '../models/material_model.dart';
 
 // company id is the adminId which is the logged in user

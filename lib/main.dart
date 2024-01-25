@@ -2,7 +2,6 @@ import 'package:employee_management/core/app_router.dart';
 import 'package:employee_management/firebase_options.dart';
 import 'package:employee_management/generated/codegen_loader.g.dart';
 import 'package:firebase_core/firebase_core.dart';
-import 'package:flutter/services.dart';
 
 import 'core/injection_container.dart' as di;
 import 'export.dart';

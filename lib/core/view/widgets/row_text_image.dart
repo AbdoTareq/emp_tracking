@@ -15,7 +15,7 @@ class RowTextImage extends StatelessWidget {
     return Row(
       children: [
         Image.asset(
-          '$baseImagePath$imagePath.png',
+          imagePath,
           height: 20,
         ),
         6.widthBox,
