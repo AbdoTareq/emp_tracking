@@ -14,7 +14,7 @@ class AppDrawer extends HookWidget {
       child: Column(
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
-          CustomListTile(
+          ListTile(
             onTap: () {
               Navigator.pop(context);
               context.pushRoute(const MaterialsRoute());
@@ -25,8 +25,7 @@ class AppDrawer extends HookWidget {
                 .color(Theme.of(context).primaryColor)
                 .bold
                 .xl
-                .make()
-                .p8(),
+                .make(),
             leading: const Icon(Icons.person, color: kPrimaryColor),
           ),
           // SwitchListTile(
@@ -47,7 +46,7 @@ class AppDrawer extends HookWidget {
                     context.locale.toString().contains('en') ? 'ar' : 'en'));
               }),
           GetStorage().hasData('token')
-              ? CustomListTile(
+              ? ListTile(
                   onTap: () {
                     GetStorage().remove('token');
                     // Get.find<AppSettingsController>().user.value.data = null;
@@ -62,7 +61,7 @@ class AppDrawer extends HookWidget {
                       .p8(),
                   leading: const Icon(Icons.exit_to_app, color: kPrimaryColor),
                 ).w48(context)
-              : CustomListTile(
+              : ListTile(
                   onTap: () {
                     Navigator.pop(context);
                   },

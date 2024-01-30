@@ -9,11 +9,14 @@ import 'package:employee_management/features/employee/presentation/employee_stat
 class EmployeePage extends StatelessWidget {
   final SearchController searchController = SearchController();
   final screenCubit = sl<EmployeeCubit>()..getAll();
+
+  EmployeePage({super.key});
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar:
           CustomAppBar(title: 'Employees', searchController: searchController),
+      drawer: const AppDrawer(),
       body: BlocConsumer<EmployeeCubit, EmployeeState>(
         bloc: screenCubit,
         listener: (BuildContext context, EmployeeState state) {
@@ -23,7 +26,7 @@ class EmployeePage extends StatelessWidget {
         },
         builder: (BuildContext context, EmployeeState state) {
           if (state.isLoading) {
-            return Center(child: CircularProgressIndicator());
+            return const Center(child: CircularProgressIndicator());
           }
 
           return buildBody(state);
@@ -31,7 +34,7 @@ class EmployeePage extends StatelessWidget {
       ),
       floatingActionButton: FloatingActionButton(
         onPressed: () => context.pushRoute(EmployeeDetailsRoute()),
-        child: Icon(Icons.add),
+        child: const Icon(Icons.add),
       ),
     );
   }
@@ -56,12 +59,12 @@ class EmployeePage extends StatelessWidget {
                 trailing: Row(
                   mainAxisSize: MainAxisSize.min,
                   children: [
-                    Icon(Icons.copy).onTap(() async {
+                    const Icon(Icons.copy).onTap(() async {
                       await Clipboard.setData(
                           ClipboardData(text: item.id ?? ''));
                       await showSuccessSnack(text: 'Copied Successfully');
                     }).px8(),
-                    Icon(Icons.delete).onTap(() async {
+                    const Icon(Icons.delete).onTap(() async {
                       await screenCubit.delete(item.id);
                     }),
                   ],

@@ -11,6 +11,8 @@ import 'material_cubit.dart';
 class MaterialsPage extends StatelessWidget {
   final SearchController searchController = SearchController();
   final screenCubit = sl<MaterialCubit>()..getAll();
+
+  MaterialsPage({super.key});
   @override
   Widget build(BuildContext context) {
     return Scaffold(
