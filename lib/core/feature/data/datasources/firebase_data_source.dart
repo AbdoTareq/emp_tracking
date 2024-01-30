@@ -1,7 +1,7 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 
-abstract class FirebaseDataSource<DataModel> {
+abstract class FirebaseDataSource {
   Future<Stream<List<Map<String, dynamic>>>> getAll();
   Future<Map<String, dynamic>?> getById(String id);
   Future<Map<String, dynamic>?> create(Map item);
@@ -9,8 +9,7 @@ abstract class FirebaseDataSource<DataModel> {
   Future<void> delete(String itemId);
 }
 
-class FirebaseDataSourceImp<DataModel>
-    implements FirebaseDataSource<DataModel> {
+class FirebaseDataSourceImp implements FirebaseDataSource {
   final FirebaseFirestore firestore;
   final String collectionName;
   final FirebaseAuth auth;

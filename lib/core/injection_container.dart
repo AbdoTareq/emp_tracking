@@ -11,9 +11,6 @@ import 'package:employee_management/features/employee/data/repositories/emp_repo
 import 'package:employee_management/features/employee/domain/repositories/repositories.dart';
 import 'package:employee_management/features/employee/domain/usecases/usecases.dart';
 import 'package:employee_management/features/employee/presentation/employee_cubit.dart';
-import 'package:employee_management/features/feature/data/datasources/firebase_data_source.dart';
-import 'package:employee_management/features/feature/data/repositories/repository_imp.dart';
-import 'package:employee_management/features/feature/domain/repositories/repositories.dart';
 import 'package:employee_management/features/feature/domain/usecases/usecases.dart';
 import 'package:employee_management/features/materials/data/datasources/material_firebase_data_source.dart';
 import 'package:employee_management/features/materials/data/repositories/material_repository_impl.dart';
@@ -24,6 +21,9 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:get_it/get_it.dart';
 import 'package:internet_connection_checker/internet_connection_checker.dart';
 
+import 'feature/data/datasources/firebase_data_source.dart';
+import 'feature/data/repositories/repository_imp.dart';
+import 'feature/domain/repositories/repositories.dart';
 import 'network/network_info.dart';
 
 final sl = GetIt.instance;

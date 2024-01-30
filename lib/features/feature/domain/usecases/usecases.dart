@@ -1,7 +1,6 @@
 import 'package:dartz/dartz.dart';
+import 'package:employee_management/core/feature/domain/repositories/repositories.dart';
 import 'package:employee_management/features/materials/data/models/material_model.dart';
-
-import '../repositories/repositories.dart';
 
 class UseCase {
   final Repository repository;
