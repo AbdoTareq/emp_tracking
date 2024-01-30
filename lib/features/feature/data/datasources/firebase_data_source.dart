@@ -24,12 +24,11 @@ class FirebaseDataSourceImp<DataModel>
   @override
   Future<Stream<List<Map<String, dynamic>>>> getAll() async {
     try {
-      final snapshots = (await firestore.collection(collectionName).snapshots())
-          .map((event) =>
-              event.docs.map((e) => {...e.data(), 'id': e.id}).toList());
+      final snapshots = (firestore.collection(collectionName).snapshots()).map(
+          (event) => event.docs.map((e) => {...e.data(), 'id': e.id}).toList());
       return snapshots;
     } catch (e) {
-      throw e;
+      rethrow;
     }
   }
 
@@ -39,7 +38,7 @@ class FirebaseDataSourceImp<DataModel>
       final res = await firestore.collection(collectionName).doc(itemId).get();
       return res.data();
     } catch (e) {
-      throw e;
+      rethrow;
     }
   }
 
@@ -51,7 +50,7 @@ class FirebaseDataSourceImp<DataModel>
           .add({...item, 'companyId': auth.currentUser!.uid});
       return (await res.get()).data();
     } catch (e) {
-      throw e;
+      rethrow;
     }
   }
 
@@ -62,7 +61,7 @@ class FirebaseDataSourceImp<DataModel>
           await firestore.collection(collectionName).doc(itemId).delete();
       return res;
     } catch (e) {
-      throw e;
+      rethrow;
     }
   }
 
@@ -75,7 +74,7 @@ class FirebaseDataSourceImp<DataModel>
           .update({...item});
       return res;
     } catch (e) {
-      throw e;
+      rethrow;
     }
   }
 }

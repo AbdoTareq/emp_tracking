@@ -18,10 +18,10 @@ class AppRouter extends _$AppRouter {
   @override
   List<AutoRoute> get routes => [
         AutoRoute(page: AuthRoute.page, initial: user == null),
-        // AutoRoute(page: EmployeeRoute.page, initial: user != null, children: [
-        //   AutoRoute(page: EmployeeDetailsRoute.page),
-        // ]),
-        AutoRoute(page: MaterialsRoute.page, initial: user != null),
+        AutoRoute(page: EmployeeRoute.page, initial: user != null, children: [
+          AutoRoute(page: EmployeeDetailsRoute.page),
+        ]),
+        AutoRoute(page: MaterialsRoute.page),
         AutoRoute(page: MaterialDetailsRoute.page),
       ];
 }
