@@ -1,21 +1,21 @@
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 
-class DayLocation {
+class DayLocationModel {
   final String id;
   final DateTime? date;
   final List<LatLng>? locations;
-  DayLocation({
+  DayLocationModel({
     this.id = '',
     this.date,
     this.locations,
   });
 
-  DayLocation copyWith({
+  DayLocationModel copyWith({
     String? id,
     DateTime? date,
     List<LatLng>? locations,
   }) {
-    return DayLocation(
+    return DayLocationModel(
       id: id ?? this.id,
       date: date ?? this.date,
       locations: locations ?? this.locations,
@@ -30,8 +30,8 @@ class DayLocation {
     };
   }
 
-  factory DayLocation.fromMap(Map<String, dynamic> map) {
-    return DayLocation(
+  factory DayLocationModel.fromMap(Map<String, dynamic> map) {
+    return DayLocationModel(
       id: (map['id'] ?? '') as String,
       date: map['date'] != null
           ? DateTime.fromMillisecondsSinceEpoch((map['date'] ?? 0) as int)
