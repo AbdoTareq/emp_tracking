@@ -7,7 +7,7 @@ class EmployeeCubit extends Cubit<EmployeeState> {
   final EmployeeUseCase employeeUseCase;
 
   EmployeeCubit({required this.employeeUseCase})
-      : super(EmployeeState(isLoading: true));
+      : super(const EmployeeState(isLoading: true));
 
   Future<void> getAll() async {
     final stableState = state;

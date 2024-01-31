@@ -10,9 +10,13 @@ class RepoImp implements Repository {
   RepoImp({required this.remoteDataSource});
 
   @override
-  Future<Either<Object, Stream<List<Map>>>> getAll() async {
+  Future<Either<Object, Stream<List<Map>>>> getAll(
+    String collectionName,
+  ) async {
     try {
-      final res = await remoteDataSource.getAll();
+      final res = await remoteDataSource.getAll(
+        collectionName,
+      );
       return right(res);
     } on Exception catch (e) {
       return left(ServerFailure(message: e.toString()));
@@ -20,9 +24,9 @@ class RepoImp implements Repository {
   }
 
   @override
-  Future<Either<Object, Map?>> getById(String id) async {
+  Future<Either<Object, Map?>> getById(String collectionName, String id) async {
     try {
-      final res = await remoteDataSource.getById(id);
+      final res = await remoteDataSource.getById(collectionName, id);
       return right(res!);
     } on Exception catch (e) {
       return left(ServerFailure(message: e.toString()));
@@ -30,9 +34,9 @@ class RepoImp implements Repository {
   }
 
   @override
-  Future<Either<Object, Map?>> create(Map item) async {
+  Future<Either<Object, Map?>> create(String collectionName, Map item) async {
     try {
-      final res = await remoteDataSource.create(item);
+      final res = await remoteDataSource.create(collectionName, item);
       return right(res);
     } on Exception catch (e) {
       return left(ServerFailure(message: e.toString()));
@@ -40,9 +44,10 @@ class RepoImp implements Repository {
   }
 
   @override
-  Future<Either<Object, void>> delete(String itemId) async {
+  Future<Either<Object, void>> delete(
+      String collectionName, String itemId) async {
     try {
-      final res = await remoteDataSource.delete(itemId);
+      final res = await remoteDataSource.delete(collectionName, itemId);
       return right(res);
     } on Exception catch (e) {
       return left(ServerFailure(message: e.toString()));
@@ -50,9 +55,9 @@ class RepoImp implements Repository {
   }
 
   @override
-  Future<Either<Object, void>> update(Map item, String? itemId) async {
+  Future<Either<Object, void>> update(String collectionName, Map item) async {
     try {
-      final res = await remoteDataSource.update(item, itemId);
+      final res = await remoteDataSource.update(collectionName, item);
       return right(res);
     } on Exception catch (e) {
       return left(ServerFailure(message: e.toString()));

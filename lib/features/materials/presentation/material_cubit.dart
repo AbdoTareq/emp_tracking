@@ -1,15 +1,15 @@
 import 'package:employee_management/core/base_state.dart';
 import 'package:employee_management/export.dart' hide MaterialState;
-import 'package:employee_management/features/feature/domain/usecases/usecases.dart';
 import 'package:employee_management/features/materials/data/models/material_model.dart';
+import 'package:employee_management/features/materials/domain/usecases/usecases.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 
 class MaterialCubit extends Cubit<BaseState<List<MaterialModel>>> {
-  final UseCase usecase;
+  final MaterialUseCase usecase;
   final GetStorage box = GetStorage();
 
   MaterialCubit({required this.usecase})
-      : super(BaseState<List<MaterialModel>>(status: RxStatus.Loading));
+      : super(const BaseState<List<MaterialModel>>(status: RxStatus.Loading));
 
   Future<void> getAll() async {
     try {

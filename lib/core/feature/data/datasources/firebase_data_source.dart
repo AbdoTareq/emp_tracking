@@ -2,26 +2,25 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 
 abstract class FirebaseDataSource {
-  Future<Stream<List<Map<String, dynamic>>>> getAll();
-  Future<Map<String, dynamic>?> getById(String id);
-  Future<Map<String, dynamic>?> create(Map item);
-  Future<void> update(Map item, String? itemId);
-  Future<void> delete(String itemId);
+  Future<Stream<List<Map<String, dynamic>>>> getAll(String collectionName);
+  Future<Map<String, dynamic>?> getById(String collectionName, String id);
+  Future<Map<String, dynamic>?> create(String collectionName, Map item);
+  Future<void> update(String collectionName, Map item);
+  Future<void> delete(String collectionName, String itemId);
 }
 
 class FirebaseDataSourceImp implements FirebaseDataSource {
   final FirebaseFirestore firestore;
-  final String collectionName;
   final FirebaseAuth auth;
 
   FirebaseDataSourceImp({
     required this.auth,
     required this.firestore,
-    required this.collectionName,
   });
 
   @override
-  Future<Stream<List<Map<String, dynamic>>>> getAll() async {
+  Future<Stream<List<Map<String, dynamic>>>> getAll(
+      String collectionName) async {
     try {
       final snapshots = (firestore.collection(collectionName).snapshots()).map(
           (event) => event.docs.map((e) => {...e.data(), 'id': e.id}).toList());
@@ -32,7 +31,8 @@ class FirebaseDataSourceImp implements FirebaseDataSource {
   }
 
   @override
-  Future<Map<String, dynamic>?> getById(String? itemId) async {
+  Future<Map<String, dynamic>?> getById(
+      String collectionName, String? itemId) async {
     try {
       final res = await firestore.collection(collectionName).doc(itemId).get();
       return res.data();
@@ -42,7 +42,7 @@ class FirebaseDataSourceImp implements FirebaseDataSource {
   }
 
   @override
-  Future<Map<String, dynamic>?> create(Map item) async {
+  Future<Map<String, dynamic>?> create(String collectionName, Map item) async {
     try {
       final res = await firestore
           .collection(collectionName)
@@ -54,7 +54,7 @@ class FirebaseDataSourceImp implements FirebaseDataSource {
   }
 
   @override
-  Future<void> delete(String itemId) async {
+  Future<void> delete(String collectionName, String itemId) async {
     try {
       final res =
           await firestore.collection(collectionName).doc(itemId).delete();
@@ -65,11 +65,11 @@ class FirebaseDataSourceImp implements FirebaseDataSource {
   }
 
   @override
-  Future<void> update(Map item, String? itemId) async {
+  Future<void> update(String collectionName, Map item) async {
     try {
       final res = await firestore
           .collection(collectionName)
-          .doc(itemId)
+          .doc(item['id'])
           .update({...item});
       return res;
     } catch (e) {

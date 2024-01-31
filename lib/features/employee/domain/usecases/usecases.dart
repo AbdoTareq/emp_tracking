@@ -1,30 +1,9 @@
-import 'package:dartz/dartz.dart';
 import 'package:employee_management/features/employee/data/models/employee_model.dart';
+import 'package:employee_management/features/feature/domain/usecases/usecases.dart';
 
-import '../repositories/repositories.dart';
-
-class EmployeeUseCase {
-  final EmpRepository repository;
-
-  EmployeeUseCase({required this.repository});
-
-  Future<Either<Object, Stream<List<EmployeeModel>>>> getAll() async {
-    return repository.getAll();
-  }
-
-  Future<Either<Object, EmployeeModel?>> getById(String id) async {
-    return repository.getById(id);
-  }
-
-  Future<Either<Object, EmployeeModel?>> create(EmployeeModel item) async {
-    return repository.create(item);
-  }
-
-  Future<Either<Object, void>> update(EmployeeModel item) async {
-    return repository.update(item, item.id);
-  }
-
-  Future<Either<Object, void>> delete(String id) async {
-    return repository.delete(id);
-  }
+class EmployeeUseCase extends UseCase<EmployeeModel> {
+  EmployeeUseCase(
+      {required super.repository,
+      required super.instance,
+      required super.collectionName});
 }

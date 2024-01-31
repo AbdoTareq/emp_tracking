@@ -152,12 +152,14 @@ String getName(item) {
   return item.toString();
 }
 
-int? getId(item) {
+String getId(item) {
   dynamic temp = item as dynamic;
   try {
     return temp.id;
-  } catch (e) {}
-  return null;
+  } catch (e) {
+    logger.e(e);
+    return '';
+  }
 }
 
 getJson(item) {
@@ -170,7 +172,7 @@ getJson(item) {
 }
 
 /// item is modelInstance that has .fromMap & doesn't has data, map is the data
-getModel(modelInstance, data) {
+T getModel<T>(modelInstance, data) {
   dynamic temp = modelInstance as dynamic;
   if (modelInstance is Map) {
     return data;
