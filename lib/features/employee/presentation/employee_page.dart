@@ -1,9 +1,10 @@
 import 'package:auto_route/auto_route.dart';
+import 'package:employee_management/core/base_state.dart';
+import 'package:employee_management/core/feature/data/models/employee_model.dart';
 import '../../../core/app_router.dart';
 import '../../../core/view/widgets/custom_list_view_builder.dart';
 import '../../../export.dart';
 import 'employee_cubit.dart';
-import 'employee_state.dart';
 
 @RoutePage()
 class EmployeePage extends StatelessWidget {
@@ -17,19 +18,24 @@ class EmployeePage extends StatelessWidget {
       appBar:
           CustomAppBar(title: 'Employees', searchController: searchController),
       drawer: const AppDrawer(),
-      body: BlocConsumer<EmployeeCubit, EmployeeState>(
+      body: BlocConsumer<EmployeeCubit, BaseState<List<EmployeeModel>>>(
         bloc: screenCubit,
-        listener: (BuildContext context, EmployeeState state) {
-          if (state.error != null) {
-            showWarningDialog(text: state.error);
+        listener: (BuildContext context, BaseState<List<EmployeeModel>> state) {
+          if (state.errorMessage != null) {
+            showWarningDialog(text: state.errorMessage);
           }
         },
-        builder: (BuildContext context, EmployeeState state) {
-          if (state.isLoading) {
-            return const Center(child: CircularProgressIndicator());
+        builder: (BuildContext context, BaseState<List<EmployeeModel>> state) {
+          switch (state.status) {
+            case RxStatus.Loading:
+              return const Center(child: CircularProgressIndicator());
+            case RxStatus.Error:
+              return state.errorMessage!.text.bold.red500.makeCentered();
+            case RxStatus.Empty:
+              return LocaleKeys.no_data.tr().text.bold.makeCentered();
+            default:
+              return buildBody(state.data!);
           }
-
-          return buildBody(state);
         },
       ),
       floatingActionButton: FloatingActionButton(
@@ -39,14 +45,14 @@ class EmployeePage extends StatelessWidget {
     );
   }
 
-  Widget buildBody(EmployeeState state) {
-    return state.data.isEmpty
+  Widget buildBody(List<EmployeeModel> data) {
+    return data.isEmpty
         ? LocaleKeys.no_data.tr().text.bold.xl.makeCentered().p8()
         : CustomListViewBuilder(
             footer: 40.heightBox,
-            itemCount: state.data.length,
+            itemCount: data.length,
             itemBuilder: (BuildContext context, int index) {
-              final item = state.data[index];
+              final item = data[index];
               return ListTile(
                 title: item.name?.text.bold.xl.make(),
                 subtitle: Column(

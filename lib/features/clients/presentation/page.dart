@@ -1,26 +1,26 @@
 import 'package:auto_route/auto_route.dart';
+import 'package:employee_management/core/feature/data/models/client_model.dart';
+
 import '../../../core/app_router.dart';
 import '../../../core/base_state.dart';
 import '../../../core/view/widgets/custom_list_view_builder.dart';
 import '../../../export.dart';
-import '../../../core/feature/data/models/material_model.dart';
-
-import 'material_cubit.dart';
+import 'cubit.dart';
 
 @RoutePage()
-class MaterialsPage extends StatelessWidget {
+class ClientPage extends StatelessWidget {
   final SearchController searchController = SearchController();
-  final screenCubit = sl<MaterialCubit>()..getAll();
+  final screenCubit = sl<ClientCubit>()..getAll();
 
-  MaterialsPage({super.key});
+  ClientPage({super.key});
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar:
-          CustomAppBar(title: 'Materials', searchController: searchController),
-      body: BlocBuilder<MaterialCubit, BaseState<List<MaterialModel>>>(
+          CustomAppBar(title: 'Clients', searchController: searchController),
+      body: BlocBuilder<ClientCubit, BaseState<List<ClientModel>>>(
         bloc: screenCubit,
-        builder: (BuildContext context, BaseState<List<MaterialModel>> state) {
+        builder: (BuildContext context, BaseState<List<ClientModel>> state) {
           switch (state.status) {
             case RxStatus.Loading:
               return const Center(child: CircularProgressIndicator());
@@ -40,7 +40,7 @@ class MaterialsPage extends StatelessWidget {
     );
   }
 
-  Widget buildBody(List<MaterialModel> data) {
+  Widget buildBody(List<ClientModel> data) {
     return CustomListViewBuilder(
       itemCount: data.length,
       footer: 40.heightBox,
@@ -51,22 +51,22 @@ class MaterialsPage extends StatelessWidget {
           subtitle: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              item.stock.toString().text.make(),
-              item.description.toString().text.make(),
+              item.name.toString().text.make(),
+              item.phone.toString().text.make(),
             ],
           ),
           trailing: Row(
             mainAxisSize: MainAxisSize.min,
             children: [
               const Icon(Icons.edit).onTap(() async {
-                context.pushRoute(MaterialDetailsRoute(item: item));
+                context.pushRoute(ClientDetailsRoute(item: item));
               }).px8(),
               const Icon(Icons.delete).onTap(() async {
                 await screenCubit.delete(item.id);
               }),
             ],
           ),
-          onTap: () => context.pushRoute(MaterialDetailsRoute(item: item)),
+          onTap: () => context.pushRoute(ClientDetailsRoute(item: item)),
         ).card.make();
       },
     ).px8().py8();

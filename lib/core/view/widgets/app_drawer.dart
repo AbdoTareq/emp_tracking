@@ -17,9 +17,23 @@ class AppDrawer extends HookWidget {
           ListTile(
             onTap: () {
               Navigator.pop(context);
-              context.pushRoute(const MaterialsRoute());
+              context.pushRoute(MaterialsRoute());
             },
             title: 'materials'
+                .tr()
+                .text
+                .color(Theme.of(context).primaryColor)
+                .bold
+                .xl
+                .make(),
+            leading: const Icon(Icons.person, color: kPrimaryColor),
+          ),
+          ListTile(
+            onTap: () {
+              Navigator.pop(context);
+              context.pushRoute(ClientRoute());
+            },
+            title: 'clients'
                 .tr()
                 .text
                 .color(Theme.of(context).primaryColor)

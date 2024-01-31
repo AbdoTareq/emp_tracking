@@ -1,9 +1,8 @@
-import 'package:employee_management/core/feature/data/models/employee_model.dart';
-
+import '../../../../core/feature/data/models/client_model.dart';
 import '../../../../core/feature/domain/usecases/usecases.dart';
 
-class EmployeeUseCase extends UseCase<EmployeeModel> {
-  EmployeeUseCase(
+class ClientUseCase extends UseCase<ClientModel> {
+  ClientUseCase(
       {required super.repository,
       required super.instance,
       required super.collectionName});

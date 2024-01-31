@@ -1,5 +1,6 @@
+import 'package:employee_management/core/feature/data/models/employee_model.dart';
+
 import '../../../../export.dart';
-import '../../data/models/employee_model.dart';
 
 abstract class EmpRepository {
   Future<Either<Object, Stream<List<EmployeeModel>>>> getAll();

@@ -1,27 +1,34 @@
-import '../../../export.dart';
-import '../data/models/employee_model.dart';
-import '../domain/usecases/usecases.dart';
-import 'employee_state.dart';
+import 'package:employee_management/core/base_state.dart';
+import 'package:employee_management/core/feature/data/models/employee_model.dart';
+import 'package:employee_management/core/feature/data/models/material_model.dart';
 
-class EmployeeCubit extends Cubit<EmployeeState> {
+import '../../../export.dart';
+import '../domain/usecases/usecases.dart';
+
+class EmployeeCubit extends Cubit<BaseState<List<EmployeeModel>>> {
   final EmployeeUseCase employeeUseCase;
 
   EmployeeCubit({required this.employeeUseCase})
-      : super(const EmployeeState(isLoading: true));
+      : super(const BaseState<List<EmployeeModel>>(status: RxStatus.Loading));
 
   Future<void> getAll() async {
     final stableState = state;
     try {
-      emit(state.copyWith(isLoading: true));
+      emit(state.copyWith(status: RxStatus.Loading));
       final res = await employeeUseCase.getAll();
       res.fold(
           (l) => logger.i(l),
           (r) => r.listen((event) {
-                emit(state.copyWith(isLoading: false, data: event));
+                emit(
+                  state.copyWith(
+                    status: event.isEmpty ? RxStatus.Empty : RxStatus.Success,
+                    data: event,
+                  ),
+                );
               }));
     } catch (error) {
-      emit(state.copyWith(error: error.toString()));
-      emit(stableState.copyWith(isLoading: false));
+      emit(state.copyWith(
+          status: RxStatus.Error, errorMessage: error.toString()));
     }
   }
 

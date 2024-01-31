@@ -1,5 +1,5 @@
 // ignore_for_file: public_member_api_docs, sort_constructors_first
-import 'package:employee_management/features/employee/data/models/day_location.dart';
+import 'package:employee_management/core/feature/data/models/day_location_model.dart';
 
 class EmployeeModel {
   final String? id;
@@ -11,7 +11,7 @@ class EmployeeModel {
   final bool? isOnline;
   final DateTime? lastSeen;
   final DateTime? createdAt;
-  final List<DayLocation>? trackingLocations;
+  final List<DayLocationModel>? trackingLocations;
 
   EmployeeModel({
     this.id = '',
@@ -36,7 +36,7 @@ class EmployeeModel {
     bool? isOnline,
     DateTime? lastSeen,
     DateTime? createdAt,
-    List<DayLocation>? trackingLocations,
+    List<DayLocationModel>? trackingLocations,
   }) {
     return EmployeeModel(
       id: id ?? this.id,
@@ -83,9 +83,9 @@ class EmployeeModel {
           ? DateTime.fromMillisecondsSinceEpoch((map['createdAt'] ?? 0) as int)
           : null,
       trackingLocations: map['trackingLocations'] != null
-          ? List<DayLocation>.from(
-              (map['trackingLocations'] as List<int>).map<DayLocation?>(
-                (x) => DayLocation.fromMap(x as Map<String, dynamic>),
+          ? List<DayLocationModel>.from(
+              (map['trackingLocations'] as List<int>).map<DayLocationModel?>(
+                (x) => DayLocationModel.fromMap(x as Map<String, dynamic>),
               ),
             )
           : null,
