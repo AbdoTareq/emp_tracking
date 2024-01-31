@@ -31,29 +31,29 @@ class MaterialDetailsPage extends HookWidget {
     List<TextEditingController> textControllers = List.generate(5,
         (index) => useTextEditingController(text: getRightField(index, item)));
     return Scaffold(
-        appBar: CustomAppBar(title: LocaleKeys.save),
+        appBar: const CustomAppBar(title: LocaleKeys.save),
         body: Form(
           key: formKey,
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
               TextInput(
-                autofillHints: [AutofillHints.username],
+                autofillHints: const [AutofillHints.username],
                 controller: textControllers[0],
                 inputType: TextInputType.name,
                 hint: LocaleKeys.name,
                 spaceAfter: false,
-                prefixIcon: Icon(Icons.person),
+                prefixIcon: const Icon(Icons.person),
                 validate: (value) =>
                     value!.isNotEmpty ? null : LocaleKeys.name.tr(),
               ),
               TextInput(
-                autofillHints: [AutofillHints.name],
+                autofillHints: const [AutofillHints.name],
                 controller: textControllers[1],
                 inputType: TextInputType.name,
                 hint: LocaleKeys.description,
                 spaceAfter: false,
-                prefixIcon: Icon(Icons.description),
+                prefixIcon: const Icon(Icons.description),
                 validate: (value) =>
                     value!.isNotEmpty ? null : LocaleKeys.description.tr(),
               ),
@@ -62,7 +62,7 @@ class MaterialDetailsPage extends HookWidget {
                 inputType: TextInputType.number,
                 hint: LocaleKeys.stock,
                 spaceAfter: false,
-                prefixIcon: Icon(Icons.calculate),
+                prefixIcon: const Icon(Icons.calculate),
                 validate: (value) =>
                     value!.isNotEmpty ? null : LocaleKeys.stock.tr(),
               ),
@@ -71,7 +71,7 @@ class MaterialDetailsPage extends HookWidget {
                 inputType: TextInputType.number,
                 hint: LocaleKeys.used,
                 spaceAfter: false,
-                prefixIcon: Icon(Icons.calculate),
+                prefixIcon: const Icon(Icons.calculate),
                 validate: (value) =>
                     value!.isNotEmpty ? null : LocaleKeys.used.tr(),
               ),
