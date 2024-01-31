@@ -1,5 +1,5 @@
 import 'package:dartz/dartz.dart';
-import 'package:employee_management/core/feature/domain/repositories/repositories.dart';
+import '../../domain/repositories/repositories.dart';
 
 import '../../../../core/error/failures.dart';
 import '../datasources/firebase_data_source.dart';

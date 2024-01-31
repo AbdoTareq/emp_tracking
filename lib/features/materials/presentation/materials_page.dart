@@ -1,9 +1,9 @@
 import 'package:auto_route/auto_route.dart';
-import 'package:employee_management/core/app_router.dart';
-import 'package:employee_management/core/base_state.dart';
-import 'package:employee_management/core/view/widgets/custom_list_view_builder.dart';
-import 'package:employee_management/export.dart';
-import 'package:employee_management/core/feature/data/models/material_model.dart';
+import '../../../core/app_router.dart';
+import '../../../core/base_state.dart';
+import '../../../core/view/widgets/custom_list_view_builder.dart';
+import '../../../export.dart';
+import '../../../core/feature/data/models/material_model.dart';
 
 import 'material_cubit.dart';
 

@@ -1,5 +1,5 @@
-import 'package:employee_management/features/feature/domain/usecases/usecases.dart';
-import 'package:employee_management/core/feature/data/models/material_model.dart';
+import '../../../feature/domain/usecases/usecases.dart';
+import '../../../../core/feature/data/models/material_model.dart';
 
 class MaterialUseCase extends UseCase<MaterialModel> {
   MaterialUseCase(

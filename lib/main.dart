@@ -1,6 +1,6 @@
-import 'package:employee_management/core/app_router.dart';
-import 'package:employee_management/firebase_options.dart';
-import 'package:employee_management/generated/codegen_loader.g.dart';
+import 'core/app_router.dart';
+import 'firebase_options.dart';
+import 'generated/codegen_loader.g.dart';
 import 'package:firebase_core/firebase_core.dart';
 
 import 'core/injection_container.dart' as di;

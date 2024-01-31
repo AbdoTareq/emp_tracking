@@ -1,5 +1,5 @@
-import 'package:employee_management/features/employee/data/models/employee_model.dart';
-import 'package:employee_management/features/feature/domain/usecases/usecases.dart';
+import '../../data/models/employee_model.dart';
+import '../../../feature/domain/usecases/usecases.dart';
 
 class EmployeeUseCase extends UseCase<EmployeeModel> {
   EmployeeUseCase(

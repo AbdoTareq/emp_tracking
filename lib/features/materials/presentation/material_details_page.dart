@@ -1,6 +1,6 @@
 import 'package:auto_route/auto_route.dart';
-import 'package:employee_management/core/view/widgets/rounded_corner_loading_button.dart';
-import 'package:employee_management/export.dart';
+import '../../../core/view/widgets/rounded_corner_loading_button.dart';
+import '../../../export.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
 
 import '../../../core/feature/data/models/material_model.dart';

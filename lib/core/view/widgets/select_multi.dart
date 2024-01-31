@@ -1,4 +1,4 @@
-import 'package:employee_management/export.dart';
+import '../../../export.dart';
 
 // select all or multi or non & all is auto selected when selecting the rest
 class SelectMulti<T> extends StatefulWidget {

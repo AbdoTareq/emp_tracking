@@ -1,7 +1,7 @@
 import 'package:dartz/dartz.dart';
-import 'package:employee_management/core/utils/utils.dart';
-import 'package:employee_management/features/employee/data/models/employee_model.dart';
-import 'package:employee_management/features/employee/domain/repositories/repositories.dart';
+import '../../../../core/utils/utils.dart';
+import '../models/employee_model.dart';
+import '../../domain/repositories/repositories.dart';
 
 import '../../../../core/error/failures.dart';
 import '../datasources/emp_firebase_data_source.dart';

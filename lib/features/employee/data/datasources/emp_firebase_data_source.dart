@@ -1,5 +1,5 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:employee_management/features/employee/data/models/employee_model.dart';
+import '../models/employee_model.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 
 import '../../../../export.dart';

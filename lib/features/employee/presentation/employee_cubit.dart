@@ -1,7 +1,7 @@
-import 'package:employee_management/export.dart';
-import 'package:employee_management/features/employee/data/models/employee_model.dart';
-import 'package:employee_management/features/employee/domain/usecases/usecases.dart';
-import 'package:employee_management/features/employee/presentation/employee_state.dart';
+import '../../../export.dart';
+import '../data/models/employee_model.dart';
+import '../domain/usecases/usecases.dart';
+import 'employee_state.dart';
 
 class EmployeeCubit extends Cubit<EmployeeState> {
   final EmployeeUseCase employeeUseCase;

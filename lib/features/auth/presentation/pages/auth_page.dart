@@ -1,6 +1,6 @@
 import 'package:auto_route/auto_route.dart';
-import 'package:employee_management/core/app_router.dart';
-import 'package:employee_management/features/auth/presentation/cubit/auth_cubit.dart';
+import '../../../../core/app_router.dart';
+import '../cubit/auth_cubit.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
 
 import '../../../../core/view/widgets/rounded_corner_loading_button.dart';

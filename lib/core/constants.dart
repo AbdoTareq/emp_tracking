@@ -1,7 +1,7 @@
-import 'package:employee_management/features/employee/data/models/attendance_model.dart';
-import 'package:employee_management/features/employee/data/models/client_model.dart';
-import 'package:employee_management/features/employee/data/models/employee_model.dart';
-import 'package:employee_management/core/feature/data/models/material_model.dart';
+import '../features/employee/data/models/attendance_model.dart';
+import '../features/employee/data/models/client_model.dart';
+import '../features/employee/data/models/employee_model.dart';
+import 'feature/data/models/material_model.dart';
 import 'package:logger/logger.dart';
 
 final logger = Logger();

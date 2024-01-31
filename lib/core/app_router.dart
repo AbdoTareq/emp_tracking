@@ -1,10 +1,10 @@
 import 'package:auto_route/auto_route.dart';
-import 'package:employee_management/features/employee/data/models/employee_model.dart';
-import 'package:employee_management/features/employee/presentation/employee_details_page.dart';
-import 'package:employee_management/features/employee/presentation/employee_page.dart';
-import 'package:employee_management/core/feature/data/models/material_model.dart';
-import 'package:employee_management/features/materials/presentation/material_details_page.dart';
-import 'package:employee_management/features/materials/presentation/materials_page.dart';
+import '../features/employee/data/models/employee_model.dart';
+import '../features/employee/presentation/employee_details_page.dart';
+import '../features/employee/presentation/employee_page.dart';
+import 'feature/data/models/material_model.dart';
+import '../features/materials/presentation/material_details_page.dart';
+import '../features/materials/presentation/materials_page.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 
 import '../export.dart';

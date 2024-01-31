@@ -1,6 +1,6 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:employee_management/core/app_router.dart';
-import 'package:employee_management/main.dart';
+import '../app_router.dart';
+import '../../main.dart';
 
 import '../../export.dart';
 

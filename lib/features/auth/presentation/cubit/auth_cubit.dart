@@ -1,7 +1,6 @@
-import 'package:employee_management/core/base_state.dart';
-import 'package:employee_management/features/auth/domain/usecases/usecases.dart';
-
+import '../../../../core/base_state.dart';
 import '../../../../export.dart';
+import '../../domain/usecases/usecases.dart';
 
 part 'auth_state.dart';
 

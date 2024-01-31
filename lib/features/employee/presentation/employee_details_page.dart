@@ -1,10 +1,10 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
 
-import 'package:employee_management/core/view/widgets/rounded_corner_loading_button.dart';
-import 'package:employee_management/export.dart';
-import 'package:employee_management/features/employee/data/models/employee_model.dart';
-import 'package:employee_management/features/employee/presentation/employee_cubit.dart';
+import '../../../core/view/widgets/rounded_corner_loading_button.dart';
+import '../../../export.dart';
+import '../data/models/employee_model.dart';
+import 'employee_cubit.dart';
 
 @RoutePage()
 class EmployeeDetailsPage extends HookWidget {

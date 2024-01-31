@@ -1,4 +1,4 @@
-import 'package:employee_management/export.dart';
+import '../../../export.dart';
 
 //has 3 states buy & rent & not selected('')
 class SelectOne extends StatefulWidget {
