@@ -3,12 +3,12 @@ import 'package:auto_route/auto_route.dart';
 import '../../../export.dart';
 
 class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
-  CustomAppBar({
-    Key? key,
+  const CustomAppBar({
+    super.key,
     required this.title,
     this.searchList,
     this.searchController,
-  }) : super(key: key);
+  });
 
   final SearchController? searchController;
   final String title;
@@ -17,9 +17,11 @@ class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
   @override
   Widget build(BuildContext context) {
     return AppBar(
+        iconTheme: const IconThemeData(color: kWhiteColor),
         title: title.tr().text.xl.white.bold.make(),
-        leading:
-            context.router.canPop() ? BackButton(color: Colors.white) : null,
+        leading: context.router.canPop()
+            ? const BackButton(color: kWhiteColor)
+            : null,
         actions: [
           searchList == null
               ? Container()

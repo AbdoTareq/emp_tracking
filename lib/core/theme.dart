@@ -47,6 +47,7 @@ const Map<int, Color> color = {
 const MaterialColor kPrimaryColor = MaterialColor(0xff000000, color);
 const MaterialColor kButtonColor = MaterialColor(0xff1A466D, color);
 const MaterialColor kSecondaryColor = MaterialColor(0xfffacc2f, color);
+const Color kWhiteColor = Colors.white;
 
 const MaterialColor kbackgroundColor = MaterialColor(0xff092A47, color);
 const TextStyle kTStyle = TextStyle(fontSize: 30, color: Colors.white);
