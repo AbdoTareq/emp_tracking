@@ -3,7 +3,7 @@ import 'package:employee_management/core/app_router.dart';
 import 'package:employee_management/core/base_state.dart';
 import 'package:employee_management/core/view/widgets/custom_list_view_builder.dart';
 import 'package:employee_management/export.dart';
-import 'package:employee_management/features/materials/data/models/material_model.dart';
+import 'package:employee_management/core/feature/data/models/material_model.dart';
 
 import 'material_cubit.dart';
 

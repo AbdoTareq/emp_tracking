@@ -1,6 +1,6 @@
 import 'package:employee_management/core/base_state.dart';
 import 'package:employee_management/export.dart' hide MaterialState;
-import 'package:employee_management/features/materials/data/models/material_model.dart';
+import 'package:employee_management/core/feature/data/models/material_model.dart';
 import 'package:employee_management/features/materials/domain/usecases/usecases.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 

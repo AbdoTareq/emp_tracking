@@ -3,7 +3,7 @@ import 'package:employee_management/core/view/widgets/rounded_corner_loading_but
 import 'package:employee_management/export.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
 
-import '../data/models/material_model.dart';
+import '../../../core/feature/data/models/material_model.dart';
 import 'material_cubit.dart';
 
 @RoutePage()
@@ -11,7 +11,7 @@ class MaterialDetailsPage extends HookWidget {
   final screenCubit = sl<MaterialCubit>();
   final GlobalKey<FormState> formKey = GlobalKey();
   final MaterialModel? item;
-  MaterialDetailsPage({this.item});
+  MaterialDetailsPage({super.key, this.item});
 
   String? getRightField(int index, MaterialModel? item) {
     switch (index) {
