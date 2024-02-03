@@ -10,10 +10,11 @@ I use GetIt to replace BlocProvider in managing dependencies.
 	4. Clients bills tracking
   5. Company materials tracking with quantity
   6. attendance tracking by day 
+  7. hr system holidays & attendance tracking
 
 ## Getting Started
 
-Change app pakcage name
+Change app package name
 
 flutter pub run change_app_package_name:main com.package.name
 

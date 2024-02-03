@@ -1,11 +1,11 @@
 // ignore_for_file: public_member_api_docs, sort_constructors_first
-class Service {
+class ServiceModel {
   final String? id;
   final String? clientId;
   final String? employeeId;
   final String? name;
   final String? timesNumber;
-  Service({
+  ServiceModel({
     this.id,
     this.clientId,
     this.employeeId,
@@ -13,14 +13,14 @@ class Service {
     this.timesNumber,
   });
 
-  Service copyWith({
+  ServiceModel copyWith({
     String? id,
     String? clientId,
     String? employeeId,
     String? name,
     String? timesNumber,
   }) {
-    return Service(
+    return ServiceModel(
       id: id ?? this.id,
       clientId: clientId ?? this.clientId,
       employeeId: employeeId ?? this.employeeId,
@@ -39,8 +39,8 @@ class Service {
     };
   }
 
-  factory Service.fromMap(Map<String, dynamic> map) {
-    return Service(
+  factory ServiceModel.fromMap(Map<String, dynamic> map) {
+    return ServiceModel(
       id: map['id'] != null ? map['id'] as String : null,
       clientId: map['clientId'] != null ? map['clientId'] as String : null,
       employeeId:

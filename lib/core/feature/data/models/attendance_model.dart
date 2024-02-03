@@ -1,55 +1,33 @@
 // ignore_for_file: public_member_api_docs, sort_constructors_first
 
-import 'package:employee_management/core/feature/data/models/day_location_model.dart';
-
 class AttendanceModel {
   final String? id;
   final String? companyId;
   final String? name;
-  final String? email;
-  final String? jobTitle;
-  final bool? isDeleted;
-  final bool? isOnline;
-  final DateTime? lastSeen;
-  final DateTime? createdAt;
-  final List<DayLocationModel>? trackingLocations;
+  final DateTime? date;
+  final List<String>? employeesIds;
 
   AttendanceModel({
     this.id = '',
     this.companyId,
     this.name = '',
-    this.email = '',
-    this.jobTitle,
-    this.isDeleted,
-    this.isOnline,
-    this.lastSeen,
-    this.createdAt,
-    this.trackingLocations = const [],
+    this.date,
+    this.employeesIds,
   });
 
   AttendanceModel copyWith({
     String? id,
     String? companyId,
     String? name,
-    String? email,
-    String? jobTitle,
-    bool? isDeleted,
-    bool? isOnline,
-    DateTime? lastSeen,
-    DateTime? createdAt,
-    List<DayLocationModel>? trackingLocations,
+    DateTime? date,
+    List<String>? employeesIds,
   }) {
     return AttendanceModel(
       id: id ?? this.id,
       companyId: companyId ?? this.companyId,
       name: name ?? this.name,
-      email: email ?? this.email,
-      jobTitle: jobTitle ?? this.jobTitle,
-      isDeleted: isDeleted ?? this.isDeleted,
-      isOnline: isOnline ?? this.isOnline,
-      lastSeen: lastSeen ?? this.lastSeen,
-      createdAt: createdAt ?? this.createdAt,
-      trackingLocations: trackingLocations ?? this.trackingLocations,
+      date: date ?? this.date,
+      employeesIds: employeesIds ?? this.employeesIds,
     );
   }
 
@@ -58,13 +36,8 @@ class AttendanceModel {
       'id': id,
       'companyId': companyId,
       'name': name,
-      'email': email,
-      'jobTitle': jobTitle,
-      'isDeleted': isDeleted,
-      'isOnline': isOnline,
-      'lastSeen': lastSeen?.millisecondsSinceEpoch,
-      'createdAt': createdAt?.millisecondsSinceEpoch,
-      'trackingLocations': trackingLocations?.map((x) => x.toMap()).toList(),
+      'date': date?.millisecondsSinceEpoch,
+      'employeesIds': employeesIds,
     };
   }
 
@@ -73,29 +46,18 @@ class AttendanceModel {
       id: map['id'] != null ? map['id'] as String : null,
       companyId: map['companyId'] != null ? map['companyId'] as String : null,
       name: map['name'] != null ? map['name'] as String : null,
-      email: map['email'] != null ? map['email'] as String : null,
-      jobTitle: map['jobTitle'] != null ? map['jobTitle'] as String : null,
-      isDeleted: map['isDeleted'] != null ? map['isDeleted'] as bool : null,
-      isOnline: map['isOnline'] != null ? map['isOnline'] as bool : null,
-      lastSeen: map['lastSeen'] != null
-          ? DateTime.fromMillisecondsSinceEpoch((map['lastSeen'] ?? 0) as int)
+      date: map['date'] != null
+          ? DateTime.fromMillisecondsSinceEpoch((map['date'] ?? 0) as int)
           : null,
-      createdAt: map['createdAt'] != null
-          ? DateTime.fromMillisecondsSinceEpoch((map['createdAt'] ?? 0) as int)
-          : null,
-      trackingLocations: map['trackingLocations'] != null
-          ? List<DayLocationModel>.from(
-              (map['trackingLocations'] as List<int>).map<DayLocationModel?>(
-                (x) => DayLocationModel.fromMap(x as Map<String, dynamic>),
-              ),
-            )
-          : null,
+      employeesIds: map['employeesIds'] == null
+          ? null
+          : map['employeesIds'] as List<String>,
     );
   }
 
   @override
   String toString() {
-    return 'EmployeeModel(id: $id, companyId: $companyId, name: $name, email: $email, jobTitle: $jobTitle, isDeleted: $isDeleted, isOnline: $isOnline, lastSeen: $lastSeen, createdAt: $createdAt, trackingLocations: $trackingLocations)';
+    return 'AttendanceModel(id: $id, companyId: $companyId, name: $name, date: $date, employeesIds: $employeesIds)';
   }
 
   AttendanceModel fromMap(Map<String, dynamic> map) {

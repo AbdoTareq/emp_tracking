@@ -8,4 +8,5 @@ const String employeeCollection = 'employees';
 const String materialCollection = 'materials';
 const String clientCollection = 'clients';
 const String attendanceCollection = 'attendance';
+const String holidayCollection = 'holiday';
 const String employeeId = 'employeeId';
