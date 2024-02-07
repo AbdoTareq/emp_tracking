@@ -5,15 +5,15 @@ import '../../../export.dart';
 import '../domain/usecases/usecases.dart';
 
 class EmployeeCubit extends Cubit<BaseState<List<EmployeeModel>>> {
-  final EmployeeUseCase employeeUseCase;
+  final EmployeeUseCase useCase;
 
-  EmployeeCubit({required this.employeeUseCase})
+  EmployeeCubit({required this.useCase})
       : super(const BaseState<List<EmployeeModel>>(status: RxStatus.Loading));
 
   Future<void> getAll() async {
     try {
       emit(state.copyWith(status: RxStatus.Loading));
-      final res = await employeeUseCase.getAll();
+      final res = await useCase.getAll();
       res.fold(
           (l) => logger.i(l),
           (r) => r.listen((event) {
@@ -48,10 +48,10 @@ class EmployeeCubit extends Cubit<BaseState<List<EmployeeModel>>> {
         (r) => r is EmployeeModel ? r : 'Success');
   }
 
-  _create(EmployeeModel item) async => employeeUseCase.create(item);
+  _create(EmployeeModel item) async => useCase.create(item);
 
-  _update(EmployeeModel item) async => employeeUseCase.update(item);
+  _update(EmployeeModel item) async => useCase.update(item);
 
   delete(String? id) async =>
-      handleRequest(() async => await employeeUseCase.delete(id ?? ''));
+      handleRequest(() async => await useCase.delete(id ?? ''));
 }

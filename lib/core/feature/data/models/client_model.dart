@@ -5,12 +5,14 @@ class ClientModel {
   final String? name;
   final String? phone;
   final bool? isDeleted;
+  final DateTime? createdAt;
 
   ClientModel({
     this.id = '',
     this.name = '',
     this.phone,
     this.isDeleted,
+    this.createdAt,
   });
 
   ClientModel copyWith({
@@ -18,12 +20,14 @@ class ClientModel {
     String? name,
     String? phone,
     bool? isDeleted,
+    DateTime? createdAt,
   }) {
     return ClientModel(
       id: id ?? this.id,
       name: name ?? this.name,
       phone: phone ?? this.phone,
       isDeleted: isDeleted ?? this.isDeleted,
+      createdAt: createdAt ?? this.createdAt,
     );
   }
 
@@ -33,6 +37,7 @@ class ClientModel {
       'name': name,
       'phone': phone,
       'isDeleted': isDeleted,
+      'createdAt': createdAt?.millisecondsSinceEpoch,
     };
   }
 
@@ -42,12 +47,15 @@ class ClientModel {
       name: map['name'] != null ? map['name'] as String : null,
       phone: map['phone'] != null ? map['phone'] as String : null,
       isDeleted: map['isDeleted'] != null ? map['isDeleted'] as bool : null,
+      createdAt: map['createdAt'] != null
+          ? DateTime.fromMillisecondsSinceEpoch((map['createdAt'] ?? 0) as int)
+          : null,
     );
   }
 
   @override
   String toString() {
-    return 'ClientModel(id: $id, name: $name, phone: $phone, isDeleted: $isDeleted)';
+    return 'ClientModel(id: $id, name: $name, phone: $phone, isDeleted: $isDeleted, createdAt: $createdAt)';
   }
 
   ClientModel fromMap(Map<String, dynamic> map) {

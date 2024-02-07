@@ -36,6 +36,7 @@ class ClientCubit extends Cubit<BaseState<List<ClientModel>>> {
     final savedItem = ClientModel(
       id: item?.id,
       isDeleted: item?.isDeleted,
+      createdAt: item?.createdAt ?? DateTime.now(),
       name: textControllers[0],
       phone: textControllers[1],
     );

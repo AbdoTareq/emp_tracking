@@ -18,13 +18,13 @@ class ClientDetailsPage extends HookWidget {
       case 0:
         return item?.name;
       default:
-        return item?.toString();
+        return item?.phone;
     }
   }
 
   @override
   Widget build(BuildContext context) {
-    List<TextEditingController> textControllers = List.generate(5,
+    List<TextEditingController> textControllers = List.generate(2,
         (index) => useTextEditingController(text: getRightField(index, item)));
     return Scaffold(
         appBar: const CustomAppBar(title: LocaleKeys.save),
@@ -44,32 +44,14 @@ class ClientDetailsPage extends HookWidget {
                     value!.isNotEmpty ? null : LocaleKeys.name.tr(),
               ),
               TextInput(
-                autofillHints: const [AutofillHints.name],
+                autofillHints: const [AutofillHints.telephoneNumber],
                 controller: textControllers[1],
-                inputType: TextInputType.name,
+                inputType: TextInputType.phone,
                 hint: LocaleKeys.description,
                 spaceAfter: false,
-                prefixIcon: const Icon(Icons.description),
+                prefixIcon: const Icon(Icons.phone),
                 validate: (value) =>
-                    value!.isNotEmpty ? null : LocaleKeys.description.tr(),
-              ),
-              TextInput(
-                controller: textControllers[2],
-                inputType: TextInputType.number,
-                hint: LocaleKeys.stock,
-                spaceAfter: false,
-                prefixIcon: const Icon(Icons.calculate),
-                validate: (value) =>
-                    value!.isNotEmpty ? null : LocaleKeys.stock.tr(),
-              ),
-              TextInput(
-                controller: textControllers[3],
-                inputType: TextInputType.number,
-                hint: LocaleKeys.used,
-                spaceAfter: false,
-                prefixIcon: const Icon(Icons.calculate),
-                validate: (value) =>
-                    value!.isNotEmpty ? null : LocaleKeys.used.tr(),
+                    value!.isNotEmpty ? null : LocaleKeys.phone.tr(),
               ),
               15.rh.heightBox,
               RoundedCornerLoadingButton(
