@@ -1,4 +1,5 @@
 import 'package:employee_management/core/feature/data/models/attendance_model.dart';
+import 'package:employee_management/core/location_manager.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 
 import '../../../core/base_state.dart';
@@ -7,9 +8,9 @@ import '../domain/usecases/usecases.dart';
 
 class AttendanceCubit extends Cubit<BaseState<List<AttendanceModel>>> {
   final AttendanceUseCase usecase;
-  final GetStorage box = GetStorage();
+  final LocationManager locationManager;
 
-  AttendanceCubit({required this.usecase})
+  AttendanceCubit({required this.usecase, required this.locationManager})
       : super(const BaseState<List<AttendanceModel>>(status: RxStatus.Loading));
 
   Future<void> getAll() async {
@@ -53,8 +54,16 @@ class AttendanceCubit extends Cubit<BaseState<List<AttendanceModel>>> {
       handleRequest(() async => await usecase.delete(id ?? ''));
 
   Future<bool> _checkUserLocation() async {
-    await Future.delayed(const Duration(milliseconds: 800));
-    return true;
+    try {
+      final position = await locationManager.determinePosition();
+      showSimpleDialog(text: position.toJson());
+      final distance = await locationManager.getDistanceFromUser();
+      showSimpleDialog(text: distance);
+      return true;
+    } catch (e) {
+      showWarningDialog(text: e.toString());
+      return false;
+    }
   }
 
   checkIn() async {

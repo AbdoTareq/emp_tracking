@@ -23,6 +23,14 @@ abstract class _$AppRouter extends RootStackRouter {
         child: AuthPage(key: args.key),
       );
     },
+    CheckInRoute.name: (routeData) {
+      final args = routeData.argsAs<CheckInRouteArgs>(
+          orElse: () => const CheckInRouteArgs());
+      return AutoRoutePage<dynamic>(
+        routeData: routeData,
+        child: CheckInPage(key: args.key),
+      );
+    },
     ClientDetailsRoute.name: (routeData) {
       final args = routeData.argsAs<ClientDetailsRouteArgs>(
           orElse: () => const ClientDetailsRouteArgs());
@@ -108,6 +116,35 @@ class AuthRouteArgs {
   @override
   String toString() {
     return 'AuthRouteArgs{key: $key}';
+  }
+}
+
+/// generated route for
+/// [CheckInPage]
+class CheckInRoute extends PageRouteInfo<CheckInRouteArgs> {
+  CheckInRoute({
+    Key? key,
+    List<PageRouteInfo>? children,
+  }) : super(
+          CheckInRoute.name,
+          args: CheckInRouteArgs(key: key),
+          initialChildren: children,
+        );
+
+  static const String name = 'CheckInRoute';
+
+  static const PageInfo<CheckInRouteArgs> page =
+      PageInfo<CheckInRouteArgs>(name);
+}
+
+class CheckInRouteArgs {
+  const CheckInRouteArgs({this.key});
+
+  final Key? key;
+
+  @override
+  String toString() {
+    return 'CheckInRouteArgs{key: $key}';
   }
 }
 

@@ -1,6 +1,7 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:employee_management/core/feature/data/models/attendance_model.dart';
 import 'package:employee_management/core/feature/data/models/client_model.dart';
+import 'package:employee_management/core/location_manager.dart';
 import 'package:employee_management/features/attendance/domain/usecases/usecases.dart';
 import 'package:employee_management/features/attendance/presentation/cubit.dart';
 import 'package:employee_management/features/clients/domain/usecases/usecases.dart';
@@ -35,7 +36,8 @@ Future<void> init() async {
   sl.registerFactory(() => EmployeeCubit(useCase: sl()));
   sl.registerFactory(() => MaterialCubit(usecase: sl()));
   sl.registerFactory(() => ClientCubit(usecase: sl()));
-  sl.registerFactory(() => AttendanceCubit(usecase: sl()));
+  sl.registerFactory(
+      () => AttendanceCubit(usecase: sl(), locationManager: sl()));
 
   // Usecases
   sl.registerLazySingleton(() => AuthUseCase(repository: sl()));
@@ -81,4 +83,5 @@ Future<void> init() async {
   sl.registerLazySingleton(() => FirebaseFirestore.instance);
   sl.registerLazySingleton(() => AppRouter());
   sl.registerLazySingleton(() => InternetConnectionChecker());
+  sl.registerLazySingleton(() => LocationManager());
 }
