@@ -1,6 +1,11 @@
+import 'package:employee_management/core/permission_manager.dart';
 import 'package:geolocator/geolocator.dart';
 
 class LocationManager {
+  final PermissionManager permissionManager;
+
+  LocationManager({required this.permissionManager});
+
   /// Determine the current position of the device.
   ///
   /// When the location services are not enabled or permissions
@@ -15,7 +20,9 @@ class LocationManager {
       // Location services are not enabled don't continue
       // accessing the position and request users of the
       // App to enable the location services.
-      return Future.error('Location services are disabled.');
+      if ((await permissionManager.requestLocationPermission()).isNotEmpty) {
+        return Future.error('Location services are disabled.');
+      }
     }
 
     permission = await Geolocator.checkPermission();
