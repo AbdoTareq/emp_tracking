@@ -55,10 +55,12 @@ class AttendanceCubit extends Cubit<BaseState<List<AttendanceModel>>> {
 
   Future<bool> _checkUserLocation() async {
     try {
-      final position = await locationManager.determinePosition();
-      showSimpleDialog(text: position.toJson());
       final distance = await locationManager.getDistanceFromUser();
-      showSimpleDialog(text: distance);
+      showSimpleDialog(text: '$distance m');
+      if (distance > 1500) {
+        showWarningDialog(text: 'You are too far from the office');
+        return false;
+      }
       return true;
     } catch (e) {
       showWarningDialog(text: e.toString());
@@ -68,8 +70,8 @@ class AttendanceCubit extends Cubit<BaseState<List<AttendanceModel>>> {
 
   checkIn() async {
     if ((await _checkUserLocation())) {
-      save(AttendanceModel(
-          date: DateTime.now(), name: 'Test', companyId: '123456'));
+      // save(AttendanceModel(
+      //     date: DateTime.now(), name: 'Test', companyId: '123456'));
     }
   }
 }

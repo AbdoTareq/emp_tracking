@@ -1,6 +1,8 @@
 import 'package:employee_management/core/permission_manager.dart';
 import 'package:geolocator/geolocator.dart';
 
+import 'constants.dart';
+
 class LocationManager {
   final PermissionManager permissionManager;
 
@@ -52,9 +54,8 @@ class LocationManager {
   Future<double> getDistanceFromUser() async {
     try {
       final position = await determinePosition();
-
       double distanceInMeters = Geolocator.distanceBetween(
-          position.latitude, position.longitude, 52.3546274, 4.8285838);
+          position.latitude, position.longitude, 30.0335278, 31.4812307);
       return distanceInMeters;
     } catch (e) {
       rethrow;
