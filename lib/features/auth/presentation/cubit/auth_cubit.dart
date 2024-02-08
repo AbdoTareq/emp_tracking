@@ -1,3 +1,5 @@
+import 'package:firebase_auth/firebase_auth.dart';
+
 import '../../../../core/base_state.dart';
 import '../../../../export.dart';
 import '../../domain/usecases/usecases.dart';
@@ -17,4 +19,16 @@ class AuthCubit extends Cubit<AuthState> {
       });
     }
   }
+
+  Future<bool> logout() async {
+    try {
+      await sl<FirebaseAuth>().signOut();
+      return true;
+    } catch (e) {
+      logger.i(e);
+      return false;
+    }
+  }
+
+  bool isLoggedIn() => sl<FirebaseAuth>().currentUser?.uid != null;
 }

@@ -1,4 +1,5 @@
 import 'package:auto_route/auto_route.dart';
+import 'package:employee_management/features/auth/presentation/cubit/auth_cubit.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
 
 import '../../../export.dart';
@@ -59,11 +60,13 @@ class AppDrawer extends HookWidget {
                 await context.setLocale(Locale(
                     context.locale.toString().contains('en') ? 'ar' : 'en'));
               }),
-          GetStorage().hasData('token')
+          sl<AuthCubit>().isLoggedIn()
               ? ListTile(
-                  onTap: () {
-                    GetStorage().remove('token');
-                    // Get.find<AppSettingsController>().user.value.data = null;
+                  onTap: () async {
+                    bool res = await sl<AuthCubit>().logout();
+                    if (res) {
+                      context.replaceRoute(RoleRoute());
+                    }
                   },
                   title: LocaleKeys.logout
                       .tr()

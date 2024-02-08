@@ -20,7 +20,7 @@ showWarningDialog({String? title = '', String? text = ''}) async {
           actions: [
             TextButton(
               onPressed: () => Navigator.of(context).pop(),
-              child: Text(LocaleKeys.yes),
+              child: const Text(LocaleKeys.yes),
             ),
           ],
         );
@@ -31,7 +31,7 @@ showSimpleDialog({dynamic title = '', dynamic text = ''}) async {
   await showDialog(
       context: navKey.currentContext!,
       builder: (context) {
-        Future.delayed(Duration(seconds: 1), () {
+        Future.delayed(const Duration(seconds: 1), () {
           Navigator.of(context).pop(true);
         });
         return AlertDialog(
@@ -55,7 +55,7 @@ showSimpleDialog({dynamic title = '', dynamic text = ''}) async {
           actions: [
             TextButton(
               onPressed: () => Navigator.of(context).pop(),
-              child: Text(LocaleKeys.yes),
+              child: const Text(LocaleKeys.yes),
             ),
           ],
         );
@@ -65,7 +65,7 @@ showSimpleDialog({dynamic title = '', dynamic text = ''}) async {
 showSuccessSnack({String title = '', String text = ''}) {
   ScaffoldMessenger.of(navKey.currentContext!).showSnackBar(
     SnackBar(
-      content: Text(text, style: TextStyle(color: Colors.white)),
+      content: Text(text, style: const TextStyle(color: Colors.white)),
       backgroundColor: Colors.green,
     ),
   );
@@ -74,7 +74,7 @@ showSuccessSnack({String title = '', String text = ''}) {
 showFailSnack({String title = '', String text = '', Function()? yesFunction}) {
   ScaffoldMessenger.of(navKey.currentContext!).showSnackBar(
     SnackBar(
-      content: Text(text, style: TextStyle(color: Colors.white)),
+      content: Text(text, style: const TextStyle(color: Colors.white)),
       backgroundColor: Colors.redAccent,
     ),
   );
@@ -86,7 +86,7 @@ Future<Null> handleRequest(Future Function() asyncFunction,
     barrierDismissible: false,
     context: navKey.currentContext!,
     builder: (BuildContext context) {
-      return AlertDialog(
+      return const AlertDialog(
         content: Row(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [CircularProgressIndicator()],
@@ -94,19 +94,20 @@ Future<Null> handleRequest(Future Function() asyncFunction,
       );
     },
   );
-  await handleError(asyncFunction).then((value) {});
+  await handleError(asyncFunction, isCloseDialog: true).then((value) {});
 }
 
 Future<dynamic> handleError(Future<dynamic> Function() asyncFunction,
     {bool showMessage = false,
+    bool isCloseDialog = false,
     String? message,
     Function(dynamic e)? onError}) async {
   try {
     final res = await asyncFunction();
-    Navigator.pop(navKey.currentContext!);
+    if (isCloseDialog) Navigator.pop(navKey.currentContext!);
     return res;
   } catch (e) {
-    Navigator.pop(navKey.currentContext!);
+    if (isCloseDialog) Navigator.pop(navKey.currentContext!);
     logger.e(e);
     logger.e(StackTrace.current);
     if (onError != null) onError(e);
@@ -127,7 +128,7 @@ Widget? errorLoading(dynamic state) {
     return state.error.toString().tr().text.bold.xl.makeCentered().p8();
   }
   if (state.isLoading) {
-    return ShimmerList();
+    return const ShimmerList();
   }
   return null;
 }
@@ -214,3 +215,5 @@ Stream<List<T>> transformStreamFromMapToModel<T>(
     return itemList;
   });
 }
+
+bool isAdmin() => const bool.fromEnvironment('admin');

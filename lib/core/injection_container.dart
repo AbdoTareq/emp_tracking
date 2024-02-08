@@ -13,7 +13,7 @@ import 'package:internet_connection_checker/internet_connection_checker.dart';
 
 import '../export.dart';
 import '../features/auth/data/datasources/auth_data_source.dart';
-import '../features/auth/data/repositories/auth_repository_impl.dart';
+import '../features/auth/data/repositories/auth_repository_imp.dart';
 import '../features/auth/domain/repositories/repositories.dart';
 import '../features/auth/domain/usecases/usecases.dart';
 import '../features/auth/presentation/cubit/auth_cubit.dart';

@@ -30,6 +30,20 @@ class EmployeeCubit extends Cubit<BaseState<List<EmployeeModel>>> {
     }
   }
 
+  Future<EmployeeModel?> getById(String employeeId) async {
+    return await handleRequest(() async {
+      try {
+        final res = await useCase.getById(employeeId);
+        return res.fold((l) {
+          logger.i(l);
+          return null;
+        }, (r) => r);
+      } catch (error) {
+        logger.i(error);
+      }
+    });
+  }
+
   save(EmployeeModel? employee, List<String> textControllers) async {
     /// add all item properties as not to reset any property
     final item = EmployeeModel(
