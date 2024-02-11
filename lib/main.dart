@@ -16,19 +16,19 @@ Future<void> main() async {
 
   EasyLocalization.logger.enableBuildModes = [];
   await Future.wait([GetStorage.init()]);
-  SystemChrome.setSystemUIOverlayStyle(
-      SystemUiOverlayStyle(statusBarColor: kPrimaryColor // status bar color
-          ));
+  SystemChrome.setSystemUIOverlayStyle(const SystemUiOverlayStyle(
+      statusBarColor: kPrimaryColor // status bar color
+      ));
   SystemChrome.setPreferredOrientations([DeviceOrientation.portraitUp])
       .then((_) {
     runApp(
       EasyLocalization(
-          assetLoader: CodegenLoader(),
-          supportedLocales: [Locale('ar'), Locale('en')],
+          assetLoader: const CodegenLoader(),
+          supportedLocales: const [Locale('ar'), Locale('en')],
           path: 'assets/langs',
-          fallbackLocale: Locale('en'),
+          fallbackLocale: const Locale('en'),
           saveLocale: true,
-          child: MyApp()),
+          child: const MyApp()),
     );
   });
 }
@@ -37,11 +37,13 @@ class MyApp extends StatelessWidget {
   static bool isDark = GetStorage().read('dark') ?? false;
   static BuildContext? appContext;
 
+  const MyApp({super.key});
+
   @override
   Widget build(BuildContext context) {
     appContext = context;
     return ScreenUtilInit(
-        designSize: Size(baseWidth, baseHeight),
+        designSize: const Size(baseWidth, baseHeight),
         minTextAdapt: true,
         builder: (BuildContext context, Widget? child) {
           return MaterialApp.router(
