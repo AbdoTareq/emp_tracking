@@ -1,6 +1,7 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:employee_management/core/base_state.dart';
 import 'package:employee_management/core/feature/data/models/employee_model.dart';
+import 'package:employee_management/core/location_manager.dart';
 import '../../../core/app_router.dart';
 import '../../../core/view/widgets/custom_list_view_builder.dart';
 import '../../../export.dart';
@@ -39,7 +40,9 @@ class EmployeePage extends StatelessWidget {
         },
       ),
       floatingActionButton: FloatingActionButton(
-        onPressed: () => context.pushRoute(EmployeeDetailsRoute()),
+        onPressed: () {
+          sl<LocationManager>().listen();
+        },
         child: const Icon(Icons.add),
       ),
     );
