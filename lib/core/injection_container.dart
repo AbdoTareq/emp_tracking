@@ -10,6 +10,7 @@ import 'package:employee_management/features/clients/presentation/cubit.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:get_it/get_it.dart';
 import 'package:internet_connection_checker/internet_connection_checker.dart';
+import 'package:location/location.dart';
 
 import '../export.dart';
 import '../features/auth/data/datasources/auth_data_source.dart';
@@ -84,6 +85,8 @@ Future<void> init() async {
   sl.registerLazySingleton(() => FirebaseFirestore.instance);
   sl.registerLazySingleton(() => AppRouter());
   sl.registerLazySingleton(() => InternetConnectionChecker());
-  sl.registerLazySingleton(() => LocationManager(permissionManager: sl()));
+  sl.registerLazySingleton(
+      () => LocationManager(permissionManager: sl(), location: sl()));
   sl.registerLazySingleton(() => PermissionManager());
+  sl.registerLazySingleton(() => Location());
 }
