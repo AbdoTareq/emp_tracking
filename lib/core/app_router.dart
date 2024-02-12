@@ -1,9 +1,9 @@
-import 'package:auto_route/auto_route.dart';
 import 'package:employee_management/features/attendance/presentation/page.dart';
 import 'package:employee_management/features/auth/presentation/pages/auth_employee_page.dart';
 import 'package:employee_management/features/auth/presentation/pages/role_page.dart';
 import 'package:employee_management/features/clients/presentation/details_page.dart';
 import 'package:employee_management/features/clients/presentation/page.dart';
+import 'package:employee_management/features/employee/presentation/employee_tracking_page.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 
 import '../export.dart';
@@ -21,13 +21,16 @@ part 'app_router.gr.dart';
 @AutoRouterConfig()
 class AppRouter extends _$AppRouter {
   final user = sl<FirebaseAuth>().currentUser;
+
+  decideRoute() => user?.email?.contains('emp') == true;
+
   @override
   List<AutoRoute> get routes => [
         AutoRoute(page: RoleRoute.page, initial: user == null),
-        AutoRoute(page: EmployeeRoute.page, initial: user != null, children: [
+        AutoRoute(page: EmployeeRoute.page, initial: !decideRoute(), children: [
           AutoRoute(page: EmployeeDetailsRoute.page),
         ]),
-        AutoRoute(page: AuthRoute.page),
+        AutoRoute(page: EmployeeTrackingRoute.page, initial: decideRoute()),
         AutoRoute(page: AuthEmployeeRoute.page),
         AutoRoute(page: MaterialsRoute.page),
         AutoRoute(page: MaterialDetailsRoute.page),

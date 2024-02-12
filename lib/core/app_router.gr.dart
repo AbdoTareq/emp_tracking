@@ -77,6 +77,14 @@ abstract class _$AppRouter extends RootStackRouter {
         child: EmployeePage(key: args.key),
       );
     },
+    EmployeeTrackingRoute.name: (routeData) {
+      final args = routeData.argsAs<EmployeeTrackingRouteArgs>(
+          orElse: () => const EmployeeTrackingRouteArgs());
+      return AutoRoutePage<dynamic>(
+        routeData: routeData,
+        child: EmployeeTrackingPage(key: args.key),
+      );
+    },
     MaterialDetailsRoute.name: (routeData) {
       final args = routeData.argsAs<MaterialDetailsRouteArgs>(
           orElse: () => const MaterialDetailsRouteArgs());
@@ -97,11 +105,9 @@ abstract class _$AppRouter extends RootStackRouter {
       );
     },
     RoleRoute.name: (routeData) {
-      final args =
-          routeData.argsAs<RoleRouteArgs>(orElse: () => const RoleRouteArgs());
       return AutoRoutePage<dynamic>(
         routeData: routeData,
-        child: RolePage(key: args.key),
+        child: const RolePage(),
       );
     },
   };
@@ -327,6 +333,35 @@ class EmployeeRouteArgs {
 }
 
 /// generated route for
+/// [EmployeeTrackingPage]
+class EmployeeTrackingRoute extends PageRouteInfo<EmployeeTrackingRouteArgs> {
+  EmployeeTrackingRoute({
+    Key? key,
+    List<PageRouteInfo>? children,
+  }) : super(
+          EmployeeTrackingRoute.name,
+          args: EmployeeTrackingRouteArgs(key: key),
+          initialChildren: children,
+        );
+
+  static const String name = 'EmployeeTrackingRoute';
+
+  static const PageInfo<EmployeeTrackingRouteArgs> page =
+      PageInfo<EmployeeTrackingRouteArgs>(name);
+}
+
+class EmployeeTrackingRouteArgs {
+  const EmployeeTrackingRouteArgs({this.key});
+
+  final Key? key;
+
+  @override
+  String toString() {
+    return 'EmployeeTrackingRouteArgs{key: $key}';
+  }
+}
+
+/// generated route for
 /// [MaterialDetailsPage]
 class MaterialDetailsRoute extends PageRouteInfo<MaterialDetailsRouteArgs> {
   MaterialDetailsRoute({
@@ -395,28 +430,14 @@ class MaterialsRouteArgs {
 
 /// generated route for
 /// [RolePage]
-class RoleRoute extends PageRouteInfo<RoleRouteArgs> {
-  RoleRoute({
-    Key? key,
-    List<PageRouteInfo>? children,
-  }) : super(
+class RoleRoute extends PageRouteInfo<void> {
+  const RoleRoute({List<PageRouteInfo>? children})
+      : super(
           RoleRoute.name,
-          args: RoleRouteArgs(key: key),
           initialChildren: children,
         );
 
   static const String name = 'RoleRoute';
 
-  static const PageInfo<RoleRouteArgs> page = PageInfo<RoleRouteArgs>(name);
-}
-
-class RoleRouteArgs {
-  const RoleRouteArgs({this.key});
-
-  final Key? key;
-
-  @override
-  String toString() {
-    return 'RoleRouteArgs{key: $key}';
-  }
+  static const PageInfo<void> page = PageInfo<void>(name);
 }
