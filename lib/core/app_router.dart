@@ -23,10 +23,12 @@ class AppRouter extends _$AppRouter {
   final user = sl<FirebaseAuth>().currentUser;
   @override
   List<AutoRoute> get routes => [
-        AutoRoute(page: AuthRoute.page, initial: user == null),
+        AutoRoute(page: RoleRoute.page, initial: user == null),
         AutoRoute(page: EmployeeRoute.page, initial: user != null, children: [
           AutoRoute(page: EmployeeDetailsRoute.page),
         ]),
+        AutoRoute(page: AuthRoute.page),
+        AutoRoute(page: AuthEmployeeRoute.page),
         AutoRoute(page: MaterialsRoute.page),
         AutoRoute(page: MaterialDetailsRoute.page),
         AutoRoute(page: ClientRoute.page),

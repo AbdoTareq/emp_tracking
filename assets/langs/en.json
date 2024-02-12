@@ -5,6 +5,8 @@
   "sendCode": "Send Code",
   "message": "message",
   "save": "save",
+  "userId": "userId",
+  "war": "Enter valid value",
   "speed": "Speed",
   "fontSize": "Font Size",
   "darkMode": "Dark Mode",

@@ -1,5 +1,6 @@
 import 'package:employee_management/core/base_state.dart';
 import 'package:employee_management/core/feature/data/models/employee_model.dart';
+import 'package:employee_management/features/auth/presentation/cubit/auth_cubit.dart';
 
 import '../../../export.dart';
 import '../domain/usecases/usecases.dart';
@@ -31,16 +32,12 @@ class EmployeeCubit extends Cubit<BaseState<List<EmployeeModel>>> {
   }
 
   Future<EmployeeModel?> getById(String employeeId) async {
-    return await handleRequest(() async {
-      try {
-        final res = await useCase.getById(employeeId);
-        return res.fold((l) {
-          logger.i(l);
-          return null;
-        }, (r) => r);
-      } catch (error) {
-        logger.i(error);
-      }
+    return await handleError(() async {
+      final res = await useCase.getById(employeeId);
+      return res.fold((l) {
+        logger.i(l);
+        return null;
+      }, (r) => r);
     });
   }
 
@@ -68,4 +65,11 @@ class EmployeeCubit extends Cubit<BaseState<List<EmployeeModel>>> {
 
   delete(String? id) async =>
       handleRequest(() async => await useCase.delete(id ?? ''));
+
+  loginEmployee() async {
+    return await sl<AuthCubit>().login(
+      'emp@gmail.com',
+      '123456',
+    );
+  }
 }

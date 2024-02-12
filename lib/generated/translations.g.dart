@@ -7,6 +7,8 @@ abstract class  LocaleKeys {
   static const sendCode = 'sendCode';
   static const message = 'message';
   static const save = 'save';
+  static const userId = 'userId';
+  static const war = 'war';
   static const speed = 'speed';
   static const fontSize = 'fontSize';
   static const darkMode = 'darkMode';

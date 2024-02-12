@@ -22,6 +22,8 @@ export 'core/constants.dart';
 export 'package:velocity_x/velocity_x.dart'
     hide IntExtension, BoolExtension, ThemeExtension;
 export 'package:animated_custom_dropdown/custom_dropdown.dart';
+export 'package:auto_route/auto_route.dart';
+export 'package:flutter_hooks/flutter_hooks.dart';
 export 'package:flutter_screenutil/flutter_screenutil.dart';
 export 'package:get_storage/get_storage.dart';
 export 'package:flutter/material.dart' hide TextDirection;

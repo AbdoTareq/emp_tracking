@@ -80,7 +80,7 @@ showFailSnack({String title = '', String text = '', Function()? yesFunction}) {
   );
 }
 
-Future<Null> handleRequest(Future Function() asyncFunction,
+Future handleRequest(Future Function() asyncFunction,
     {bool showMessage = false, String? message}) async {
   showDialog(
     barrierDismissible: false,
@@ -94,7 +94,7 @@ Future<Null> handleRequest(Future Function() asyncFunction,
       );
     },
   );
-  await handleError(asyncFunction, isCloseDialog: true).then((value) {});
+  return await handleError(asyncFunction, isCloseDialog: true);
 }
 
 Future<dynamic> handleError(Future<dynamic> Function() asyncFunction,

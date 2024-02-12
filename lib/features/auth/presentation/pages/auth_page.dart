@@ -10,6 +10,7 @@ import '../../../../export.dart';
 class AuthPage extends HookWidget {
   AuthPage({Key? key}) : super(key: key);
   final controller = sl<AuthCubit>();
+  final GlobalKey<FormState> formKey = GlobalKey();
 
   @override
   Widget build(BuildContext context) {
@@ -17,17 +18,17 @@ class AuthPage extends HookWidget {
     final passTextController = useTextEditingController();
     return Scaffold(
         body: Form(
-      key: controller.formKey,
+      key: formKey,
       child: Column(
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
           TextInput(
-            autofillHints: [AutofillHints.email],
+            autofillHints: const [AutofillHints.email],
             controller: mailTextController,
             inputType: TextInputType.emailAddress,
             hint: LocaleKeys.mail,
             spaceAfter: false,
-            prefixIcon: Icon(Icons.email),
+            prefixIcon: const Icon(Icons.email),
             validate: (value) =>
                 value!.isNotEmpty ? null : LocaleKeys.mail.tr(),
           ),
@@ -39,6 +40,7 @@ class AuthPage extends HookWidget {
           RoundedCornerLoadingButton(
             color: kPrimaryColor,
             onPressed: () async {
+              if (!formKey.currentState!.validate()) return;
               final res = await controller.login(
                 mailTextController.text,
                 passTextController.text,
